@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://2nf8l3hb50cb"]
+
+[ext_resource type="Texture2D" uid="uid://b7kdj8smdup8t" path="res://artAssets/sideMenu.png" id="1_hnoh7"]
+
+[node name="SideBar" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 180)
+texture = ExtResource("1_hnoh7")
