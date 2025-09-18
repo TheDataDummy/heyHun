@@ -440,17 +440,14 @@ debug_color = Color(0.999701, 0, 0.10422, 0.42)
 [node name="Tower" parent="." instance=ExtResource("4_edquo")]
 position = Vector2(120, 160)
 
-[node name="Tower2" parent="." groups=["targetedEnemies"] instance=ExtResource("4_edquo")]
+[node name="Tower2" parent="." instance=ExtResource("4_edquo")]
 position = Vector2(56, 160)
-
-[node name="Tower3" parent="." groups=["targetedEnemies"] instance=ExtResource("4_edquo")]
-position = Vector2(56, 144)
 
 [node name="Spawner" parent="." instance=ExtResource("6_uvjjc")]
 y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("2_i85a5")
-numberOfEnemies = 25
-timeBetweenEnemies = 0.1
+numberOfEnemies = 10
+timeBetweenEnemies = 0.25
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

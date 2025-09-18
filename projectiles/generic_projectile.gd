@@ -20,8 +20,7 @@ func _on_body_entered(body):
 	if body == target:
 		animation_player.play("explode")
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "explode":
-		target.kill()
+		target.hit(damage)
 		queue_free()

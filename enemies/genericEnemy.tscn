@@ -9,6 +9,7 @@ radius = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_h8b6w")
+hitpoints = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sa0cw")
@@ -30,3 +31,7 @@ region_rect = Rect2(16, 208, 16, 16)
 
 [node name="hitpoint" type="Marker2D" parent="."]
 position = Vector2(0, -7)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=4 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Texture2D" uid="uid://b7kdj8smdup8t" path="res://artAssets/sideMenu.png" id="1_hnoh7"]
+[ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
+[ext_resource type="Texture2D" uid="uid://b2ab4pyb2lj6m" path="res://artAssets/milkJug.png" id="2_qv3d8"]
 
 [node name="SideBar" type="Node2D"]
+script = ExtResource("1_vikbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(80, 180)
 texture = ExtResource("1_hnoh7")
+
+[node name="milkJug" type="TextureButton" parent="." groups=["towerButtons"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 48.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_qv3d8")
+stretch_mode = 0
+
+[connection signal="pressed" from="milkJug" to="." method="_on_texture_button_pressed"]

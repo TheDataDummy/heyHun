@@ -1,13 +1,15 @@
 extends Area2D
 
 @export var damage: int
-@export var cooldown: int
+@export var cooldown: float
 @export var projectileScene: PackedScene
 
 @onready var timer = $Timer
 @onready var progress_bar = $TextureProgressBar
 @onready var projectile_spawn_point = $ProjectileSpawnPoint
+@onready var animation_player = $AnimationPlayer
 
+var targetEnemy: CharacterBody2D = null
 var enemies = []
 
 func _process(_delta):
@@ -27,13 +29,13 @@ func _ready():
 
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	enemies.push_back(body)
-	if timer.is_stopped():
+	if timer.is_stopped() and animation_player.current_animation != "attack":
 		attack()
 
 func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body in enemies:
 		enemies.erase(body)
-
+	
 func _on_timer_timeout():
 	if len(enemies) == 0:
 		return
@@ -41,28 +43,38 @@ func _on_timer_timeout():
 		attack()
 	
 func attack():
-	# Select an enemy to attack
-	var enemy: CharacterBody2D = null
 	# Iterate over enemies in range
+	print("looking for target")
 	for e in enemies:
 		# find the first one which does not have a killing blow on the way
 		if not e.is_in_group("deathBlownEnemies"):
-			enemy = e
+			targetEnemy = e
 			break
-		else:
-			print("I would attack that enemy but he should be dead")
 	# If there is no such enemy, just return and continue looking
-	if enemy == null:
+	if targetEnemy == null:
 		return
-	
-	# If there is an enemy that isn't about to die, attack it
-	timer.start()
-	var projectile = projectileScene.instantiate()
-	projectile.target = enemy
-	projectile.position = projectile_spawn_point.global_position
-	projectile.damage = damage
-	get_tree().root.call_deferred("add_child", projectile)
-	
+	print("Tower " + name + " shooting at "  + targetEnemy.name + " with " + str(targetEnemy.hitpoints) + " hp remaining ")
 	# Determine if we will be killing the enemy with this shot
-	if projectile.damage >= enemy.hitpoints:
-		enemy.add_to_group("deathBlownEnemies")
+	if damage >= targetEnemy.queuedHitpoints:
+		targetEnemy.add_to_group("deathBlownEnemies")
+		
+	targetEnemy.queue_damage(damage)
+	
+	attackAnimationAndProjectile()
+		
+func attackAnimationAndProjectile():
+	animation_player.play("attack")
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "attack":
+		# Start the cooldown
+		timer.start()
+		# Spawn projectile
+		var projectile = projectileScene.instantiate()
+		projectile.target = targetEnemy
+		projectile.position = projectile_spawn_point.global_position
+		projectile.damage = damage
+		get_tree().root.call_deferred("add_child", projectile)
+		animation_player.play("RESET")
+		# Clear target enemy
+		targetEnemy = null
