@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxc35amwyf4rr"]
+[gd_scene load_steps=5 format=3 uid="uid://cqb6akecg20xm"]
 
-[ext_resource type="Script" path="res://enemies/generic_enemy.gd" id="1_h8b6w"]
-[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_8x3o6"]
-[ext_resource type="Texture2D" uid="uid://bn0sod4totuyw" path="res://artAssets/Serene Village - Inside_black.png" id="2_55lqv"]
+[ext_resource type="Script" path="res://enemies/generic_enemy.gd" id="1_vtnkl"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_s71qu"]
+[ext_resource type="Texture2D" uid="uid://cyqladgk7kxgj" path="res://artAssets/enemies/sunScreen.png" id="3_5esjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
 radius = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
-script = ExtResource("1_h8b6w")
-hitpoints = 2
+script = ExtResource("1_vtnkl")
+speed = 25
+hitpoints = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sa0cw")
@@ -20,13 +21,13 @@ target_desired_distance = 5.0
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_8x3o6")
+position = Vector2(0, -1)
+texture = ExtResource("2_s71qu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_55lqv")
+position = Vector2(0, -7)
+texture = ExtResource("3_5esjm")
 offset = Vector2(0, -9)
-region_enabled = true
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="hitpoint" type="Marker2D" parent="."]

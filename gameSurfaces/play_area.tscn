@@ -1,11 +1,203 @@
-[gd_scene load_steps=16 format=4 uid="uid://isx577j7rxo8"]
+[gd_scene load_steps=21 format=4 uid="uid://isx577j7rxo8"]
 
 [ext_resource type="Script" path="res://gameSurfaces/game_area.gd" id="1_0ovfa"]
 [ext_resource type="Texture2D" uid="uid://dbtpwprjmeu2" path="res://artAssets/levelBackground.png" id="1_4v25r"]
+[ext_resource type="PackedScene" uid="uid://dyb6u4nq80otx" path="res://objects/coin.tscn" id="2_1d324"]
 [ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="2_i85a5"]
+[ext_resource type="Script" path="res://gameSurfaces/ui.gd" id="2_lfeji"]
 [ext_resource type="Texture2D" uid="uid://bq5r87oips5lm" path="res://artAssets/dirt_tileset - Copy.png" id="3_y8lqs"]
-[ext_resource type="PackedScene" uid="uid://cctro4hnntkfx" path="res://towers/genericTower.tscn" id="4_edquo"]
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="6_eyylw"]
 [ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="6_uvjjc"]
+[ext_resource type="Texture2D" uid="uid://mts10xfbfxw6" path="res://artAssets/tileset - simplified transparent.png" id="7_5v8yg"]
+[ext_resource type="PackedScene" uid="uid://cqb6akecg20xm" path="res://enemies/sunScreen.tscn" id="9_nrk8h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plvjn"]
+texture = ExtResource("7_5v8yg")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+6:0/0 = 0
+6:0/0/terrain_set = 0
+7:0/0 = 0
+7:0/0/terrain_set = 0
+8:0/0 = 0
+8:0/0/terrain_set = 0
+9:0/0 = 0
+9:0/0/terrain_set = 0
+10:0/0 = 0
+10:0/0/terrain_set = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+6:1/0 = 0
+6:1/0/terrain_set = 0
+7:1/0 = 0
+7:1/0/terrain_set = 0
+8:1/0 = 0
+8:1/0/terrain_set = 0
+9:1/0 = 0
+9:1/0/terrain_set = 0
+10:1/0 = 0
+10:1/0/terrain_set = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/top_side = 0
+4:2/0 = 0
+4:2/0/terrain_set = 0
+5:2/0 = 0
+5:2/0/terrain_set = 0
+6:2/0 = 0
+6:2/0/terrain_set = 0
+7:2/0 = 0
+7:2/0/terrain_set = 0
+8:2/0 = 0
+8:2/0/terrain_set = 0
+9:2/0 = 0
+9:2/0/terrain_set = 0
+10:2/0 = 0
+10:2/0/terrain_set = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/right_side = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/left_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/left_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+4:3/0 = 0
+4:3/0/terrain_set = 0
+5:3/0 = 0
+5:3/0/terrain_set = 0
+6:3/0 = 0
+6:3/0/terrain_set = 0
+7:3/0 = 0
+7:3/0/terrain_set = 0
+8:3/0 = 0
+8:3/0/terrain_set = 0
+4:4/0 = 0
+4:4/0/terrain_set = 0
+5:4/0 = 0
+5:4/0/terrain_set = 0
+6:4/0 = 0
+6:4/0/terrain_set = 0
+7:4/0 = 0
+7:4/0/terrain_set = 0
+8:4/0 = 0
+8:4/0/terrain_set = 0
+10:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kyahv"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.726912, 0, 0.128516, 1)
+sources/0 = SubResource("TileSetAtlasSource_plvjn")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sryvp"]
 
@@ -402,15 +594,21 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-24, 156, -16, 96, 16, 92, 84, 92, 84, 148, 52, 168, 52, 204, 148, 204, 148, 220, 252, 220, 252, 204, 268, 196, 268, 172, 264, 168, 260, 164, 188, 164, 188, 152, 180, 148, 140, 148, 140, 108, 152, 108, 160, 92, 196, 92, 200, 108, 228, 108, 228, 124, 240, 124, 256, 124, 264, 140, 288, 140, 292, 152, 296, 156, 324, 156, 324, 148, 304, 148, 296, 132, 272, 128, 268, 120, 260, 116, 240, 116, 236, 100, 228, 100, 208, 100, 204, 88, 196, 84, 152, 84, 144, 100, 132, 100, 132, 148, 132, 156, 176, 156, 180, 168, 184, 172, 256, 172, 260, 176, 260, 192, 244, 196, 244, 212, 160, 212, 156, 196, 60, 196, 60, 172, 92, 152, 92, 84, -76, 84, -76, 156)])
 agent_radius = 3.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m488"]
-size = Vector2(304, 160)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4u2mv"]
 size = Vector2(8, 40)
 
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0ovfa")
+coinScene = ExtResource("2_1d324")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_lfeji")
+
+[node name="placeableArea" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray("AAACAAQAAAAAAAMAAAADAAQAAAABAAMAAAAEAAQAAAABAAMAAAAFAAQAAAABAAMAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAMAAAAKAAQAAAABAAMAAAALAAQAAAABAAMAAAAMAAQAAAABAAMAAAANAAQAAAAAAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAARAAQAAAABAAAAAAASAAQAAAABAAAAAAATAAQAAAACAAAAAAAGAAUAAAAAAAEAAAAHAAUAAAABAAEAAAAIAAUAAAACAAIAAAAGAAYAAAAAAAEAAAAGAAcAAAAAAAEAAAAGAAgAAAAAAAEAAAAGAAkAAAAAAAEAAAAGAAoAAAABAAEAAAAGAAsAAAABAAIAAAAHAAsAAAABAAIAAAAHAAoAAAABAAEAAAAHAAkAAAACAAEAAAAHAAgAAAACAAEAAAAHAAcAAAACAAEAAAAHAAYAAAACAAEAAAAEAAsAAAAAAAMAAAAFAAsAAAABAAIAAAAFAAoAAAAAAAAAAAAIAAsAAAABAAIAAAAJAAsAAAABAAIAAAAKAAsAAAABAAEAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAACAAMAAAAOAAwAAAACAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAAAAAIAAAAIAAoAAAABAAAAAAAJAAoAAAABAAAAAAAKAAoAAAABAAAAAAAIAA0AAAACAAMAAAAHAA0AAAABAAMAAAAGAA0AAAABAAMAAAAFAA0AAAABAAMAAAAEAA0AAAABAAMAAAADAA0AAAABAAIAAAACAA0AAAAAAAIAAAACAAYAAAAAAAAAAAACAAwAAAAAAAEAAAACAAsAAAADAAEAAAACAAoAAAADAAEAAAACAAkAAAAAAAIAAAACAAgAAAAAAAEAAAACAAcAAAAAAAEAAAADAAYAAAABAAAAAAAEAAYAAAACAAAAAAAEAAcAAAACAAEAAAADAAcAAAABAAEAAAADAAgAAAABAAEAAAAEAAgAAAACAAIAAAADAAkAAAACAAIAAAAJAAgAAAAAAAIAAAAKAAgAAAABAAIAAAALAAgAAAACAAIAAAAMAAgAAAAAAAEAAAANAAgAAAABAAEAAAAOAAgAAAABAAAAAAAPAAgAAAACAAAAAAAMAAkAAAAAAAIAAAANAAkAAAABAAIAAAAOAAkAAAABAAIAAAAPAAkAAAACAAIAAAAQAAkAAAABAAMAAAARAAkAAAACAAAAAAARAAoAAAAAAAAAAAASAAoAAAABAAAAAAATAAoAAAACAAAAAAATAAsAAAACAAEAAAATAAwAAAACAAEAAAATAA0AAAACAAIAAAARAA0AAAABAAIAAAASAA0AAAABAAIAAAASAAwAAAABAAEAAAASAAsAAAABAAEAAAARAAsAAAAAAAEAAAARAAwAAAAAAAEAAAAQAA0AAAAAAAIAAAAJAAcAAAAAAAAAAAAKAAcAAAABAAEAAAALAAcAAAACAAEAAAAMAAcAAAAAAAAAAAANAAcAAAACAAAAAAAKAAYAAAAAAAAAAAALAAYAAAACAAAAAAANAAUAAAAAAAIAAAAOAAUAAAABAAIAAAAPAAUAAAABAAEAAAAQAAUAAAABAAEAAAARAAUAAAABAAEAAAASAAUAAAABAAEAAAATAAUAAAACAAEAAAATAAYAAAACAAEAAAASAAYAAAABAAEAAAARAAYAAAABAAEAAAAQAAYAAAABAAIAAAAPAAYAAAAAAAIAAAARAAcAAAAAAAIAAAASAAcAAAABAAIAAAATAAcAAAACAAIAAAATAAgAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_kyahv")
 
 [node name="path" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAUAAAABAAMAAAACAAUAAAABAAMAAAADAAUAAAABAAMAAAAEAAUAAAABAAMAAAAFAAUAAAAHAAAAAAAFAAYAAAADAAEAAAAFAAcAAAADAAEAAAAFAAgAAAADAAEAAAAFAAkAAAAHAAMAAAAEAAkAAAAEAAAAAAAEAAoAAAAHAAMAAAADAAoAAAAEAAAAAAADAAsAAAADAAEAAAADAAwAAAAEAAMAAAAEAAwAAAABAAMAAAAFAAwAAAABAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAAHAAAAAAAJAA0AAAAEAAMAAAAKAA0AAAABAAMAAAALAA0AAAABAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAOAA0AAAABAAMAAAAPAAwAAAAEAAAAAAAPAA0AAAAHAAMAAAAQAAsAAAADAAEAAAAQAAwAAAAHAAMAAAAQAAoAAAAHAAAAAAAPAAoAAAABAAMAAAAOAAoAAAABAAMAAAANAAoAAAABAAMAAAAMAAoAAAABAAMAAAALAAoAAAAEAAMAAAAJAAkAAAABAAMAAAAIAAkAAAAEAAMAAAAIAAgAAAADAAEAAAAIAAcAAAADAAEAAAAKAAkAAAABAAMAAAALAAkAAAAHAAAAAAAJAAYAAAAHAAMAAAAJAAUAAAAEAAAAAAAIAAYAAAAEAAAAAAAKAAUAAAABAAMAAAALAAUAAAABAAMAAAAMAAUAAAAHAAAAAAAMAAYAAAAEAAMAAAANAAYAAAABAAMAAAAOAAYAAAAHAAAAAAAOAAcAAAAEAAMAAAAPAAcAAAABAAMAAAAQAAcAAAAHAAAAAAAQAAgAAAAEAAMAAAARAAgAAAABAAMAAAASAAgAAAAHAAAAAAATAAkAAAACAAMAAAASAAkAAAAEAAMAAAAAAAUAAAABAAMAAAD//wUAAAABAAMAAAD+/wUAAAAFAAAAAAD9/wUAAAABAAAAAAD+/wYAAAACAAEAAAD+/wcAAAACAAEAAAD+/wgAAAACAAEAAAD9/wgAAAABAAEAAAD9/wkAAAABAAIAAAD8/wkAAAABAAIAAAD8/wgAAAABAAEAAAD7/wgAAAAAAAEAAAD7/wcAAAAAAAEAAAD7/wYAAAAAAAEAAAD8/wYAAAABAAEAAAD8/wUAAAABAAAAAAD9/wYAAAABAAEAAAD9/wcAAAABAAEAAAD7/wkAAAAAAAIAAAD+/wkAAAACAAIAAAD8/wcAAAABAAEAAAD7/wUAAAAAAAAAAAA=")
@@ -424,12 +622,6 @@ z_index = -10
 position = Vector2(240, 144)
 texture = ExtResource("1_4v25r")
 
-[node name="placableTerritory" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="placableTerritory"]
-position = Vector2(168, 144)
-shape = SubResource("RectangleShape2D_8m488")
-
 [node name="enemyGoal" type="Area2D" parent="." groups=["enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyGoal" groups=["target"]]
@@ -437,17 +629,19 @@ position = Vector2(324, 148)
 shape = SubResource("RectangleShape2D_4u2mv")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
 
-[node name="Tower" parent="." instance=ExtResource("4_edquo")]
-position = Vector2(120, 160)
+[node name="spawners" type="Node2D" parent="."]
+script = ExtResource("6_eyylw")
 
-[node name="Tower2" parent="." instance=ExtResource("4_edquo")]
-position = Vector2(56, 160)
-
-[node name="Spawner" parent="." instance=ExtResource("6_uvjjc")]
+[node name="bookSpawner" parent="spawners" instance=ExtResource("6_uvjjc")]
 y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("2_i85a5")
-numberOfEnemies = 10
 timeBetweenEnemies = 0.25
+
+[node name="sunScreenSpawner" parent="spawners" instance=ExtResource("6_uvjjc")]
+position = Vector2(-23, 101)
+enemyScene = ExtResource("9_nrk8h")
+numberOfEnemies = 4
+timeBetweenEnemies = 2.0
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

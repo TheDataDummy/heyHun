@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2ab4pyb2lj6m"
-path="res://.godot/imported/milkJug.png-5092accbe6b9fdbe304b8016d36b3761.ctex"
+uid="uid://dgi5luebdpb3t"
+path="res://.godot/imported/coin-Sheet.png-01da3d909b81469c464ad16c591cfca4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://artAssets/milkJug.png"
-dest_files=["res://.godot/imported/milkJug.png-5092accbe6b9fdbe304b8016d36b3761.ctex"]
+source_file="res://artAssets/objects/coin-Sheet.png"
+dest_files=["res://.godot/imported/coin-Sheet.png-01da3d909b81469c464ad16c591cfca4.ctex"]
 
 [params]
 

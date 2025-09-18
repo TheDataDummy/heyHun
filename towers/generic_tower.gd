@@ -3,14 +3,16 @@ extends Area2D
 @export var damage: int
 @export var cooldown: float
 @export var projectileScene: PackedScene
+@export var towerCost: int = 1
 
 @onready var timer = $Timer
-@onready var progress_bar = $TextureProgressBar
+@onready var progress_bar = $cooldownbar
 @onready var projectile_spawn_point = $ProjectileSpawnPoint
 @onready var animation_player = $AnimationPlayer
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
+var attack_mode = false
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -29,7 +31,7 @@ func _ready():
 
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	enemies.push_back(body)
-	if timer.is_stopped() and animation_player.current_animation != "attack":
+	if timer.is_stopped() and animation_player.current_animation != "attack" and attack_mode:
 		attack()
 
 func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
@@ -39,12 +41,12 @@ func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_inde
 func _on_timer_timeout():
 	if len(enemies) == 0:
 		return
-	else:
+	elif attack_mode:
 		attack()
 	
 func attack():
 	# Iterate over enemies in range
-	print("looking for target")
+	#print("looking for target")
 	for e in enemies:
 		# find the first one which does not have a killing blow on the way
 		if not e.is_in_group("deathBlownEnemies"):
@@ -53,7 +55,7 @@ func attack():
 	# If there is no such enemy, just return and continue looking
 	if targetEnemy == null:
 		return
-	print("Tower " + name + " shooting at "  + targetEnemy.name + " with " + str(targetEnemy.hitpoints) + " hp remaining ")
+	#print("Tower " + name + " shooting at "  + targetEnemy.name + " with " + str(targetEnemy.hitpoints) + " hp remaining ")
 	# Determine if we will be killing the enemy with this shot
 	if damage >= targetEnemy.queuedHitpoints:
 		targetEnemy.add_to_group("deathBlownEnemies")

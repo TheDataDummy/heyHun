@@ -9,3 +9,7 @@ func _ready():
 func initiate_build_mode(buttonName):
 	print("Let's build!", buttonName)
 	tower_selected.emit(buttonName)
+
+func deselect_all_buttons():
+	for button in get_tree().get_nodes_in_group("towerButtons"):
+		button.release_focus()

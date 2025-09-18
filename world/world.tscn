@@ -8,6 +8,7 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
+money = 10
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 
@@ -17,4 +18,6 @@ position = Vector2(480, 0)
 [node name="HUD" parent="." instance=ExtResource("3_m3pns")]
 position = Vector2(0, 288)
 
+[connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
+[connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
 [connection signal="tower_selected" from="SideBar" to="." method="_on_side_bar_tower_selected"]

@@ -6,15 +6,20 @@ extends Node2D
 @export var numberOfEnemies: int
 @export var timeBetweenEnemies: float
 
+@onready var game_world = get_parent()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = timeBetweenEnemies
-	timer.start()
 
 func _on_timer_timeout():
 	if numberOfEnemies > 0:
 		var enemy = enemyScene.instantiate()
 		enemy.position = global_position
 		add_child(enemy)
+		enemy.connect("died", Callable(game_world, "enemy_died"))
 		timer.start()
 		numberOfEnemies -= 1
+
+func start_wave():
+	timer.start()

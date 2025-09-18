@@ -4,13 +4,14 @@ var target: Node = null
 @export var speed = 50
 @export var hitpoints: int = 1
 var queuedHitpoints: int
-@onready var rich_text_label = $RichTextLabel
+var attacking = false
+
+signal died(position: Vector2)
 
 func _ready():
 	_setup_navigation.call_deferred()
 	target = get_tree().get_nodes_in_group("target")[0]
 	queuedHitpoints = hitpoints
-	rich_text_label.text = str(hitpoints)
 
 func _setup_navigation():
 	if target:
@@ -26,17 +27,17 @@ func made_it_home():
 	queue_free()
 
 func queue_damage(damage):
-	print(str(damage) + " has been queued on " + name)
+	#print(str(damage) + " has been queued on " + name)
 	queuedHitpoints -= damage
 	if queuedHitpoints <= 0:
 		queuedHitpoints = 0
-	print(str(queuedHitpoints) + " currently queued hp")
+	#print(str(queuedHitpoints) + " currently queued hp")
 
 func hit(damage):
 	hitpoints -= damage
-	rich_text_label.text = str(hitpoints)
 	if hitpoints <= 0:
 		kill()
 
 func kill():
+	died.emit(global_position)
 	queue_free()

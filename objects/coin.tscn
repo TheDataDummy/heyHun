@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyb6u4nq80otx"]
+
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="1_4khke"]
+[ext_resource type="Script" path="res://objects/coin.gd" id="1_acmxs"]
+[ext_resource type="Texture2D" uid="uid://dgi5luebdpb3t" path="res://artAssets/objects/coin-Sheet.png" id="2_vl3x1"]
+
+[sub_resource type="Animation" id="Animation_1qp4y"]
+resource_name = "spawnAndDie"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -16), Vector2(0, -15), Vector2(0, -13), Vector2(0, -8), Vector2(0, -7), Vector2(0, -8), Vector2(0, -10), Vector2(0, -11), Vector2(0, -10), Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_o8t3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b5vxy"]
+_data = {
+"RESET": SubResource("Animation_o8t3h"),
+"spawnAndDie": SubResource("Animation_1qp4y")
+}
+
+[node name="coin" type="Node2D"]
+script = ExtResource("1_acmxs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_4khke")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vl3x1")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b5vxy")
+}
+autoplay = "spawnAndDie"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
