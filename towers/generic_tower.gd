@@ -5,7 +5,8 @@ extends Area2D
 @export var projectileScene: PackedScene
 
 @onready var timer = $Timer
-@onready var progress_bar = $ProgressBar
+@onready var progress_bar = $TextureProgressBar
+@onready var projectile_spawn_point = $ProjectileSpawnPoint
 
 var enemies = []
 
@@ -58,7 +59,7 @@ func attack():
 	timer.start()
 	var projectile = projectileScene.instantiate()
 	projectile.target = enemy
-	projectile.position = global_position
+	projectile.position = projectile_spawn_point.global_position
 	projectile.damage = damage
 	get_tree().root.call_deferred("add_child", projectile)
 	

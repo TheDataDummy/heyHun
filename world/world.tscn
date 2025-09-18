@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://byxxa3j3oa1sh" path="res://gameSurfaces/hud.tscn" id="3_m3pns"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 position = Vector2(0, -12)

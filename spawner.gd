@@ -15,6 +15,6 @@ func _on_timer_timeout():
 	if numberOfEnemies > 0:
 		var enemy = enemyScene.instantiate()
 		enemy.position = global_position
-		get_tree().root.add_child(enemy)
+		add_child(enemy)
 		timer.start()
 		numberOfEnemies -= 1
