@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgg0k3yhl16j"]
+[gd_scene load_steps=7 format=3 uid="uid://cgg0k3yhl16j"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_dkcx4"]
 [ext_resource type="PackedScene" uid="uid://isx577j7rxo8" path="res://gameSurfaces/play_area.tscn" id="1_yj447"]
 [ext_resource type="PackedScene" uid="uid://2nf8l3hb50cb" path="res://gameSurfaces/side_bar.tscn" id="2_1o8eq"]
 [ext_resource type="PackedScene" uid="uid://cta8rnx8msm28" path="res://waves/wave1.tscn" id="2_ebd7i"]
 [ext_resource type="PackedScene" uid="uid://byxxa3j3oa1sh" path="res://gameSurfaces/hud.tscn" id="3_m3pns"]
+[ext_resource type="PackedScene" uid="uid://lik5dot3ht2y" path="res://towers/diffuser.tscn" id="6_mpq1b"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -34,6 +35,9 @@ position = Vector2(480, 0)
 
 [node name="HUD" parent="." instance=ExtResource("3_m3pns")]
 position = Vector2(0, 288)
+
+[node name="Tower" parent="." instance=ExtResource("6_mpq1b")]
+position = Vector2(72, 104)
 
 [connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
 [connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]

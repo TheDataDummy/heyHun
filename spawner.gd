@@ -7,8 +7,6 @@ extends Node2D
 
 @onready var game_world = get_parent()
 
-signal spawnerDepleted
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = timeBetweenEnemies
