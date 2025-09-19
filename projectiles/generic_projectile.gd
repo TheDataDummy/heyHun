@@ -15,6 +15,8 @@ func _physics_process(delta):
 			look_at(target.global_position)
 
 		global_position += direction * SPEED * delta
+	else:
+		queue_free()
 	
 func _on_body_entered(body):
 	if body == target:

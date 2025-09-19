@@ -49,6 +49,5 @@ func _on_button_button_up():
 		hud.set_current_wave(wave)
 		wave += 1 
 
-
 func _on_play_area_wave_completed():
 	wave_in_progress = false
