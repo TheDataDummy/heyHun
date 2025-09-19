@@ -3,7 +3,7 @@ extends Area2D
 @export var damage: int
 @export var cooldown: float
 @export var projectileScene: PackedScene
-@export var towerCost: int = 1
+@export var towerCost: int
 
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar

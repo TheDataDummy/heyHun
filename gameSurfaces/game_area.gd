@@ -1,6 +1,5 @@
 extends Node2D
 @onready var ui = $UI
-@onready var spawners = $spawners
 @onready var placeable_area = $placeableArea
 @export var coinScene: PackedScene
 
@@ -9,7 +8,8 @@ var build_mode
 var build_location
 var build_type 
 
-signal build_mode_exited
+signal build_mode_exited(cost: int)
+signal earnCoins(value: int)
 
 func _unhandled_input(event):
 	if event.is_action_released("ui_accept") and build_mode == true:
@@ -27,9 +27,12 @@ func _on_world_tower_slection_mode_entered(tower_name):
 	build_type = tower_name
 	ui.set_tower_preview(tower_name, get_global_mouse_position())
 
-func start_wave():
-	spawners.start_wave()
-
+func start_wave(spawners: PackedScene):
+	var spawnScene = spawners.instantiate()
+	print(spawnScene.name)
+	call_deferred("add_child", spawnScene)
+	spawnScene.call_deferred("start_wave")
+	
 func _on_enemy_goal_body_entered(body):
 	print("enemy made it")
 	if body.is_in_group("enemies"):
@@ -52,6 +55,7 @@ func cancel_build_mode():
 	build_valid = false
 	build_type = null
 	ui.get_node("TowerPreview").queue_free()
+	build_mode_exited.emit(0)
 
 func verify_and_build():
 	if build_valid:
@@ -60,9 +64,12 @@ func verify_and_build():
 		new_tower.attack_mode = true
 		get_parent().add_child(new_tower, false)
 		placeable_area.set_cell(placeable_area.local_to_map(build_location))
-		build_mode_exited.emit()
+		build_mode_exited.emit(new_tower.towerCost)
 
 func spawn_coin(p):
 	var coin = coinScene.instantiate()
 	coin.position = p
 	call_deferred("add_child", coin)
+
+func earn_coins(value: int):
+	earnCoins.emit(value)

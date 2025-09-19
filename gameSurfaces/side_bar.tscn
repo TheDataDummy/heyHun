@@ -17,6 +17,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 72.0
 offset_bottom = 72.0
+action_mode = 0
 texture_normal = ExtResource("3_57rfp")
 texture_pressed = ExtResource("4_tl7iq")
 texture_focused = ExtResource("4_tl7iq")

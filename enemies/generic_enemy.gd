@@ -1,12 +1,15 @@
 extends CharacterBody2D
 @onready var navigation_agent_2d = $NavigationAgent2D
-var target: Node = null
 @export var speed = 50
 @export var hitpoints: int = 1
+@export var dropValue: int
+
+var target: Node = null
 var queuedHitpoints: int
 var attacking = false
 
 signal died(position: Vector2)
+signal dropCoins(coins: int)
 
 func _ready():
 	_setup_navigation.call_deferred()
@@ -39,5 +42,6 @@ func hit(damage):
 		kill()
 
 func kill():
+	dropCoins.emit(dropValue)
 	died.emit(global_position)
 	queue_free()
