@@ -5,19 +5,22 @@ extends Node2D
 
 @export var money: int
 @export var health: int
-@export var wave1: PackedScene
+
 
 var placementMode = false
 var towerSelected = null
 
+var wave = 1
+var wave_in_progress = false
+
 signal tower_slection_mode_entered(tower_name: String)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _ready():
+	hud.set_coin_value(money)
+	hud.set_current_wave(wave)
 
 func _on_side_bar_tower_selected(button):
-	print(button.name)
 	var tower_name = button.name
 	if !placementMode:
 		if money >= Globals.towerCosts[tower_name]:
@@ -39,4 +42,13 @@ func _on_play_area_earn_coins(value):
 	hud.set_coin_value(money)
 
 func _on_button_button_up():
-	play_area.start_wave(wave1)
+	if not wave_in_progress:
+		var current_wave = load("res://waves/wave" + str(wave) + ".tscn")
+		play_area.start_wave(current_wave)
+		wave_in_progress = true
+		hud.set_current_wave(wave)
+		wave += 1 
+
+
+func _on_play_area_wave_completed():
+	wave_in_progress = false

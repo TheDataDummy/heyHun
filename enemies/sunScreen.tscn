@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cyqladgk7kxgj" path="res://artAssets/enemies/sunScreen.png" id="3_5esjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
-radius = 1.0
+radius = 0.5
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_vtnkl")
-hitpoints = 4
+hitpoints = 6
 dropValue = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,7 +24,7 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 position = Vector2(0, -1)
 texture = ExtResource("2_s71qu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="enemySprite" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 texture = ExtResource("3_5esjm")
 offset = Vector2(0, -9)

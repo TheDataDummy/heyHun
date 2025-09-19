@@ -1,5 +1,9 @@
 extends Node2D
 @onready var money = $money
+@onready var current_wave = $currentWave
 
 func set_coin_value(value):
 	money.text = str(value)
+
+func set_current_wave(wave):
+	current_wave.text = str(wave)

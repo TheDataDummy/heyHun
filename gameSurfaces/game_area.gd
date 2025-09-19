@@ -10,6 +10,7 @@ var build_type
 
 signal build_mode_exited(cost: int)
 signal earnCoins(value: int)
+signal waveCompleted
 
 func _unhandled_input(event):
 	if event.is_action_released("ui_accept") and build_mode == true:
@@ -29,9 +30,9 @@ func _on_world_tower_slection_mode_entered(tower_name):
 
 func start_wave(spawners: PackedScene):
 	var spawnScene = spawners.instantiate()
-	print(spawnScene.name)
 	call_deferred("add_child", spawnScene)
 	spawnScene.call_deferred("start_wave")
+	spawnScene.connect("waveOver", Callable(self, "wave_completed"))
 	
 func _on_enemy_goal_body_entered(body):
 	print("enemy made it")
@@ -73,3 +74,8 @@ func spawn_coin(p):
 
 func earn_coins(value: int):
 	earnCoins.emit(value)
+
+func wave_completed(waveName):
+	print("Wave: " + waveName + " completed!")
+	waveCompleted.emit()
+	pass

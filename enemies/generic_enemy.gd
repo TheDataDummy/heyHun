@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var standardSpeed: int = 25
 @export var hitpoints: int = 1
 @export var dropValue: int
+@onready var slow_timer = $slowTimer
+@onready var enemy_sprite = $enemySprite
 
 var target: Node = null
 var queuedHitpoints: int
 var attacking = false
-var speed: int
+var speed: float
 
 signal died(position: Vector2)
 signal dropCoins(coins: int)
@@ -49,4 +51,12 @@ func kill():
 	queue_free()
 
 func _on_slow_timer_timeout():
+	enemy_sprite.self_modulate = Color("ffffff")
 	speed = standardSpeed
+
+func slow(fraction: float, duration: float):
+	if slow_timer.is_stopped():
+		enemy_sprite.self_modulate = Color("008c21")
+		slow_timer.wait_time = duration
+		slow_timer.start()
+		speed = speed * fraction

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://towers/diffuser.gd" id="1_ow6fk"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="3_xx0y2"]
+[ext_resource type="Texture2D" uid="uid://bvgbat7y4i2vm" path="res://artAssets/uiElements/48pxAreaIndicator.png" id="4_3gldc"]
 [ext_resource type="Texture2D" uid="uid://ji2vawtenqf7" path="res://artAssets/tower/diffuser.png" id="4_86k1l"]
-[ext_resource type="Texture2D" uid="uid://gg6dt8686s5u" path="res://artAssets/uiElements/64pxAreaIndicator.png" id="5_hxebn"]
 [ext_resource type="Texture2D" uid="uid://cco3v0y1jgtdg" path="res://artAssets/uiElements/towerBarUnderlay.png" id="6_ocvoi"]
 [ext_resource type="Texture2D" uid="uid://bri4dow6dhcx1" path="res://artAssets/effects/diffuser-outline-Sheet.png" id="7_3qnqg"]
 [ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="7_83p10"]
@@ -110,6 +110,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [10.0]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("cloud:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.54902, 0.129412, 0.513726)]
+}
 
 [sub_resource type="Animation" id="Animation_y0c1t"]
 resource_name = "attack"
@@ -175,6 +187,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.01, 24.0, 24.0, 0.01]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cloud:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.54902, 0.129412, 0.505882)]
+}
 
 [sub_resource type="Animation" id="Animation_gbj8c"]
 resource_name = "placing"
@@ -231,7 +255,7 @@ _data = {
 script = ExtResource("1_ow6fk")
 cooldown = 5.0
 towerCost = 10
-statusDuration = 5
+statusDuration = 5.0
 
 [node name="shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_xx0y2")
@@ -243,8 +267,7 @@ offset = Vector2(0, -4)
 
 [node name="rangeIndicator" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("5_hxebn")
+texture = ExtResource("4_3gldc")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y83y4")
@@ -272,7 +295,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="cloud" type="Sprite2D" parent="."]
-modulate = Color(0, 0.547878, 0.128485, 1)
+modulate = Color(0, 0.54902, 0.129412, 0.513726)
 
 [node name="cloudOutline" type="Sprite2D" parent="cloud"]
 texture = ExtResource("7_3qnqg")

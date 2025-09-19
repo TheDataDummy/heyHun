@@ -4,6 +4,7 @@ extends Node2D
 
 signal spawnCoin(pos: Vector2)
 signal earnCoins(coins: int)
+signal waveOver(name: String)
 
 func _ready():
 	spawnCoin.connect(Callable(get_parent(), "spawn_coin"))
@@ -23,5 +24,6 @@ func dropCoins(value):
 	earnCoins.emit(value)
 
 func _on_timer_timeout():
-	print("Current enemies alive")
-	print(len(get_tree().get_nodes_in_group("enemies")))
+	if len(get_tree().get_nodes_in_group("enemies")) == 0:
+		waveOver.emit(self.name)
+		queue_free()

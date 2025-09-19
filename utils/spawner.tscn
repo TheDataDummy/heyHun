@@ -8,4 +8,8 @@ script = ExtResource("1_80nuo")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="waveStartDelayTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="waveStartDelayTimer" to="." method="_on_wave_start_delay_timer_timeout"]

@@ -2,7 +2,7 @@ extends Area2D
 
 @export var cooldown: float
 @export var towerCost: int
-@export var statusDuration: int
+@export var statusDuration: float
 
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar
@@ -50,7 +50,4 @@ func attackAnimationAndProjectile():
 	timer.start()
 
 func _on_cloud_area_body_entered(body):
-	var slowTimer = body.get_node("slowTimer")
-	slowTimer.wait_time = statusDuration
-	slowTimer.start()
-	body.speed = body.speed / 2
+	body.slow(0.5, statusDuration)

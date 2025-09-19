@@ -17,9 +17,9 @@ texture = ExtResource("1_0rnc4")
 
 [node name="money" type="RichTextLabel" parent="."]
 texture_filter = 1
-offset_left = 91.0
+offset_left = 79.0
 offset_top = 6.0
-offset_right = 173.0
+offset_right = 161.0
 offset_bottom = 66.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -32,9 +32,9 @@ text = "10"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 texture_filter = 1
-offset_left = 64.0
+offset_left = 55.0
 offset_top = 18.0
-offset_right = 89.0
+offset_right = 80.0
 offset_bottom = 78.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -45,8 +45,38 @@ theme_override_font_sizes/normal_font_size = 37
 bbcode_enabled = true
 text = "X"
 
+[node name="currentWave" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 408.0
+offset_top = 6.0
+offset_right = 490.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_qd6gq")
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "10"
+
+[node name="text" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 286.0
+offset_top = 6.0
+offset_right = 415.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_qd6gq")
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "Wave:"
+
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(36, 37)
+position = Vector2(27, 37)
 scale = Vector2(2, 2)
 texture = ExtResource("4_sr424")
 hframes = 6

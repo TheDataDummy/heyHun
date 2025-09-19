@@ -1,6 +1,8 @@
 extends Node2D
 
 signal tower_selected(tower_name: String)
+@onready var milk_jug_price = $milkJugPrice
+@onready var diffuser_price = $diffuserPrice
 
 func _ready():
 	for button in get_tree().get_nodes_in_group("towerButtons"):
@@ -11,4 +13,4 @@ func initiate_build_mode(button):
 
 func deselect_all_buttons():
 	for button in get_tree().get_nodes_in_group("towerButtons"):
-		button.release_focus()
+		button.button_pressed = false

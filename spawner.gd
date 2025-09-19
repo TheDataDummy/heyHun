@@ -4,12 +4,17 @@ extends Node2D
 @export var enemyScene: PackedScene
 @export var numberOfEnemies: int
 @export var timeBetweenEnemies: float
+@export var timeBeforeEnemiesSpawn: float
 
+@onready var wave_start_delay_timer = $waveStartDelayTimer
 @onready var game_world = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = timeBetweenEnemies
+	if timeBeforeEnemiesSpawn == 0:
+		timeBeforeEnemiesSpawn = 0.1
+	wave_start_delay_timer.wait_time = timeBeforeEnemiesSpawn
 
 func _on_timer_timeout():
 	if numberOfEnemies > 0:
@@ -23,4 +28,7 @@ func _on_timer_timeout():
 		numberOfEnemies -= 1
 
 func start_wave():
-	timer.start()
+	wave_start_delay_timer.start()
+
+func _on_wave_start_delay_timer_timeout():
+		timer.start()
