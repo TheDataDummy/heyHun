@@ -12,18 +12,15 @@ var towerSelected = null
 
 signal tower_slection_mode_entered(tower_name: String)
 
-var towerCosts = {
-	"milkJug" : 3
-}
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
 func _on_side_bar_tower_selected(button):
+	print(button.name)
 	var tower_name = button.name
 	if !placementMode:
-		if money >= towerCosts[tower_name]:
+		if money >= Globals.towerCosts[tower_name]:
 			placementMode = true
 			towerSelected = tower_name
 			tower_slection_mode_entered.emit(tower_name)

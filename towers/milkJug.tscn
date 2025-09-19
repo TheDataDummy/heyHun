@@ -128,7 +128,7 @@ _data = {
 "placing": SubResource("Animation_gbj8c")
 }
 
-[node name="Tower" type="Area2D"]
+[node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
 damage = 1
 cooldown = 0.5

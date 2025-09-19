@@ -64,7 +64,7 @@ func verify_and_build():
 		new_tower.attack_mode = true
 		get_parent().add_child(new_tower, false)
 		placeable_area.set_cell(placeable_area.local_to_map(build_location))
-		build_mode_exited.emit(new_tower.towerCost)
+		build_mode_exited.emit(Globals.towerCosts[build_type])
 
 func spawn_coin(p):
 	var coin = coinScene.instantiate()

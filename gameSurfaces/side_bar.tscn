@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=7 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Texture2D" uid="uid://b7kdj8smdup8t" path="res://artAssets/sideMenu.png" id="1_hnoh7"]
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
 [ext_resource type="Texture2D" uid="uid://b2ab4pyb2lj6m" path="res://artAssets/uiElements/towerSelectionSprites/milkJug.png" id="3_57rfp"]
 [ext_resource type="Texture2D" uid="uid://d2qh2obufabs8" path="res://artAssets/uiElements/towerSelectionSprites/milkJugSelected.png" id="4_tl7iq"]
+[ext_resource type="Texture2D" uid="uid://cic0cllmwuhik" path="res://artAssets/uiElements/towerSelectionSprites/diffuser.png" id="5_c3mvx"]
+[ext_resource type="Texture2D" uid="uid://ce0nedd4fqjo3" path="res://artAssets/uiElements/towerSelectionSprites/diffuserSelected.png" id="6_xqxj0"]
 
 [node name="SideBar" type="Node2D"]
 script = ExtResource("1_vikbh")
@@ -13,12 +15,22 @@ position = Vector2(80, 180)
 texture = ExtResource("1_hnoh7")
 
 [node name="milkJug" type="TextureButton" parent="." groups=["towerButtons"]]
-offset_left = 8.0
+offset_left = 16.0
 offset_top = 8.0
-offset_right = 72.0
+offset_right = 80.0
 offset_bottom = 72.0
 action_mode = 0
 texture_normal = ExtResource("3_57rfp")
 texture_pressed = ExtResource("4_tl7iq")
 texture_focused = ExtResource("4_tl7iq")
+stretch_mode = 0
+
+[node name="diffuser" type="TextureButton" parent="." groups=["towerButtons"]]
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 144.0
+offset_bottom = 72.0
+action_mode = 0
+texture_normal = ExtResource("5_c3mvx")
+texture_pressed = ExtResource("6_xqxj0")
 stretch_mode = 0

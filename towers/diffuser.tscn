@@ -227,10 +227,11 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8y230"]
 
-[node name="Tower" type="Area2D"]
+[node name="diffuser" type="Area2D"]
 script = ExtResource("1_ow6fk")
 cooldown = 5.0
 towerCost = 10
+statusDuration = 5
 
 [node name="shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_xx0y2")
@@ -256,8 +257,9 @@ position = Vector2(0, -8)
 
 [node name="cooldownbar" type="TextureProgressBar" parent="."]
 offset_left = -12.0
-offset_top = -40.0
+offset_top = -27.0
 offset_right = 28.0
+offset_bottom = 13.0
 max_value = 1.0
 step = 0.1
 texture_under = ExtResource("6_ocvoi")

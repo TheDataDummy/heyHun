@@ -2,6 +2,7 @@ extends Area2D
 
 @export var cooldown: float
 @export var towerCost: int
+@export var statusDuration: int
 
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar
@@ -9,7 +10,7 @@ extends Area2D
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
-var attack_mode = true
+var attack_mode = false
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -49,4 +50,7 @@ func attackAnimationAndProjectile():
 	timer.start()
 
 func _on_cloud_area_body_entered(body):
+	var slowTimer = body.get_node("slowTimer")
+	slowTimer.wait_time = statusDuration
+	slowTimer.start()
 	body.speed = body.speed / 2
