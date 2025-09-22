@@ -14,7 +14,6 @@ var wave_in_progress = false
 
 signal tower_slection_mode_entered(tower_name: String)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
 	hud.set_coin_value(money)
 	hud.set_current_wave(wave)
@@ -48,6 +47,11 @@ func _on_button_button_up():
 		wave_in_progress = true
 		hud.set_current_wave(wave)
 		wave += 1 
+	else:
+		print("Wave still in progress.")
+		print(str(len(get_tree().get_nodes_in_group("enemies"))) + " enemies remaining.")
+		for e in get_tree().get_nodes_in_group("enemies"):
+			print("Enemy: " + e.name + " at: " + str(e.global_position))
 
 func _on_play_area_wave_completed():
 	wave_in_progress = false

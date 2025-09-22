@@ -13,6 +13,7 @@ var queuedHitpoints: int
 var attacking = false
 var speed: float
 var debug = false
+var moving = true
 
 signal died(position: Vector2)
 signal dropCoins(coins: int)

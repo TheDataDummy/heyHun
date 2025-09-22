@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 175
+const SPEED = 225
 
 var target: CharacterBody2D = null
 var direction: Vector2
@@ -14,7 +14,7 @@ func _physics_process(delta):
 		if animation_player.current_animation != "explode":
 			look_at(target.global_position)
 
-		global_position += direction * SPEED * delta
+			global_position += direction * SPEED * delta
 	else:
 		queue_free()
 	

@@ -13,6 +13,7 @@ var damage: int
 var start_position: Vector2
 var control_point: Vector2
 var time_elapsed: float = 0.0
+var current_target_position
 
 func _ready():
 	start_position = global_position
@@ -23,15 +24,12 @@ func _ready():
 		control_point = midpoint + Vector2(0, -peak_height)
 
 func _physics_process(delta):
-	if not is_instance_valid(target):
-		queue_free()
-		return
-	
 	time_elapsed += delta
 	var t = min(time_elapsed / FLIGHT_TIME, 1.0)
 	
 	# Get the current position of the moving target.
-	var current_target_position = target.global_position
+	if is_instance_valid(target):
+		current_target_position = target.global_position
 	
 	# Calculate the position along the quadratic Bézier curve.
 	# The formula is: P(t) = (1-t)^2 * P0 + 2(1-t)t * P1 + t^2 * P2

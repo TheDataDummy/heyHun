@@ -13,36 +13,49 @@ script = ExtResource("1_lnuv6")
 [node name="vaccineSpawner1" parent="." instance=ExtResource("2_tyiwc")]
 position = Vector2(-48, 32)
 enemyScene = ExtResource("3_3viww")
-numberOfEnemies = 3
-timeBetweenEnemies = 0.1
+numberOfEnemies = 10
+timeBetweenEnemies = 0.2
 
 [node name="vaccineSpawner2" parent="." instance=ExtResource("2_tyiwc")]
-position = Vector2(-48, 32)
+position = Vector2(-40, 36)
 enemyScene = ExtResource("3_3viww")
-numberOfEnemies = 8
+numberOfEnemies = 15
 timeBetweenEnemies = 0.5
-timeBeforeEnemiesSpawn = 4.0
+timeBeforeEnemiesSpawn = 8.0
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_tyiwc")]
-position = Vector2(-48, 48)
+position = Vector2(-40, 44)
 enemyScene = ExtResource("4_amk6o")
-numberOfEnemies = 30
-timeBetweenEnemies = 0.1
-timeBeforeEnemiesSpawn = 2.0
+numberOfEnemies = 25
+timeBetweenEnemies = 0.5
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_tyiwc")]
 position = Vector2(-32, 48)
 enemyScene = ExtResource("4_amk6o")
-numberOfEnemies = 30
-timeBetweenEnemies = 0.1
-timeBeforeEnemiesSpawn = 2.0
+numberOfEnemies = 25
+timeBetweenEnemies = 0.4
+timeBeforeEnemiesSpawn = 5.0
+
+[node name="bookSpawner3" parent="." instance=ExtResource("2_tyiwc")]
+position = Vector2(-32, 44)
+enemyScene = ExtResource("4_amk6o")
+numberOfEnemies = 50
+timeBetweenEnemies = 0.3
+timeBeforeEnemiesSpawn = 10.0
 
 [node name="sunScreenSpawner" parent="." instance=ExtResource("2_tyiwc")]
-position = Vector2(-32, 32)
+position = Vector2(-36, 28)
 enemyScene = ExtResource("5_wdsho")
 numberOfEnemies = 15
 timeBetweenEnemies = 0.65
-timeBeforeEnemiesSpawn = 1.0
+timeBeforeEnemiesSpawn = 15.0
+
+[node name="sunScreenSpawner2" parent="." instance=ExtResource("2_tyiwc")]
+position = Vector2(-28, 36)
+enemyScene = ExtResource("5_wdsho")
+numberOfEnemies = 40
+timeBetweenEnemies = 0.65
+timeBeforeEnemiesSpawn = 10.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

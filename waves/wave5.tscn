@@ -20,21 +20,21 @@ timeBetweenEnemies = 0.1
 position = Vector2(-48, 32)
 enemyScene = ExtResource("3_i02fp")
 numberOfEnemies = 6
-timeBetweenEnemies = 0.5
+timeBetweenEnemies = 1.0
 timeBeforeEnemiesSpawn = 3.0
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_f3r22")]
 position = Vector2(-48, 48)
 enemyScene = ExtResource("3_ci0ya")
 numberOfEnemies = 20
-timeBetweenEnemies = 0.25
+timeBetweenEnemies = 0.5
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="sunScreenSpawner" parent="." instance=ExtResource("2_f3r22")]
 position = Vector2(-32, 32)
 enemyScene = ExtResource("4_d80bb")
 numberOfEnemies = 10
-timeBetweenEnemies = 0.4
+timeBetweenEnemies = 0.8
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="Timer" type="Timer" parent="."]

@@ -8,6 +8,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
 radius = 0.01
 
+[sub_resource type="Animation" id="Animation_cftla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_s7xul"]
 resource_name = "takeHit"
 length = 0.2
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "values": [1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_cftla"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("enemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ob42"]
 _data = {
 "RESET": SubResource("Animation_cftla"),
@@ -49,7 +49,7 @@ _data = {
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_518kp")
 standardSpeed = 40
-hitpoints = 2
+hitpoints = 10
 dropValue = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

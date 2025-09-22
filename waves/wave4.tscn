@@ -10,27 +10,24 @@ y_sort_enabled = true
 script = ExtResource("1_xtui6")
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_ypm7f")]
-y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_2eg7n")
-numberOfEnemies = 25
-timeBetweenEnemies = 0.12
+numberOfEnemies = 20
+timeBetweenEnemies = 0.75
 timeBeforeEnemiesSpawn = 4.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_ypm7f")]
-y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_2eg7n")
 numberOfEnemies = 10
-timeBetweenEnemies = 0.25
-timeBeforeEnemiesSpawn = 8.0
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 10.0
 
 [node name="sunScreenSpawner" parent="." instance=ExtResource("2_ypm7f")]
-y_sort_enabled = true
 position = Vector2(-23, 101)
 enemyScene = ExtResource("4_wfdw3")
-numberOfEnemies = 12
-timeBetweenEnemies = 1.0
+numberOfEnemies = 6
+timeBetweenEnemies = 2.0
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="Timer" type="Timer" parent="."]

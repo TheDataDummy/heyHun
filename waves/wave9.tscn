@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://qkd1fgkm7tgy"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_obdep"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_bwav5"]
+[ext_resource type="PackedScene" uid="uid://cah1208lnbl3o" path="res://enemies/vaccine.tscn" id="3_kwph0"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="4_bd42d"]
+[ext_resource type="PackedScene" uid="uid://cqb6akecg20xm" path="res://enemies/sunScreen.tscn" id="5_hu63d"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_obdep")
+
+[node name="vaccineSpawner1" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-48, 32)
+enemyScene = ExtResource("3_kwph0")
+numberOfEnemies = 20
+timeBetweenEnemies = 0.1
+
+[node name="vaccineSpawner2" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-48, 32)
+enemyScene = ExtResource("3_kwph0")
+numberOfEnemies = 35
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 4.0
+
+[node name="bookSpawner" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-48, 48)
+enemyScene = ExtResource("4_bd42d")
+numberOfEnemies = 50
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 2.0
+
+[node name="bookSpawner2" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-32, 48)
+enemyScene = ExtResource("4_bd42d")
+numberOfEnemies = 50
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 2.0
+
+[node name="sunScreenSpawner" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-32, 32)
+enemyScene = ExtResource("5_hu63d")
+numberOfEnemies = 40
+timeBetweenEnemies = 0.4
+timeBeforeEnemiesSpawn = 1.0
+
+[node name="sunScreenSpawner2" parent="." instance=ExtResource("2_bwav5")]
+position = Vector2(-32, 32)
+enemyScene = ExtResource("5_hu63d")
+numberOfEnemies = 50
+timeBetweenEnemies = 0.4
+timeBeforeEnemiesSpawn = 10.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

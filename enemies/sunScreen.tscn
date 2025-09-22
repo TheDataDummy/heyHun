@@ -48,7 +48,8 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_vtnkl")
-hitpoints = 6
+standardSpeed = 35
+hitpoints = 30
 dropValue = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

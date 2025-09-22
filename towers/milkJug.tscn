@@ -133,7 +133,7 @@ size = Vector2(16, 21)
 
 [node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
-damage = 1
+damage = 4
 cooldown = 0.7
 projectileScene = ExtResource("2_cxnsy")
 towerCost = 3

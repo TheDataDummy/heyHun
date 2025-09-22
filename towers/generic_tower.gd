@@ -86,15 +86,15 @@ func _on_animation_player_animation_finished(anim_name):
 		targetEnemy = null
 
 
-#func _on_clickbox_input_event(viewport, event, shape_idx):
-	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and placed:
-		#if event.pressed:
-			#print("Targeting report for: " + self.name)
-			#print("Attack mode is set to: " + str(self.attack_mode))
-			#var resultString = ""
-			#for e in enemies:
-				#if not e.is_in_group("deathBlownEnemies"):
-					#resultString += e.name
-					#resultString += ", "
-			#print("List of enemies in range: " + resultString)
-			#print("")
+func _on_clickbox_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and placed:
+		if event.pressed:
+			print("Targeting report for: " + self.name)
+			print("Attack mode is set to: " + str(self.attack_mode))
+			var resultString = ""
+			for e in enemies:
+				if not e.is_in_group("deathBlownEnemies"):
+					resultString += e.name
+					resultString += ", "
+			print("List of enemies in range: " + resultString)
+			print("")

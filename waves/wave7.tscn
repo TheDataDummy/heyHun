@@ -19,21 +19,21 @@ timeBetweenEnemies = 0.1
 [node name="vaccineSpawner2" parent="." instance=ExtResource("2_vb2pc")]
 position = Vector2(-48, 32)
 enemyScene = ExtResource("3_jpnv1")
-numberOfEnemies = 50
+numberOfEnemies = 15
 timeBetweenEnemies = 0.5
 timeBeforeEnemiesSpawn = 4.0
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_vb2pc")]
 position = Vector2(-48, 48)
 enemyScene = ExtResource("4_6455y")
-numberOfEnemies = 50
+numberOfEnemies = 40
 timeBetweenEnemies = 0.5
 timeBeforeEnemiesSpawn = 2.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_vb2pc")]
 position = Vector2(-32, 48)
 enemyScene = ExtResource("4_6455y")
-numberOfEnemies = 40
+numberOfEnemies = 20
 timeBetweenEnemies = 0.5
 timeBeforeEnemiesSpawn = 2.0
 

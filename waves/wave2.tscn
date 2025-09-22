@@ -13,8 +13,8 @@ script = ExtResource("1_8gfiq")
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_qwc1p")
 numberOfEnemies = 8
-timeBetweenEnemies = 0.5
-timeBeforeEnemiesSpawn = 8.0
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 4.0
 
 [node name="sunScreenSpawner" parent="." instance=ExtResource("2_2732i")]
 position = Vector2(-23, 101)
@@ -23,7 +23,7 @@ numberOfEnemies = 1
 timeBetweenEnemies = 2.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
