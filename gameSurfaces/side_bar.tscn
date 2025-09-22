@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=11 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Texture2D" uid="uid://b7kdj8smdup8t" path="res://artAssets/sideMenu.png" id="1_hnoh7"]
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
@@ -8,6 +8,8 @@
 [ext_resource type="FontFile" uid="uid://cyykv11veq2ge" path="res://fonts/Jersey10-Regular.ttf" id="5_q8u34"]
 [ext_resource type="Texture2D" uid="uid://ce0nedd4fqjo3" path="res://artAssets/uiElements/towerSelectionSprites/diffuserSelected.png" id="6_xqxj0"]
 [ext_resource type="Texture2D" uid="uid://dgi5luebdpb3t" path="res://artAssets/objects/coin-Sheet.png" id="8_7qmqr"]
+[ext_resource type="Texture2D" uid="uid://36fxj4xe4rkb" path="res://artAssets/uiElements/towerSelectionSprites/pillDispenser.png" id="9_7wsdq"]
+[ext_resource type="Texture2D" uid="uid://c4u7nt0872v85" path="res://artAssets/uiElements/towerSelectionSprites/pillDispenserSelected.png" id="10_od4rh"]
 
 [node name="SideBar" type="Node2D"]
 script = ExtResource("1_vikbh")
@@ -17,9 +19,9 @@ position = Vector2(80, 180)
 texture = ExtResource("1_hnoh7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 22.0
+offset_left = 20.0
 offset_top = 96.0
-offset_right = 79.0
+offset_right = 77.0
 offset_bottom = 133.0
 color = Color(0, 0, 0, 0.533333)
 
@@ -79,6 +81,40 @@ texture = ExtResource("8_7qmqr")
 hframes = 6
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(125, 113)
+position = Vector2(127, 114)
+texture = ExtResource("8_7qmqr")
+hframes = 6
+
+[node name="supplementDispenser" type="TextureButton" parent="." groups=["towerButtons"]]
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 80.0
+offset_bottom = 200.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("9_7wsdq")
+texture_pressed = ExtResource("10_od4rh")
+stretch_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="supplementDispenser"]
+offset_left = 4.0
+offset_top = 64.0
+offset_right = 61.0
+offset_bottom = 101.0
+color = Color(0, 0, 0, 0.533333)
+
+[node name="diffuserPrice" type="RichTextLabel" parent="supplementDispenser"]
+offset_left = -16.0
+offset_top = 56.0
+offset_right = 64.0
+offset_bottom = 120.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_q8u34")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]15[/center]"
+
+[node name="Sprite2D2" type="Sprite2D" parent="supplementDispenser"]
+position = Vector2(48, 82)
 texture = ExtResource("8_7qmqr")
 hframes = 6

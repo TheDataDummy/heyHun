@@ -46,7 +46,6 @@ func _on_timer_timeout():
 	
 func attack():
 	# Iterate over enemies in range
-	#print("looking for target")
 	for e in enemies:
 		# find the first one which does not have a killing blow on the way
 		if not e.is_in_group("deathBlownEnemies"):
@@ -63,7 +62,7 @@ func attack():
 	targetEnemy.queue_damage(damage)
 	
 	attackAnimationAndProjectile()
-		
+
 func attackAnimationAndProjectile():
 	animation_player.play("attack")
 

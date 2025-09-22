@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://4vddpb1j2ern"]
+[gd_scene load_steps=13 format=3 uid="uid://4vddpb1j2ern"]
 
-[ext_resource type="Script" path="res://towers/pill_dispenser.gd" id="1_oxifx"]
-[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_3t4tk"]
-[ext_resource type="Texture2D" uid="uid://7nblq4a2o60k" path="res://artAssets/tower/pillDispenser.png" id="3_ioamv"]
-[ext_resource type="Texture2D" uid="uid://dj42s32vw5870" path="res://artAssets/uiElements/128pxAreaIndicator.png" id="4_7raqw"]
-[ext_resource type="Texture2D" uid="uid://cco3v0y1jgtdg" path="res://artAssets/uiElements/towerBarUnderlay.png" id="5_vhwxt"]
-[ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="6_5ldjm"]
+[ext_resource type="Script" path="res://towers/pill_dispenser.gd" id="1_37sj6"]
+[ext_resource type="PackedScene" uid="uid://pl4k47hrrmrv" path="res://projectiles/supplement.tscn" id="2_fnbpy"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="3_yhxx2"]
+[ext_resource type="Texture2D" uid="uid://7nblq4a2o60k" path="res://artAssets/tower/pillDispenser.png" id="4_l3fxm"]
+[ext_resource type="Texture2D" uid="uid://dj42s32vw5870" path="res://artAssets/uiElements/128pxAreaIndicator.png" id="5_pi504"]
+[ext_resource type="Texture2D" uid="uid://cco3v0y1jgtdg" path="res://artAssets/uiElements/towerBarUnderlay.png" id="6_hkff7"]
+[ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="7_wm4ak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y83y4"]
 radius = 64.0
@@ -128,19 +129,24 @@ _data = {
 }
 
 [node name="pillDispenser" type="Area2D"]
-script = ExtResource("1_oxifx")
+script = ExtResource("1_37sj6")
+damage = 1
+cooldown = 5.0
+projectileScene = ExtResource("2_fnbpy")
+towerCost = 10
+splash_range = 32
 
 [node name="shadow" type="Sprite2D" parent="."]
-texture = ExtResource("2_3t4tk")
+texture = ExtResource("3_yhxx2")
 offset = Vector2(0, 2)
 
 [node name="tower" type="Sprite2D" parent="."]
-texture = ExtResource("3_ioamv")
+texture = ExtResource("4_l3fxm")
 offset = Vector2(0, -8)
 
 [node name="rangeIndicator" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("4_7raqw")
+texture = ExtResource("5_pi504")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y83y4")
@@ -152,14 +158,15 @@ one_shot = true
 position = Vector2(0, -8)
 
 [node name="cooldownbar" type="TextureProgressBar" parent="."]
-offset_left = -12.0
-offset_top = -32.0
-offset_right = 28.0
-offset_bottom = 8.0
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 8.0
+offset_bottom = -24.0
 max_value = 1.0
 step = 0.1
-texture_under = ExtResource("5_vhwxt")
-texture_progress = ExtResource("6_5ldjm")
+value = 1.0
+texture_under = ExtResource("6_hkff7")
+texture_progress = ExtResource("7_wm4ak")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

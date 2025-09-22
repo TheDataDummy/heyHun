@@ -2,5 +2,6 @@ extends Node
 
 var towerCosts = {
 	"milkJug" : 6,
-	"diffuser" : 10
+	"diffuser" : 10,
+	"supplementDispenser": 15
 }

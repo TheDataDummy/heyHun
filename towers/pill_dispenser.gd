@@ -4,11 +4,14 @@ extends Area2D
 @export var cooldown: float
 @export var projectileScene: PackedScene
 @export var towerCost: int
+@export var splash_range: int
 
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar
 @onready var projectile_spawn_point = $ProjectileSpawnPoint
 @onready var animation_player = $AnimationPlayer
+
+var projectile
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
@@ -24,6 +27,7 @@ func _process(_delta):
 		# Progress bar value is a percentage from 0 to 1
 		# Subtract from 1 for a countdown effect (e.g., 100% to 0%)
 		var progress_percentage = 1.0 - (time_left / total_time)
+		print(progress_percentage)
 		progress_bar.value = progress_percentage
 
 func _ready():
@@ -46,7 +50,6 @@ func _on_timer_timeout():
 	
 func attack():
 	# Iterate over enemies in range
-	#print("looking for target")
 	for e in enemies:
 		# find the first one which does not have a killing blow on the way
 		if not e.is_in_group("deathBlownEnemies"):
@@ -55,27 +58,52 @@ func attack():
 	# If there is no such enemy, just return and continue looking
 	if targetEnemy == null:
 		return
-	#print("Tower " + name + " shooting at "  + targetEnemy.name + " with " + str(targetEnemy.hitpoints) + " hp remaining ")
 	# Determine if we will be killing the enemy with this shot
 	if damage >= targetEnemy.queuedHitpoints:
 		targetEnemy.add_to_group("deathBlownEnemies")
-		
+	
+	# queue damage on splash enemies
+	var splash_enemies = get_non_death_blown_enemies_in_splash_range(targetEnemy)
+	
 	targetEnemy.queue_damage(damage)
 	
-	attackAnimationAndProjectile()
-		
-func attackAnimationAndProjectile():
-	animation_player.play("attack")
+	for splash_enemy in splash_enemies:
+		splash_enemy.queue_damage(damage)
+	
+	attackAnimationAndProjectile(splash_enemies)
 
+func get_non_death_blown_enemies_in_splash_range(targ):
+	var enemies_in_splash_range = []
+	# Iterate over all enemies currently in the tower's range
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		# Exclude the target enemy itself from the splash damage check
+		if enemy == targ or enemy.is_in_group("deathBlownEnemies"):
+			continue
+
+		# Calculate the distance between the enemy and the target
+		var distance = enemy.global_position.distance_to(targ.global_position)
+		
+		# Check if the enemy is within the splash damage radius
+		if distance <= splash_range:
+			enemies_in_splash_range.append(enemy)
+	
+	return enemies_in_splash_range
+
+func attackAnimationAndProjectile(splash_enemies):
+	animation_player.play("attack")
+	
+	# instantiate projectile and set initial variables
+	projectile = projectileScene.instantiate()
+	projectile.target = targetEnemy
+	projectile.position = projectile_spawn_point.global_position
+	projectile.damage = damage
+	projectile.splash_enemies = splash_enemies
+	
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		# Start the cooldown
 		timer.start()
 		# Spawn projectile
-		var projectile = projectileScene.instantiate()
-		projectile.target = targetEnemy
-		projectile.position = projectile_spawn_point.global_position
-		projectile.damage = damage
 		get_tree().root.call_deferred("add_child", projectile)
 		animation_player.play("RESET")
 		# Clear target enemy

@@ -279,10 +279,10 @@ one_shot = true
 position = Vector2(0, -8)
 
 [node name="cooldownbar" type="TextureProgressBar" parent="."]
-offset_left = -12.0
-offset_top = -27.0
-offset_right = 28.0
-offset_bottom = 13.0
+offset_left = -8.0
+offset_top = -17.0
+offset_right = 8.0
+offset_bottom = -13.0
 max_value = 1.0
 step = 0.1
 texture_under = ExtResource("6_ocvoi")
