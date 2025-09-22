@@ -9,12 +9,11 @@ y_sort_enabled = true
 script = ExtResource("1_wp0vd")
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_dhng6")]
-y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_3jlri")
-numberOfEnemies = 5
-timeBetweenEnemies = 0.5
-timeBeforeEnemiesSpawn = 4.0
+numberOfEnemies = 4
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 0.1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

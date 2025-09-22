@@ -6,7 +6,6 @@ extends Node2D
 @export var money: int
 @export var health: int
 
-
 var placementMode = false
 var towerSelected = null
 
@@ -19,6 +18,7 @@ signal tower_slection_mode_entered(tower_name: String)
 func _ready():
 	hud.set_coin_value(money)
 	hud.set_current_wave(wave)
+	hud.update_hp(health)
 
 func _on_side_bar_tower_selected(button):
 	var tower_name = button.name
@@ -51,3 +51,8 @@ func _on_button_button_up():
 
 func _on_play_area_wave_completed():
 	wave_in_progress = false
+	print("Wave " + str(wave - 1) + " completed!")
+
+func _on_play_area_enemy_made_it():
+	health -= 1
+	hud.update_hp(health)

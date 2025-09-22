@@ -18,7 +18,7 @@ func _ready():
 	start_position = global_position
 	# Define the control point for the Bézier curve.
 	# This point is above the midpoint between the start and target positions.
-	if target:
+	if is_instance_valid(target):
 		var midpoint = (start_position + target.global_position) / 2
 		control_point = midpoint + Vector2(0, -peak_height)
 
@@ -55,7 +55,7 @@ func _on_animation_player_animation_finished(anim_name):
 			# Use is_instance_valid to make sure the target still exists before calling hit()
 			target.hit(damage)
 		for enemy in splash_enemies:
-			if is_instance_valid(target):
+			if is_instance_valid(enemy):
 			# Use is_instance_valid to make sure the target still exists before calling hit()
 				enemy.hit(damage)
 		queue_free()

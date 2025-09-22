@@ -11,6 +11,7 @@ extends Area2D
 var targetEnemy: CharacterBody2D = null
 var enemies = []
 var attack_mode = false
+var placed = false
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -41,7 +42,11 @@ func _on_timer_timeout():
 		return
 	elif attack_mode:
 		attack()
-	
+
+func place():
+	attack_mode = true
+	placed = true
+
 func attack():
 	attackAnimationAndProjectile()
 		

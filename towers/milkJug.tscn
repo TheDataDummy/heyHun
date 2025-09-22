@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cctro4hnntkfx"]
+[gd_scene load_steps=14 format=3 uid="uid://cctro4hnntkfx"]
 
 [ext_resource type="Script" path="res://towers/generic_tower.gd" id="1_bi5io"]
 [ext_resource type="PackedScene" uid="uid://c2ql6nfeiwq05" path="res://projectiles/genericProjectile.tscn" id="2_cxnsy"]
@@ -128,10 +128,13 @@ _data = {
 "placing": SubResource("Animation_gbj8c")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_forod"]
+size = Vector2(16, 21)
+
 [node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
 damage = 1
-cooldown = 0.5
+cooldown = 0.7
 projectileScene = ExtResource("2_cxnsy")
 towerCost = 3
 
@@ -149,6 +152,7 @@ visible = false
 texture = ExtResource("5_oq0hj")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_y83y4")
 
 [node name="Timer" type="Timer" parent="."]
@@ -173,7 +177,14 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="clickbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_forod")
+
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="input_event" from="clickbox" to="." method="_on_clickbox_input_event"]

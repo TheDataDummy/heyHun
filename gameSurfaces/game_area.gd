@@ -11,6 +11,7 @@ var build_type
 signal build_mode_exited(cost: int)
 signal earnCoins(value: int)
 signal waveCompleted
+signal enemyMadeIt
 
 func _unhandled_input(event):
 	if event.is_action_released("ui_accept") and build_mode == true:
@@ -38,6 +39,7 @@ func _on_enemy_goal_body_entered(body):
 	print("enemy made it")
 	if body.is_in_group("enemies"):
 		body.made_it_home()
+		enemyMadeIt.emit()
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
@@ -62,7 +64,7 @@ func verify_and_build():
 	if build_valid:
 		var new_tower = load("res://towers/" + build_type + ".tscn").instantiate()
 		new_tower.position = build_location
-		new_tower.attack_mode = true
+		new_tower.place()
 		get_parent().add_child(new_tower, false)
 		placeable_area.set_cell(placeable_area.local_to_map(build_location))
 		build_mode_exited.emit(Globals.towerCosts[build_type])
@@ -75,7 +77,5 @@ func spawn_coin(p):
 func earn_coins(value: int):
 	earnCoins.emit(value)
 
-func wave_completed(waveName):
-	print("Wave: " + waveName + " completed!")
+func wave_completed():
 	waveCompleted.emit()
-	pass

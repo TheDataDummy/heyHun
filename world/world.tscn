@@ -8,7 +8,7 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
-money = 15
+money = 10
 health = 10
 
 [node name="Control" type="Control" parent="."]
@@ -41,5 +41,6 @@ position = Vector2(0, 288)
 [connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]
 [connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
 [connection signal="earnCoins" from="PlayArea" to="." method="_on_play_area_earn_coins"]
+[connection signal="enemyMadeIt" from="PlayArea" to="." method="_on_play_area_enemy_made_it"]
 [connection signal="waveCompleted" from="PlayArea" to="." method="_on_play_area_wave_completed"]
 [connection signal="tower_selected" from="SideBar" to="." method="_on_side_bar_tower_selected"]

@@ -16,6 +16,7 @@ var projectile
 var targetEnemy: CharacterBody2D = null
 var enemies = []
 var attack_mode = false
+var placed = false
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -27,7 +28,6 @@ func _process(_delta):
 		# Progress bar value is a percentage from 0 to 1
 		# Subtract from 1 for a countdown effect (e.g., 100% to 0%)
 		var progress_percentage = 1.0 - (time_left / total_time)
-		print(progress_percentage)
 		progress_bar.value = progress_percentage
 
 func _ready():
@@ -41,14 +41,19 @@ func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_ind
 func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body in enemies:
 		enemies.erase(body)
-	
+
 func _on_timer_timeout():
 	if len(enemies) == 0:
 		return
 	elif attack_mode:
 		attack()
-	
+
+func place():
+	attack_mode = true
+	placed = true
+
 func attack():
+	targetEnemy = null
 	# Iterate over enemies in range
 	for e in enemies:
 		# find the first one which does not have a killing blow on the way
@@ -58,19 +63,22 @@ func attack():
 	# If there is no such enemy, just return and continue looking
 	if targetEnemy == null:
 		return
+	
 	# Determine if we will be killing the enemy with this shot
 	if damage >= targetEnemy.queuedHitpoints:
 		targetEnemy.add_to_group("deathBlownEnemies")
 	
 	# queue damage on splash enemies
 	var splash_enemies = get_non_death_blown_enemies_in_splash_range(targetEnemy)
-	
 	targetEnemy.queue_damage(damage)
 	
 	for splash_enemy in splash_enemies:
+		if damage >= splash_enemy.queuedHitpoints:
+			splash_enemy.add_to_group("deathBlownEnemies")
 		splash_enemy.queue_damage(damage)
 	
 	attackAnimationAndProjectile(splash_enemies)
+	
 
 func get_non_death_blown_enemies_in_splash_range(targ):
 	var enemies_in_splash_range = []
@@ -89,9 +97,10 @@ func get_non_death_blown_enemies_in_splash_range(targ):
 	
 	return enemies_in_splash_range
 
+
+
 func attackAnimationAndProjectile(splash_enemies):
 	animation_player.play("attack")
-	
 	# instantiate projectile and set initial variables
 	projectile = projectileScene.instantiate()
 	projectile.target = targetEnemy
@@ -105,6 +114,6 @@ func _on_animation_player_animation_finished(anim_name):
 		timer.start()
 		# Spawn projectile
 		get_tree().root.call_deferred("add_child", projectile)
-		animation_player.play("RESET")
+		animation_player.play("cooldown")
 		# Clear target enemy
 		targetEnemy = null

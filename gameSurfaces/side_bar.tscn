@@ -97,6 +97,7 @@ texture_pressed = ExtResource("10_od4rh")
 stretch_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="supplementDispenser"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 64.0
 offset_right = 61.0
@@ -104,6 +105,7 @@ offset_bottom = 101.0
 color = Color(0, 0, 0, 0.533333)
 
 [node name="diffuserPrice" type="RichTextLabel" parent="supplementDispenser"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 56.0
 offset_right = 64.0

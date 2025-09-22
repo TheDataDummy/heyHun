@@ -24,7 +24,6 @@ func _on_timer_timeout():
 		enemy.connect("died", Callable(game_world, "enemy_died"))
 		enemy.connect("dropCoins", Callable(game_world, "dropCoins"))
 		timer.start()
-		enemy.name = name + str(numberOfEnemies)
 		numberOfEnemies -= 1
 
 func start_wave():

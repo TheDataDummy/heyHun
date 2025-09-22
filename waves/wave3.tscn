@@ -10,15 +10,13 @@ y_sort_enabled = true
 script = ExtResource("1_7e0x7")
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_i17qr")]
-y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_bp6jw")
 numberOfEnemies = 8
-timeBetweenEnemies = 0.25
-timeBeforeEnemiesSpawn = 4.0
+timeBetweenEnemies = 0.4
+timeBeforeEnemiesSpawn = 1.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_i17qr")]
-y_sort_enabled = true
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_bp6jw")
 numberOfEnemies = 10
@@ -26,7 +24,6 @@ timeBetweenEnemies = 0.25
 timeBeforeEnemiesSpawn = 8.0
 
 [node name="sunScreenSpawner" parent="." instance=ExtResource("2_i17qr")]
-y_sort_enabled = true
 position = Vector2(-23, 101)
 enemyScene = ExtResource("4_lnp5e")
 numberOfEnemies = 4

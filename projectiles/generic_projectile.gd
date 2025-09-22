@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 100
+const SPEED = 175
 
 var target: CharacterBody2D = null
 var direction: Vector2

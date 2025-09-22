@@ -13,6 +13,7 @@ extends Area2D
 var targetEnemy: CharacterBody2D = null
 var enemies = []
 var attack_mode = false
+var placed = false
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -43,7 +44,11 @@ func _on_timer_timeout():
 		return
 	elif attack_mode:
 		attack()
-	
+
+func place():
+	attack_mode = true
+	placed = true
+
 func attack():
 	# Iterate over enemies in range
 	for e in enemies:
@@ -79,3 +84,17 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_player.play("RESET")
 		# Clear target enemy
 		targetEnemy = null
+
+
+#func _on_clickbox_input_event(viewport, event, shape_idx):
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and placed:
+		#if event.pressed:
+			#print("Targeting report for: " + self.name)
+			#print("Attack mode is set to: " + str(self.attack_mode))
+			#var resultString = ""
+			#for e in enemies:
+				#if not e.is_in_group("deathBlownEnemies"):
+					#resultString += e.name
+					#resultString += ", "
+			#print("List of enemies in range: " + resultString)
+			#print("")

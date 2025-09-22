@@ -1,14 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqb6akecg20xm"]
+[gd_scene load_steps=9 format=3 uid="uid://cah1208lnbl3o"]
 
-[ext_resource type="Script" path="res://enemies/generic_enemy.gd" id="1_vtnkl"]
-[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_s71qu"]
-[ext_resource type="Texture2D" uid="uid://by1eji1uck4yx" path="res://artAssets/enemies/sunScreen-Sheet.png" id="4_54qtp"]
-[ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_ccfou"]
+[ext_resource type="Script" path="res://enemies/generic_enemy.gd" id="1_o4tml"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_rms8b"]
+[ext_resource type="Texture2D" uid="uid://d0abo2l77t41n" path="res://artAssets/enemies/vaccine-Sheet.png" id="3_d6jna"]
+[ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_0rene"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
 radius = 0.01
 
-[sub_resource type="Animation" id="Animation_0ngqq"]
+[sub_resource type="Animation" id="Animation_cftla"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_3sctq"]
+[sub_resource type="Animation" id="Animation_s7xul"]
 resource_name = "takeHit"
 length = 0.2
 step = 0.1
@@ -40,14 +40,15 @@ tracks/0/keys = {
 "values": [1, 0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yclsu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ob42"]
 _data = {
-"RESET": SubResource("Animation_0ngqq"),
-"takeHit": SubResource("Animation_3sctq")
+"RESET": SubResource("Animation_cftla"),
+"takeHit": SubResource("Animation_s7xul")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
-script = ExtResource("1_vtnkl")
+[node name="vaccine" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_o4tml")
+standardSpeed = 65
 hitpoints = 6
 dropValue = 1
 
@@ -60,12 +61,17 @@ target_desired_distance = 5.0
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-texture = ExtResource("2_s71qu")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rms8b")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-4, 0)
+scale = Vector2(0.5, 0.0625)
+texture = ExtResource("2_rms8b")
 
 [node name="enemySprite" type="Sprite2D" parent="."]
-position = Vector2(0, -7)
-texture = ExtResource("4_54qtp")
+position = Vector2(0, 1)
+texture = ExtResource("3_d6jna")
 offset = Vector2(0, -9)
 hframes = 2
 region_rect = Rect2(16, 208, 16, 16)
@@ -78,15 +84,15 @@ one_shot = true
 
 [node name="hpbar" type="TextureProgressBar" parent="."]
 offset_left = -5.0
-offset_top = -31.0
+offset_top = -19.0
 offset_right = 5.0
-offset_bottom = -29.0
+offset_bottom = -17.0
 value = 100.0
-texture_progress = ExtResource("4_ccfou")
+texture_progress = ExtResource("4_0rene")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_yclsu")
+"": SubResource("AnimationLibrary_5ob42")
 }
 
 [connection signal="timeout" from="slowTimer" to="." method="_on_slow_timer_timeout"]

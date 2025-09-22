@@ -15,8 +15,9 @@ func start_wave():
 		if not node is Timer:
 			node.start_wave()
 
-func enemy_died(p):
-	spawnCoin.emit(p)
+func enemy_died(pos, spawn_coin = true):
+	if spawn_coin:
+		spawnCoin.emit(pos)
 	if len(get_tree().get_nodes_in_group("enemies")) == 1:
 		timer.start()
 
@@ -25,5 +26,5 @@ func dropCoins(value):
 
 func _on_timer_timeout():
 	if len(get_tree().get_nodes_in_group("enemies")) == 0:
-		waveOver.emit(self.name)
+		waveOver.emit()
 		queue_free()

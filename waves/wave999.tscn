@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmjj37lldq31v"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_1tjtg"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_ljp7n"]
+[ext_resource type="PackedScene" uid="uid://cah1208lnbl3o" path="res://enemies/vaccine.tscn" id="3_oi6te"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_1tjtg")
+
+[node name="vaccineSpawner1" parent="." instance=ExtResource("2_ljp7n")]
+position = Vector2(-48, 32)
+enemyScene = ExtResource("3_oi6te")
+numberOfEnemies = 2
+timeBetweenEnemies = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
