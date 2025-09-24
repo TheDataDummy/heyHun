@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cta8rnx8msm28"]
+[gd_scene load_steps=4 format=3 uid="uid://cta8rnx8msm28"]
 
 [ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_wp0vd"]
 [ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_dhng6"]
 [ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="3_3jlri"]
-[ext_resource type="PackedScene" uid="uid://lcaemrer8lsd" path="res://enemies/billGates.tscn" id="4_esmgk"]
 
 [node name="wave1" type="Node2D"]
 y_sort_enabled = true
@@ -15,13 +14,6 @@ enemyScene = ExtResource("3_3jlri")
 numberOfEnemies = 3
 timeBetweenEnemies = 1.5
 timeBeforeEnemiesSpawn = 0.1
-
-[node name="billSpawner" parent="." instance=ExtResource("2_dhng6")]
-position = Vector2(-68, 92)
-enemyScene = ExtResource("4_esmgk")
-numberOfEnemies = 1
-timeBetweenEnemies = 1.5
-timeBeforeEnemiesSpawn = 5.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

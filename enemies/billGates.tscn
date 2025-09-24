@@ -108,7 +108,7 @@ texture = ExtResource("2_8uf3c")
 [node name="enemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_3vkpu")
 offset = Vector2(0, -24)
-hframes = 10
+hframes = 16
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="hitSplat" type="Sprite2D" parent="."]
@@ -126,9 +126,9 @@ one_shot = true
 
 [node name="hpbar" type="TextureProgressBar" parent="."]
 offset_left = -5.0
-offset_top = -16.0
+offset_top = -45.0
 offset_right = 5.0
-offset_bottom = -14.0
+offset_bottom = -43.0
 value = 100.0
 texture_progress = ExtResource("4_cviai")
 
@@ -140,6 +140,10 @@ autoplay = "walk"
 
 [node name="hitTimer" type="Timer" parent="."]
 wait_time = 0.2
+one_shot = true
+
+[node name="hitTimerCooldown" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="slowTimer" to="." method="_on_slow_timer_timeout"]

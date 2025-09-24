@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://isx577j7rxo8"]
+[gd_scene load_steps=21 format=4 uid="uid://isx577j7rxo8"]
 
 [ext_resource type="Script" path="res://gameSurfaces/game_area.gd" id="1_0ovfa"]
 [ext_resource type="Texture2D" uid="uid://dbtpwprjmeu2" path="res://artAssets/levelBackground.png" id="1_4v25r"]
 [ext_resource type="PackedScene" uid="uid://dyb6u4nq80otx" path="res://objects/coin.tscn" id="2_1d324"]
 [ext_resource type="Script" path="res://gameSurfaces/ui.gd" id="2_lfeji"]
 [ext_resource type="Texture2D" uid="uid://bq5r87oips5lm" path="res://artAssets/dirt_tileset - Copy.png" id="3_y8lqs"]
+[ext_resource type="Texture2D" uid="uid://bcaryh1qwym2l" path="res://artAssets/effects/doorlight.png" id="7_2ktth"]
 [ext_resource type="Texture2D" uid="uid://mts10xfbfxw6" path="res://artAssets/tileset - simplified transparent.png" id="7_5v8yg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plvjn"]
@@ -593,6 +594,67 @@ agent_radius = 3.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4u2mv"]
 size = Vector2(8, 40)
 
+[sub_resource type="Animation" id="Animation_58h8i"]
+resource_name = "dayToNight"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.93333),
+"transitions": PackedFloat32Array(1, 0.392292, 1.93187),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.686764, 0.619719, 0.964448, 1), Color(0.493614, 0.437283, 0.993102, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.933333, 2.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.55]
+}
+
+[sub_resource type="Animation" id="Animation_xys1x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtkor"]
+_data = {
+"RESET": SubResource("Animation_xys1x"),
+"dayToNight": SubResource("Animation_58h8i")
+}
+
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0ovfa")
@@ -621,8 +683,22 @@ texture = ExtResource("1_4v25r")
 [node name="enemyGoal" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyGoal" groups=["target"]]
+visible = false
 position = Vector2(324, 148)
 shape = SubResource("RectangleShape2D_4u2mv")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qtkor")
+}
+autoplay = "RESET"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+position = Vector2(257, 152)
+scale = Vector2(1.03125, 1)
+energy = 0.0
+texture = ExtResource("7_2ktth")
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

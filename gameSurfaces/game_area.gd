@@ -2,6 +2,7 @@ extends Node2D
 @onready var ui = $UI
 @onready var placeable_area = $placeableArea
 @export var coinScene: PackedScene
+@onready var animation_player = $AnimationPlayer
 
 var build_valid = false
 var build_mode
@@ -65,7 +66,7 @@ func verify_and_build():
 		var new_tower = load("res://towers/" + build_type + ".tscn").instantiate()
 		new_tower.position = build_location
 		new_tower.place()
-		get_parent().add_child(new_tower, false)
+		add_child(new_tower, false)
 		placeable_area.set_cell(placeable_area.local_to_map(build_location))
 		build_mode_exited.emit(Globals.towerCosts[build_type])
 
@@ -79,3 +80,6 @@ func earn_coins(value: int):
 
 func wave_completed():
 	waveCompleted.emit()
+
+func enter_night_mode():
+	animation_player.play("dayToNight")

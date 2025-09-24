@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 @onready var hit_timer = $hitTimer
 @onready var hit_splat = $hitSplat
+@onready var hit_timer_cooldown = $hitTimerCooldown
 
 var target: Node = null
 var queuedHitpoints: int
@@ -51,8 +52,9 @@ func queue_damage(damage):
 func hit(damage):
 	hitpoints -= damage
 	hpbar.value = max(0, hitpoints)
-	hit_splat.visible = true
-	hit_timer.start()
+	if not hit_timer.time_left > 0 and not hit_timer_cooldown.time_left > 0:
+		hit_splat.visible = true
+		hit_timer.start()
 
 func kill(playerKilled = true):
 	if playerKilled:
@@ -76,4 +78,6 @@ func slow(fraction: float, duration: float):
 func _on_hit_timer_timeout():
 	if hitpoints <= 0:
 		kill()
+		return
 	hit_splat.visible = false
+	hit_timer_cooldown.start()

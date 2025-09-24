@@ -9,10 +9,14 @@ extends Node2D
 var placementMode = false
 var towerSelected = null
 
-var wave = 1
+var wave = 999
 var wave_in_progress = false
 
 signal tower_slection_mode_entered(tower_name: String)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_right"):
+		play_area.enter_night_mode()
 
 func _ready():
 	hud.set_coin_value(money)
