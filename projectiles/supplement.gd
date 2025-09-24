@@ -22,6 +22,7 @@ func _ready():
 	if is_instance_valid(target):
 		var midpoint = (start_position + target.global_position) / 2
 		control_point = midpoint + Vector2(0, -peak_height)
+		current_target_position = target.global_position
 
 func _physics_process(delta):
 	time_elapsed += delta
