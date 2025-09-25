@@ -1,7 +1,6 @@
 extends Node2D
 @onready var play_area = $PlayArea
 @onready var side_bar = $SideBar
-@onready var hud = $HUD
 
 @export var money: int
 @export var health: int
@@ -9,8 +8,10 @@ extends Node2D
 var placementMode = false
 var towerSelected = null
 
-var wave = 999
+var wave = 1
 var wave_in_progress = false
+var night_wave = false
+var night_waves = [6, 12, 18, 24, 999]
 
 signal tower_slection_mode_entered(tower_name: String)
 
@@ -19,9 +20,7 @@ func _unhandled_input(event):
 		play_area.enter_night_mode()
 
 func _ready():
-	hud.set_coin_value(money)
-	hud.set_current_wave(wave)
-	hud.update_hp(health)
+	pass
 
 func _on_side_bar_tower_selected(button):
 	var tower_name = button.name
@@ -36,31 +35,34 @@ func _on_side_bar_tower_selected(button):
 
 func _on_play_area_build_mode_exited(value):
 	money -= value
-	hud.set_coin_value(money)
 	side_bar.deselect_all_buttons()
 	placementMode = false
 
 func _on_play_area_earn_coins(value):
 	money += value
-	hud.set_coin_value(money)
 
 func _on_button_button_up():
+	if wave in night_waves:
+		night_wave = true
+		play_area.night_wave = true
 	if not wave_in_progress:
 		var current_wave = load("res://waves/wave" + str(wave) + ".tscn")
 		play_area.start_wave(current_wave)
 		wave_in_progress = true
-		hud.set_current_wave(wave)
 		wave += 1 
 	else:
 		print("Wave still in progress.")
 		print(str(len(get_tree().get_nodes_in_group("enemies"))) + " enemies remaining.")
 		for e in get_tree().get_nodes_in_group("enemies"):
 			print("Enemy: " + e.name + " at: " + str(e.global_position))
+			
 
 func _on_play_area_wave_completed():
+	if night_wave == true:
+		night_wave = false
+		play_area.night_wave = false
 	wave_in_progress = false
 	print("Wave " + str(wave - 1) + " completed!")
 
 func _on_play_area_enemy_made_it():
 	health -= 1
-	hud.update_hp(health)

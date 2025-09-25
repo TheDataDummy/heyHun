@@ -22,8 +22,6 @@ signal died(position: Vector2)
 signal dropCoins(coins: int)
 
 func _ready():
-	if name + str(get_parent().numberOfEnemies) == "vaccine10":
-		debug = true
 	speed = standardSpeed
 	_setup_navigation.call_deferred()
 	target = get_tree().get_nodes_in_group("target")[0]
@@ -36,8 +34,13 @@ func _setup_navigation():
 		navigation_agent_2d.target_position = target.global_position
 
 func _physics_process(_delta):
-	if !navigation_agent_2d.is_target_reached() and hitpoints > 0:
+	if !navigation_agent_2d.is_target_reached() and hitpoints > 0 and not animation_player.current_animation == "spawn":
 		var nav_point_direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
+		if nav_point_direction.x > 0 and enemy_sprite.flip_h == true:
+			enemy_sprite.flip_h = false
+		elif nav_point_direction.x <= 0 and enemy_sprite.flip_h == false:
+			enemy_sprite.flip_h = true
+			
 		velocity = nav_point_direction * speed
 		move_and_slide()
 
@@ -81,3 +84,8 @@ func _on_hit_timer_timeout():
 		return
 	hit_splat.visible = false
 	hit_timer_cooldown.start()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "spawn":
+		animation_player.play("walk")

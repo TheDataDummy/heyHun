@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://k0b4rs1n06p"]
+
+[ext_resource type="Script" path="res://vfx/cloud.gd" id="1_bvnjl"]
+[ext_resource type="Texture2D" uid="uid://diyxr5r0cow05" path="res://artAssets/effects/cloud.png" id="1_pywhh"]
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_bvnjl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+texture = ExtResource("1_pywhh")

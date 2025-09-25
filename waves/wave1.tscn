@@ -2,18 +2,17 @@
 
 [ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_wp0vd"]
 [ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_dhng6"]
-[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="3_3jlri"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="3_pgwrj"]
 
 [node name="wave1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_wp0vd")
 
 [node name="bookSpawner" parent="." instance=ExtResource("2_dhng6")]
-position = Vector2(-68, 92)
-enemyScene = ExtResource("3_3jlri")
+position = Vector2(-32, 160)
+enemyScene = ExtResource("3_pgwrj")
 numberOfEnemies = 3
-timeBetweenEnemies = 1.5
-timeBeforeEnemiesSpawn = 0.1
+timeBetweenEnemies = 2.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

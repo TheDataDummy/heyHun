@@ -5,6 +5,8 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 
 var build_valid = false
+var night_wave = false
+
 var build_mode
 var build_location
 var build_type 
@@ -26,9 +28,10 @@ func _process(_delta):
 		update_tower_preview()
 
 func _on_world_tower_slection_mode_entered(tower_name):
-	build_mode = true
-	build_type = tower_name
-	ui.set_tower_preview(tower_name, get_global_mouse_position())
+	if not night_wave:
+		build_mode = true
+		build_type = tower_name
+		ui.set_tower_preview(tower_name, get_global_mouse_position())
 
 func start_wave(spawners: PackedScene):
 	var spawnScene = spawners.instantiate()
