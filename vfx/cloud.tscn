@@ -8,4 +8,5 @@ script = ExtResource("1_bvnjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(0, -36)
 texture = ExtResource("1_pywhh")

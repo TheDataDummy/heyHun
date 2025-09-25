@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgg0k3yhl16j"]
+[gd_scene load_steps=6 format=3 uid="uid://cgg0k3yhl16j"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_dkcx4"]
 [ext_resource type="PackedScene" uid="uid://isx577j7rxo8" path="res://gameSurfaces/play_area.tscn" id="1_yj447"]
 [ext_resource type="PackedScene" uid="uid://2nf8l3hb50cb" path="res://gameSurfaces/side_bar.tscn" id="2_1o8eq"]
+[ext_resource type="Texture2D" uid="uid://ctr6uycpaxsv4" path="res://artAssets/uiElements/nextWaveUp1.png" id="3_mippw"]
+[ext_resource type="Texture2D" uid="uid://w61jqcdx2275" path="res://artAssets/uiElements/nextWaveUp2.png" id="4_38fsx"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -19,16 +21,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2
-anchor_right = 0.45
+anchor_left = 0.25
+anchor_top = 0.15
+anchor_right = 0.25
+anchor_bottom = 0.175
 offset_left = 448.0
 offset_top = 10.0
 offset_right = 614.0
 offset_bottom = 41.0
-text = "Start Next Wave"
+texture_normal = ExtResource("3_mippw")
+texture_pressed = ExtResource("4_38fsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="SideBar" parent="." instance=ExtResource("2_1o8eq")]

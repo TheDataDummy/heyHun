@@ -385,7 +385,7 @@ sources/0 = SubResource("TileSetAtlasSource_erjtt")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xrrv2"]
 shader = ExtResource("10_hndff")
-shader_parameter/scale = 0.013
+shader_parameter/scale = 0.009
 shader_parameter/overlay_tex = ExtResource("11_m3i0o")
 
 [node name="PlayArea" type="Node2D"]
@@ -448,5 +448,7 @@ texture = ExtResource("13_dsbe8")
 [node name="Node" type="Node" parent="."]
 script = ExtResource("14_nfqgk")
 cloud_scene = ExtResource("15_ajtmf")
+min_spawn_time = 20.0
+max_spawn_time = 40.0
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

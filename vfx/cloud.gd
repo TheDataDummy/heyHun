@@ -1,11 +1,11 @@
 extends Area2D
 
-@export var min_speed: float = 20.0 # Slowest movement
-@export var max_speed: float = 70.0 # Fastest movement (Adjust for your feel)
+@export var min_speed: float = 8 # Slowest movement
+@export var max_speed: float = 25 # Fastest movement (Adjust for your feel)
 @onready var sprite_2d = $Sprite2D
 
 var speed: float
-var direction: Vector2 = Vector2.LEFT # Clouds move left across the screen
+var direction: Vector2 = Vector2.RIGHT # Clouds move left across the screen
 
 func _ready():
 	# 1. Randomize Speed
@@ -20,5 +20,5 @@ func _process(delta: float):
 
 	# Check if the cloud is completely off-screen to the left (640 screen width)
 	# We check for -100 to ensure the whole sprite, regardless of size, is gone.
-	if position.x < -100:
+	if position.x > 1000:
 		queue_free() # Delete the cloud instance
