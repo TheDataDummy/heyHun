@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=22 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
 [ext_resource type="Texture2D" uid="uid://d7b3pgex6ey5" path="res://artAssets/uiElements/reworkedGameUIShadow.png" id="2_1s2iu"]
@@ -16,12 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://da7flenyb8kn1" path="res://artAssets/uiElements/infoIcon.png" id="12_k137w"]
 [ext_resource type="Texture2D" uid="uid://bwmo3ljdndlb2" path="res://artAssets/uiElements/moneyUI.png" id="12_nfrs5"]
 [ext_resource type="Texture2D" uid="uid://gr2vqnkmgies" path="res://artAssets/uiElements/questionMark.png" id="13_j0rgo"]
+[ext_resource type="Texture2D" uid="uid://cyqladgk7kxgj" path="res://artAssets/enemies/sunScreen.png" id="14_p3tst"]
 [ext_resource type="Script" path="res://gameSurfaces/info_box.gd" id="17_k1uoy"]
 [ext_resource type="Texture2D" uid="uid://dcepde0lvjjpr" path="res://artAssets/uiElements/infoBox.png" id="17_opftt"]
 [ext_resource type="Texture2D" uid="uid://b1rk3phajo8jl" path="res://artAssets/uiElements/exitMenuButton1.png" id="18_l1cr5"]
 [ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="19_t0mfl"]
-[ext_resource type="Texture2D" uid="uid://b26de6u7gunhw" path="res://artAssets/uiElements/hpbar.png" id="21_4pe27"]
-[ext_resource type="Texture2D" uid="uid://ct62ded1ltmb1" path="res://artAssets/uiElements/hpbarunder.png" id="21_6jexr"]
 
 [node name="SideBar" type="Node2D"]
 script = ExtResource("1_vikbh")
@@ -156,15 +155,13 @@ texture_normal = ExtResource("12_k137w")
 
 [node name="sunscreen" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(81, 9)
-texture = ExtResource("13_j0rgo")
+texture = ExtResource("14_p3tst")
 
 [node name="sunscreen_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
-visible = false
 offset_left = 61.0
 offset_top = 25.0
 offset_right = 69.0
 offset_bottom = 33.0
-toggle_mode = true
 texture_normal = ExtResource("12_k137w")
 
 [node name="oil" type="Sprite2D" parent="towerUI/UI/enemies"]
@@ -198,7 +195,6 @@ theme_override_font_sizes/font_size = 32
 text = "9999"
 
 [node name="infoBox" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("17_k1uoy")
 
 [node name="background" type="Sprite2D" parent="infoBox"]
@@ -258,20 +254,9 @@ offset_bottom = 153.0
 texture_normal = ExtResource("18_l1cr5")
 texture_pressed = ExtResource("19_t0mfl")
 
-[node name="hpDisplay" type="Node2D" parent="."]
-
-[node name="hp" type="TextureProgressBar" parent="hpDisplay"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
-max_value = 8.0
-value = 4.0
-texture_under = ExtResource("21_6jexr")
-texture_progress = ExtResource("21_4pe27")
-
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock1" to="." method="_on_lock_unlock_animation_finished"]
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock2" to="." method="_on_lock_unlock_animation_finished"]
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock3" to="." method="_on_lock_unlock_animation_finished"]
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock4" to="." method="_on_lock_unlock_animation_finished"]
+[connection signal="toggled" from="towerUI/UI/enemies/book_info" to="." method="_on_book_info_toggled"]
 [connection signal="button_up" from="infoBox/TextureButton" to="." method="_on_info_exit_button_up"]

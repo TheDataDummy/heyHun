@@ -49,8 +49,7 @@ _data = {
 [node name="vaccine" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_o4tml")
 standardSpeed = 65
-hitpoints = 18
-dropValue = 2
+enemyName = "vaccine"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sa0cw")

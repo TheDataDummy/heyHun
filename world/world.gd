@@ -5,11 +5,12 @@ extends Node2D
 
 @export var money: int
 @export var health: int
+var maxHealth = 8
 
 var placementMode = false
 var towerSelected = null
 
-var wave = 1
+var wave = 5
 var wave_in_progress = false
 var night_wave = false
 var night_waves = [6, 12, 18, 24, 999]
@@ -26,6 +27,7 @@ func _unhandled_input(event):
 func _ready():
 	update_unlocked_towers()
 	interface.set_money(money)
+	interface.update_health(health)
 
 func update_unlocked_towers():
 	interface.update_unlocked_towers(unlockedTowers)
@@ -50,8 +52,6 @@ func _on_play_area_build_mode_exited(value):
 func _on_play_area_earn_coins(value):
 	money += value
 	interface.set_money(money)
-	print(value)
-	print(money)
 
 func _on_button_button_up():
 	if wave in night_waves and not wave_in_progress:
@@ -75,6 +75,7 @@ func _on_play_area_wave_completed():
 
 func _on_play_area_enemy_made_it():
 	health -= 1
+	interface.update_health(health)
 
 func _on_transitions_and_titles_wave_intro_over():
 	wave_into_playing = false

@@ -47,9 +47,10 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
 script = ExtResource("1_518kp")
-hitpoints = 10
-dropValue = 1
+standardSpeed = 35
+enemyName = "book"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sa0cw")

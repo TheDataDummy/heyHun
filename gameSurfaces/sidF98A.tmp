@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=21 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
 [ext_resource type="Texture2D" uid="uid://d7b3pgex6ey5" path="res://artAssets/uiElements/reworkedGameUIShadow.png" id="2_1s2iu"]
@@ -20,8 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://dcepde0lvjjpr" path="res://artAssets/uiElements/infoBox.png" id="17_opftt"]
 [ext_resource type="Texture2D" uid="uid://b1rk3phajo8jl" path="res://artAssets/uiElements/exitMenuButton1.png" id="18_l1cr5"]
 [ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="19_t0mfl"]
-[ext_resource type="Texture2D" uid="uid://b26de6u7gunhw" path="res://artAssets/uiElements/hpbar.png" id="21_4pe27"]
-[ext_resource type="Texture2D" uid="uid://ct62ded1ltmb1" path="res://artAssets/uiElements/hpbarunder.png" id="21_6jexr"]
 
 [node name="SideBar" type="Node2D"]
 script = ExtResource("1_vikbh")
@@ -146,26 +144,16 @@ scale = Vector2(2, 2)
 texture = ExtResource("11_0wdee")
 hframes = 2
 
-[node name="book_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
+[node name="bookInfo" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
 offset_left = 13.0
 offset_top = 25.0
 offset_right = 21.0
 offset_bottom = 33.0
-toggle_mode = true
 texture_normal = ExtResource("12_k137w")
 
 [node name="sunscreen" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(81, 9)
 texture = ExtResource("13_j0rgo")
-
-[node name="sunscreen_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
-visible = false
-offset_left = 61.0
-offset_top = 25.0
-offset_right = 69.0
-offset_bottom = 33.0
-toggle_mode = true
-texture_normal = ExtResource("12_k137w")
 
 [node name="oil" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(129, 9)
@@ -214,6 +202,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_vnioj")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+text = "[center]Book"
 
 [node name="enemyHitpoints" type="RichTextLabel" parent="infoBox"]
 offset_left = 398.0
@@ -224,6 +213,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_vnioj")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+text = "[center]10"
 
 [node name="enemyDropValue" type="RichTextLabel" parent="infoBox"]
 offset_left = 398.0
@@ -234,9 +224,12 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_vnioj")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+text = "[center]1"
 
 [node name="enemySprite" type="Sprite2D" parent="infoBox"]
-position = Vector2(350, 194)
+position = Vector2(349, 189)
+scale = Vector2(2, 2)
+texture = ExtResource("11_0wdee")
 hframes = 2
 
 [node name="enemyDescription" type="RichTextLabel" parent="infoBox"]
@@ -248,6 +241,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_vnioj")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
+text = "The book is a simple, moderately paced enemy designed to indoctrinate your children."
 scroll_active = false
 
 [node name="TextureButton" type="TextureButton" parent="infoBox"]
@@ -257,18 +251,6 @@ offset_right = 572.0
 offset_bottom = 153.0
 texture_normal = ExtResource("18_l1cr5")
 texture_pressed = ExtResource("19_t0mfl")
-
-[node name="hpDisplay" type="Node2D" parent="."]
-
-[node name="hp" type="TextureProgressBar" parent="hpDisplay"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
-max_value = 8.0
-value = 4.0
-texture_under = ExtResource("21_6jexr")
-texture_progress = ExtResource("21_4pe27")
 
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock1" to="." method="_on_lock_unlock_animation_finished"]
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock2" to="." method="_on_lock_unlock_animation_finished"]

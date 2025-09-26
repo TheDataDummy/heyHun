@@ -1,13 +1,14 @@
 extends CharacterBody2D
 @onready var navigation_agent_2d = $NavigationAgent2D
 @export var standardSpeed: int = 25
-@export var hitpoints: int = 1
-@export var dropValue: int
+@export var enemyName: String
 @onready var slow_timer = $slowTimer
 @onready var enemy_sprite = $enemySprite
 @onready var hpbar = $hpbar
 @onready var animation_player = $AnimationPlayer
 
+var hitpoints: int
+var dropValue: int
 var target: Node = null
 var queuedHitpoints: int
 var attacking = false
@@ -19,8 +20,8 @@ signal died(position: Vector2)
 signal dropCoins(coins: int)
 
 func _ready():
-	if name + str(get_parent().numberOfEnemies) == "vaccine10":
-		debug = true
+	hitpoints = Globals.enemy_hitpoints[enemyName]
+	dropValue = Globals.enemy_drops[enemyName]
 	speed = standardSpeed
 	_setup_navigation.call_deferred()
 	target = get_tree().get_nodes_in_group("target")[0]
