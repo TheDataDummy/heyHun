@@ -86,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(12, 1),
 "update": 0,
-"values": [Vector2(0, -128), Vector2(0, -24)]
+"values": [Vector2(0, -256), Vector2(0, -24)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -98,7 +98,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(15, 1),
 "update": 0,
-"values": [Vector2(-5, -153), Vector2(-5, -45)]
+"values": [Vector2(-5, -274), Vector2(-5, -45)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -216,9 +216,9 @@ one_shot = true
 
 [node name="hpbar" type="TextureProgressBar" parent="."]
 offset_left = -5.0
-offset_top = -45.0
+offset_top = -274.0
 offset_right = 5.0
-offset_bottom = -43.0
+offset_bottom = -272.0
 value = 100.0
 texture_progress = ExtResource("4_cviai")
 

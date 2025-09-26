@@ -3,6 +3,7 @@ extends Node2D
 @onready var placeable_area = $placeableArea
 @export var coinScene: PackedScene
 @onready var animation_player = $AnimationPlayer
+@onready var sub_viewport = $SubViewport
 
 var build_valid = false
 var night_wave = false
@@ -11,10 +12,22 @@ var build_mode
 var build_location
 var build_type 
 
+var screenshot = false
+
 signal build_mode_exited(cost: int)
 signal earnCoins(value: int)
 signal waveCompleted
 signal enemyMadeIt
+
+func _ready():
+	if screenshot:
+		# Example usage:
+		# Replace "res://exported_tilemap.png" with your desired save path
+		var error = await save_tilemap_as_png("res://exported_tilemap.png")
+		if error != OK:
+			print("Error saving PNG: ", error)
+		else:
+			print("TileMap successfully exported to PNG!")
 
 func _unhandled_input(event):
 	if event.is_action_released("ui_accept") and build_mode == true:
@@ -86,3 +99,16 @@ func wave_completed():
 
 func enter_night_mode():
 	animation_player.play("dayToNight")
+
+func save_tilemap_as_png(file_path: String) -> Error:
+	# Ensure the viewport has rendered at least one frame
+	await RenderingServer.frame_post_draw
+
+	# Get the viewport's texture
+	var viewport_texture = sub_viewport.get_texture()
+
+	# Get the Image data from the texture
+	var image: Image = viewport_texture.get_image()
+
+	# Save the Image as a PNG file
+	return image.save_png(file_path)

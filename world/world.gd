@@ -1,6 +1,6 @@
 extends Node2D
 @onready var play_area = $PlayArea
-@onready var side_bar = $SideBar
+@onready var interface = $interface
 
 @export var money: int
 @export var health: int
@@ -8,7 +8,7 @@ extends Node2D
 var placementMode = false
 var towerSelected = null
 
-var wave = 1
+var wave = 999
 var wave_in_progress = false
 var night_wave = false
 var night_waves = [6, 12, 18, 24, 999]
@@ -20,7 +20,7 @@ func _unhandled_input(event):
 		play_area.enter_night_mode()
 
 func _ready():
-	pass
+	interface.set_money(money)
 
 func _on_side_bar_tower_selected(button):
 	var tower_name = button.name
@@ -31,15 +31,17 @@ func _on_side_bar_tower_selected(button):
 			tower_slection_mode_entered.emit(tower_name)
 		else:
 			print("Not enough money you cheap fuck")
-			side_bar.deselect_all_buttons()
+			interface.deselect_all_buttons()
 
 func _on_play_area_build_mode_exited(value):
 	money -= value
-	side_bar.deselect_all_buttons()
+	interface.deselect_all_buttons()
 	placementMode = false
+	interface.set_money(money)
 
 func _on_play_area_earn_coins(value):
 	money += value
+	interface.set_money(money)
 
 func _on_button_button_up():
 	if wave in night_waves:

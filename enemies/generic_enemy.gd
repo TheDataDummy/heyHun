@@ -14,7 +14,7 @@ var attacking = false
 var speed: float
 var debug = false
 var moving = true
-
+var starting_position
 signal died(position: Vector2)
 signal dropCoins(coins: int)
 
@@ -27,6 +27,7 @@ func _ready():
 	queuedHitpoints = hitpoints
 	hpbar.max_value = hitpoints
 	hpbar.value = hitpoints
+	global_position = starting_position
 
 func _setup_navigation():
 	if target:

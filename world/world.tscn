@@ -36,8 +36,7 @@ texture_normal = ExtResource("3_mippw")
 texture_pressed = ExtResource("4_38fsx")
 metadata/_edit_use_anchors_ = true
 
-[node name="SideBar" parent="." instance=ExtResource("2_1o8eq")]
-position = Vector2(320, 304.5)
+[node name="interface" parent="." instance=ExtResource("2_1o8eq")]
 
 [connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
 [connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
@@ -45,4 +44,4 @@ position = Vector2(320, 304.5)
 [connection signal="enemyMadeIt" from="PlayArea" to="." method="_on_play_area_enemy_made_it"]
 [connection signal="waveCompleted" from="PlayArea" to="." method="_on_play_area_wave_completed"]
 [connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]
-[connection signal="tower_selected" from="SideBar" to="." method="_on_side_bar_tower_selected"]
+[connection signal="tower_selected" from="interface" to="." method="_on_side_bar_tower_selected"]
