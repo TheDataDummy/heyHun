@@ -16,7 +16,7 @@ timeBetweenEnemies = 0.25
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_mdk2f")]
-position = Vector2(-68, 92)
+position = Vector2(-48, 84)
 enemyScene = ExtResource("3_c7jpc")
 numberOfEnemies = 15
 timeBetweenEnemies = 0.1

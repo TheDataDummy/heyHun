@@ -56,7 +56,7 @@ func _on_play_area_earn_coins(value):
 func _on_button_button_up():
 	if wave in night_waves and not wave_in_progress:
 		night_wave = true
-		play_area.night_wave = true
+		play_area.enter_night_mode()
 	if not wave_in_progress:
 		transitions_and_titles.play_wave_intro(wave)
 		wave_into_playing = true
@@ -69,7 +69,7 @@ func _on_button_button_up():
 func _on_play_area_wave_completed():
 	if night_wave == true:
 		night_wave = false
-		play_area.night_wave = false
+		play_area.exit_night_mode()
 	wave_in_progress = false
 	print("Wave " + str(wave - 1) + " completed!")
 

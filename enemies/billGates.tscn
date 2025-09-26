@@ -182,7 +182,7 @@ _data = {
 
 [node name="bill" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_al510")
-hitpoints = 500
+hitpoints = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)

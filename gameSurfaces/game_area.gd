@@ -99,6 +99,10 @@ func wave_completed():
 
 func enter_night_mode():
 	animation_player.play("dayToNight")
+	night_wave = true
+
+func exit_night_mode():
+	night_wave = false
 
 func save_tilemap_as_png(file_path: String) -> Error:
 	# Ensure the viewport has rendered at least one frame

@@ -327,7 +327,7 @@ terrain_set_0/terrain_0/color = Color(0.726912, 0, 0.128516, 1)
 sources/0 = SubResource("TileSetAtlasSource_plvjn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4u2mv"]
-size = Vector2(8, 26)
+size = Vector2(8, 76)
 
 [sub_resource type="Animation" id="Animation_xys1x"]
 length = 0.001
@@ -425,7 +425,7 @@ texture = ExtResource("6_b2v0v")
 [node name="enemyGoal" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyGoal" groups=["target"]]
-position = Vector2(516, 193)
+position = Vector2(516, 198)
 shape = SubResource("RectangleShape2D_4u2mv")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
 
