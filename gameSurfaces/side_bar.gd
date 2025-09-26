@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var label = $moneyDisplay/money/label
 @onready var towers = $towerUI/UI/towers
+@onready var info_box = $infoBox
 
 var unlocked_towers = []
 var selection_mode = true
@@ -41,4 +42,13 @@ func _on_lock_unlock_animation_finished():
 	selection_mode = true
 
 func showInfo(button):
-	print(button.name)
+	enter_info_mode(button.name)
+
+func _on_info_exit_button_up():
+	exit_info_mode()
+
+func exit_info_mode():
+	info_box.visible = false
+
+func enter_info_mode(enemy):
+	info_box.visible = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enemies/generic_enemy.gd" id="1_518kp"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_bifo3"]
-[ext_resource type="Texture2D" uid="uid://bn0sod4totuyw" path="res://artAssets/Serene Village - Inside_black.png" id="3_37knp"]
+[ext_resource type="Texture2D" uid="uid://bn0sod4totuyw" path="res://artAssets/enemies/Serene Village - Inside_black.png" id="3_37knp"]
 [ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_6hjud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
