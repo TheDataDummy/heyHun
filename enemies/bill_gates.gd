@@ -17,11 +17,11 @@ var attacking = false
 var speed: float
 var debug = false
 var moving = true
-
 signal died(position: Vector2)
 signal dropCoins(coins: int)
 
 func _ready():
+	add_to_group("deathBlownEnemies")
 	speed = standardSpeed
 	_setup_navigation.call_deferred()
 	target = get_tree().get_nodes_in_group("target")[0]
@@ -38,8 +38,10 @@ func _physics_process(_delta):
 		var nav_point_direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 		if nav_point_direction.x > 0 and enemy_sprite.flip_h == true:
 			enemy_sprite.flip_h = false
+			hit_splat.flip_h = false
 		elif nav_point_direction.x <= 0 and enemy_sprite.flip_h == false:
 			enemy_sprite.flip_h = true
+			hit_splat.flip_h = true
 			
 		velocity = nav_point_direction * speed
 		move_and_slide()
@@ -85,7 +87,7 @@ func _on_hit_timer_timeout():
 	hit_splat.visible = false
 	hit_timer_cooldown.start()
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "spawn":
 		animation_player.play("walk")
+		remove_from_group("deathBlownEnemies")

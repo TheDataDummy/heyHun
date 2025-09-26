@@ -27,6 +27,7 @@ func _process(_delta):
 		var progress_percentage = 1.0 - (time_left / total_time)
 		progress_bar.value = progress_percentage
 
+
 func _ready():
 	timer.wait_time = cooldown
 

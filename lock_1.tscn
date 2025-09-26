@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://84h51vqa0put"]
+
+[ext_resource type="Texture2D" uid="uid://hl3mkibipaxk" path="res://artAssets/uiElements/lockedTower-Sheet.png" id="1_4lph3"]
+[ext_resource type="Script" path="res://lock.gd" id="1_yywnk"]
+
+[sub_resource type="Animation" id="Animation_50354"]
+resource_name = "unlock"
+length = 1.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_an6xf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0c00q"]
+_data = {
+"RESET": SubResource("Animation_an6xf"),
+"unlock": SubResource("Animation_50354")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yywnk")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4lph3")
+hframes = 17
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_0c00q")
+}
+
+[connection signal="animation_finished" from="sprite/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

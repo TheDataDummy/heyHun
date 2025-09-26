@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_cviai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
-radius = 0.01
+radius = 3.16228
 
 [sub_resource type="Animation" id="Animation_cftla"]
 length = 0.001
@@ -180,11 +180,12 @@ _data = {
 "walk": SubResource("Animation_t23vx")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+[node name="bill" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_al510")
 hitpoints = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_sa0cw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -209,7 +210,7 @@ hframes = 10
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="hitpoint" type="Marker2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -24)
 
 [node name="slowTimer" type="Timer" parent="."]
 one_shot = true
