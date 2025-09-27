@@ -100,15 +100,19 @@ func _on_animation_player_animation_finished(anim_name):
 		var towers_to_kill = []
 		for area in towers_in_range:
 			towers_to_kill.append(area)
+		print(towers_to_kill)
 		for tower in towers_to_kill:
 			towers_in_range.erase(tower)
-			tower.queue_free()
+			tower.kill()
+		attack_timer.start()
 
 func _on_attack_radius_area_entered(area):
-	towers_in_range.append(area)
+	towers_in_range.append(area.get_parent())
+	print(towers_in_range)
 
 func _on_attack_radius_area_exited(area):
-	towers_in_range.erase(area)
+	towers_in_range.erase(area.get_parent())
+	print(towers_in_range)
 
 func _on_attack_timer_timeout():
 	animation_player.play("stomp")

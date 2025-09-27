@@ -98,3 +98,6 @@ func _on_clickbox_input_event(_viewport, event, _shape_idx):
 					resultString += ", "
 			print("List of enemies in range: " + resultString)
 			print("")
+
+func kill():
+	queue_free()

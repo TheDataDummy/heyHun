@@ -117,3 +117,7 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_player.play("cooldown")
 		# Clear target enemy
 		targetEnemy = null
+
+
+func kill():
+	queue_free()

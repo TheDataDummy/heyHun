@@ -56,3 +56,7 @@ func attackAnimationAndProjectile():
 
 func _on_cloud_area_body_entered(body):
 	body.slow(0.5, statusDuration)
+
+
+func kill():
+	queue_free()

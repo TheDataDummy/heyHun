@@ -177,6 +177,8 @@ libraries = {
 autoplay = "RESET"
 
 [node name="clickbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
 position = Vector2(0, -7.5)
