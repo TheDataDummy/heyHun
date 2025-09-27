@@ -102,6 +102,7 @@ func enter_night_mode():
 	night_wave = true
 
 func exit_night_mode():
+	animation_player.play("nightToDay")
 	night_wave = false
 
 func save_tilemap_as_png(file_path: String) -> Error:

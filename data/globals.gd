@@ -8,7 +8,7 @@ var towerCosts = {
 
 var enemy_hitpoints = {
 	"book": 10,
-	"sunscreen": 25,
+	"sunscreen": 30,
 	"vaccine": 15,
 }
 

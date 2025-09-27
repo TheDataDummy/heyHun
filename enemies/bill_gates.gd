@@ -10,13 +10,15 @@ extends CharacterBody2D
 @onready var hit_timer = $hitTimer
 @onready var hit_splat = $hitSplat
 @onready var hit_timer_cooldown = $hitTimerCooldown
+@onready var attack_timer = $attackTimer
 
 var target: Node = null
 var queuedHitpoints: int
-var attacking = false
 var speed: float
 var debug = false
 var moving = true
+var towers_in_range = []
+
 signal died(position: Vector2)
 signal dropCoins(coins: int)
 
@@ -34,6 +36,8 @@ func _setup_navigation():
 		navigation_agent_2d.target_position = target.global_position
 
 func _physics_process(_delta):
+	if animation_player.current_animation == "stomp":
+		return
 	if !navigation_agent_2d.is_target_reached() and hitpoints > 0 and not animation_player.current_animation == "spawn":
 		var nav_point_direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 		if nav_point_direction.x > 0 and enemy_sprite.flip_h == true:
@@ -90,3 +94,21 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "spawn":
 		animation_player.play("walk")
 		remove_from_group("deathBlownEnemies")
+		attack_timer.start()
+	elif anim_name == "stomp":
+		animation_player.play("walk")
+		var towers_to_kill = []
+		for area in towers_in_range:
+			towers_to_kill.append(area)
+		for tower in towers_to_kill:
+			towers_in_range.erase(tower)
+			tower.queue_free()
+
+func _on_attack_radius_area_entered(area):
+	towers_in_range.append(area)
+
+func _on_attack_radius_area_exited(area):
+	towers_in_range.erase(area)
+
+func _on_attack_timer_timeout():
+	animation_player.play("stomp")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4gha81e4an7a"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_52y4i"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_bfa7h"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="3_rwudl"]
+[ext_resource type="PackedScene" uid="uid://cqb6akecg20xm" path="res://enemies/sunScreen.tscn" id="4_xit1v"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_52y4i")
+
+[node name="bookSpawner" parent="." instance=ExtResource("2_bfa7h")]
+position = Vector2(-32, 92)
+enemyScene = ExtResource("3_rwudl")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 1.0
+
+[node name="sunscreenSpawner" parent="." instance=ExtResource("2_bfa7h")]
+position = Vector2(-24, 96)
+enemyScene = ExtResource("4_xit1v")
+numberOfEnemies = 8
+timeBetweenEnemies = 2.0
+timeBeforeEnemiesSpawn = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -22,8 +22,8 @@ func _ready():
 	#var towerLock = towers.get_node("lock1")
 	#towerLock.visible = false
 
-func update_unlocked_towers(tower_array):
-	unlocked_towers = tower_array
+func update_unlocked_towers(new_tower):
+	unlocked_towers.append(new_tower)
 	for i in range(len(unlocked_towers)):
 		var towerLock = towers.get_node("lock" + str(i + 1))
 		towerLock.play_unlock()

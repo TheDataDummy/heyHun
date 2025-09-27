@@ -14,6 +14,11 @@ var towerSelected = null
 
 var night_waves = [6, 12, 18, 24, 999]
 
+var unlocks = {
+	7: "diffuser",
+	12: "pillDispenser"
+}
+
 # State
 var wave_intro_playing = false
 var wave_in_progress = false
@@ -29,12 +34,13 @@ func _unhandled_input(event):
 		play_area.enter_night_mode()
 
 func _ready():
-	update_unlocked_towers()
+	update_unlocked_towers(unlockedTowers[0])
 	interface.set_money(money)
 	interface.update_health(health)
 
-func update_unlocked_towers():
-	interface.update_unlocked_towers(unlockedTowers)
+func update_unlocked_towers(tower):
+	unlockedTowers.append(tower)
+	interface.update_unlocked_towers(unlockedTowers[-1])
 
 func _on_side_bar_tower_selected(button):
 	var tower_name = button.name
@@ -92,3 +98,5 @@ func _on_transitions_and_titles_wave_intro_over():
 
 func _on_transitions_and_titles_wave_passed_over():
 	wave_passed_playing = false
+	if wave in unlocks:
+		update_unlocked_towers(unlocks[wave])

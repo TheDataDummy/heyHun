@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @onready var navigation_agent_2d = $NavigationAgent2D
-@export var standardSpeed: int = 25
+@export var standardSpeed: int = 500
 @export var enemyName: String
 @onready var slow_timer = $slowTimer
 @onready var enemy_sprite = $enemySprite
