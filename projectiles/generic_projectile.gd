@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 225
+const SPEED = 125
 
 var target: CharacterBody2D = null
 var direction: Vector2
@@ -12,8 +12,13 @@ func _physics_process(delta):
 	if target != null:
 		direction = global_position.direction_to(target.get_node("hitpoint").global_position)
 		if animation_player.current_animation != "explode":
-			look_at(target.global_position)
-
+			# Calculate the angle towards the target
+			var angle_to_target = global_position.angle_to_point(target.get_node("hitpoint").global_position)
+			# Set the rotation, adding PI/2 radians (90 degrees)
+			# This is often needed to make the 'top' (Y-axis) of the sprite point forward
+			# Adjusting the value (e.g., subtracting PI/2, or adding PI) might be necessary 
+			# depending on the default orientation of your projectile's sprite/texture.
+			rotation = angle_to_target - PI/2 
 			global_position += direction * SPEED * delta
 	else:
 		queue_free()

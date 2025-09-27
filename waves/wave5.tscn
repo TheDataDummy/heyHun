@@ -19,8 +19,7 @@ timeBeforeEnemiesSpawn = 1.0
 position = Vector2(-48, 84)
 enemyScene = ExtResource("3_c7jpc")
 numberOfEnemies = 15
-timeBetweenEnemies = 0.1
-timeBeforeEnemiesSpawn = 3.0
+timeBetweenEnemies = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

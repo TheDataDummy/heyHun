@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://isx577j7rxo8"]
+[gd_scene load_steps=29 format=4 uid="uid://isx577j7rxo8"]
 
 [ext_resource type="Script" path="res://gameSurfaces/game_area.gd" id="1_0ovfa"]
 [ext_resource type="PackedScene" uid="uid://dyb6u4nq80otx" path="res://objects/coin.tscn" id="2_1d324"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://k0b4rs1n06p" path="res://vfx/cloud.tscn" id="15_ajtmf"]
 [ext_resource type="Texture2D" uid="uid://cyinnqag41c8n" path="res://artAssets/tiles/mapHedge.png" id="16_vcn2h"]
 [ext_resource type="Texture2D" uid="uid://dylrhs350a671" path="res://exported_tilemap.png" id="17_cthu0"]
+[ext_resource type="Texture2D" uid="uid://cblgp4oytqiwy" path="res://artAssets/uiElements/grassOverlayButton.png" id="18_8tqyd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_erjtt"]
 texture = ExtResource("8_cvttd")
@@ -464,5 +465,9 @@ max_spawn_time = 40.0
 position = Vector2(-16, 0)
 texture = ExtResource("16_vcn2h")
 offset = Vector2(56, 180)
+
+[node name="buttongrass" type="Sprite2D" parent="."]
+position = Vector2(564, 35)
+texture = ExtResource("18_8tqyd")
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

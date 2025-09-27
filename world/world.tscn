@@ -10,8 +10,9 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
-money = 60
+money = 150
 health = 8
+wave = 6
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 
@@ -49,3 +50,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]
 [connection signal="tower_selected" from="interface" to="." method="_on_side_bar_tower_selected"]
 [connection signal="wave_intro_over" from="transitionsAndTitles" to="." method="_on_transitions_and_titles_wave_intro_over"]
+[connection signal="wave_passed_over" from="transitionsAndTitles" to="." method="_on_transitions_and_titles_wave_passed_over"]

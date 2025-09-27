@@ -60,6 +60,8 @@ func hit(damage):
 	if not hit_timer.time_left > 0 and not hit_timer_cooldown.time_left > 0:
 		hit_splat.visible = true
 		hit_timer.start()
+	if hitpoints <= 0:
+		kill()
 
 func kill(playerKilled = true):
 	if playerKilled:
@@ -81,9 +83,6 @@ func slow(fraction: float, duration: float):
 		speed = speed * fraction
 
 func _on_hit_timer_timeout():
-	if hitpoints <= 0:
-		kill()
-		return
 	hit_splat.visible = false
 	hit_timer_cooldown.start()
 

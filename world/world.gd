@@ -5,16 +5,20 @@ extends Node2D
 
 @export var money: int
 @export var health: int
+@export var wave = 5
+
 var maxHealth = 8
 
 var placementMode = false
 var towerSelected = null
 
-var wave = 5
+var night_waves = [6, 12, 18, 24, 999]
+
+# State
+var wave_intro_playing = false
 var wave_in_progress = false
 var night_wave = false
-var night_waves = [6, 12, 18, 24, 999]
-var wave_into_playing = false
+var wave_passed_playing = false
 
 var unlockedTowers = ['milkJug']
 
@@ -57,10 +61,10 @@ func _on_button_button_up():
 	if wave in night_waves and not wave_in_progress:
 		night_wave = true
 		play_area.enter_night_mode()
-	if not wave_in_progress:
+	if not wave_in_progress and not wave_passed_playing:
 		transitions_and_titles.play_wave_intro(wave)
-		wave_into_playing = true
-	else:
+		wave_intro_playing = true
+	elif len(get_tree().get_nodes_in_group("enemies")) > 0:
 		print("Wave still in progress.")
 		print(str(len(get_tree().get_nodes_in_group("enemies"))) + " enemies remaining.")
 		for e in get_tree().get_nodes_in_group("enemies"):
@@ -72,14 +76,19 @@ func _on_play_area_wave_completed():
 		play_area.exit_night_mode()
 	wave_in_progress = false
 	print("Wave " + str(wave - 1) + " completed!")
+	transitions_and_titles.play_wave_completed()
+	wave_passed_playing = true
 
 func _on_play_area_enemy_made_it():
 	health -= 1
 	interface.update_health(health)
 
 func _on_transitions_and_titles_wave_intro_over():
-	wave_into_playing = false
+	wave_intro_playing = false
 	var current_wave = load("res://waves/wave" + str(wave) + ".tscn")
 	play_area.start_wave(current_wave)
 	wave_in_progress = true
 	wave += 1 
+
+func _on_transitions_and_titles_wave_passed_over():
+	wave_passed_playing = false

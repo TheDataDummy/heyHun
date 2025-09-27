@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://coyvx8cgcynau"]
+[gd_scene load_steps=9 format=3 uid="uid://coyvx8cgcynau"]
 
 [ext_resource type="Script" path="res://gameSurfaces/transitionsAndTitles.gd" id="1_cejgm"]
 [ext_resource type="Texture2D" uid="uid://cxolckeig1yo5" path="res://artAssets/uiElements/waveText.png" id="1_heehc"]
 [ext_resource type="Texture2D" uid="uid://dirmj34vgdpik" path="res://artAssets/uiElements/acidText/number1.png" id="2_0mncb"]
+[ext_resource type="Texture2D" uid="uid://cfcaodi8evxp3" path="res://artAssets/uiElements/passedPlaceholder.png" id="4_q6fup"]
 
 [sub_resource type="Animation" id="Animation_0sgt7"]
 length = 0.001
@@ -16,12 +17,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(320, -34)]
+"values": [Vector2(264, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wavePassed:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(264, -64)]
 }
 
 [sub_resource type="Animation" id="Animation_tiquf"]
 resource_name = "waveIntro"
-length = 4.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,24 +42,41 @@ tracks/0/path = NodePath("waveTitle:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.06667, 1.13333, 3, 4),
+"times": PackedFloat32Array(0, 1, 1.06667, 1.13333, 2, 3),
 "transitions": PackedFloat32Array(5, 0.435275, 0.5, 1, 7, 1),
 "update": 0,
-"values": [Vector2(320, -34), Vector2(320, 140), Vector2(320, 130), Vector2(320, 140), Vector2(320, 140), Vector2(320, -34)]
+"values": [Vector2(264, -64), Vector2(264, 140), Vector2(264, 130), Vector2(264, 140), Vector2(264, 140), Vector2(264, -64)]
+}
+
+[sub_resource type="Animation" id="Animation_r4udn"]
+resource_name = "wavePassed"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wavePassed:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.06667, 1.13333, 2, 3),
+"transitions": PackedFloat32Array(5, 0.5, 0.5, 1, 7, 1),
+"update": 0,
+"values": [Vector2(264, -64), Vector2(264, 140), Vector2(264, 130), Vector2(264, 140), Vector2(264, 140), Vector2(264, -64)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wqijb"]
 _data = {
 "RESET": SubResource("Animation_0sgt7"),
-"waveIntro": SubResource("Animation_tiquf")
+"waveIntro": SubResource("Animation_tiquf"),
+"wavePassed": SubResource("Animation_r4udn")
 }
 
 [node name="transitionsAndTitles" type="CanvasLayer"]
 script = ExtResource("1_cejgm")
 
 [node name="waveTitle" type="CanvasLayer" parent="."]
-offset = Vector2(320, -34)
-transform = Transform2D(1, 0, 0, 1, 320, -34)
+offset = Vector2(264, -64)
+transform = Transform2D(1, 0, 0, 1, 264, -64)
 
 [node name="wave" type="Sprite2D" parent="waveTitle"]
 texture = ExtResource("1_heehc")
@@ -54,6 +84,14 @@ texture = ExtResource("1_heehc")
 [node name="number" type="Sprite2D" parent="waveTitle"]
 position = Vector2(188, 0)
 texture = ExtResource("2_0mncb")
+
+[node name="wavePassed" type="CanvasLayer" parent="."]
+offset = Vector2(264, -64)
+transform = Transform2D(1, 0, 0, 1, 264, -64)
+
+[node name="passed" type="Sprite2D" parent="wavePassed"]
+position = Vector2(0, 13)
+texture = ExtResource("4_q6fup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

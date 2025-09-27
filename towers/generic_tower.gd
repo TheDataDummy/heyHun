@@ -26,15 +26,15 @@ func _process(_delta):
 		# Subtract from 1 for a countdown effect (e.g., 100% to 0%)
 		var progress_percentage = 1.0 - (time_left / total_time)
 		progress_bar.value = progress_percentage
-
+		
+	if timer.is_stopped() and animation_player.current_animation != "attack" and attack_mode:
+		attack()
 
 func _ready():
 	timer.wait_time = cooldown
 
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	enemies.push_back(body)
-	if timer.is_stopped() and animation_player.current_animation != "attack" and attack_mode:
-		attack()
 
 func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body in enemies:
@@ -43,8 +43,6 @@ func _on_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_inde
 func _on_timer_timeout():
 	if len(enemies) == 0:
 		return
-	elif attack_mode:
-		attack()
 
 func place():
 	attack_mode = true
@@ -79,9 +77,10 @@ func _on_animation_player_animation_finished(anim_name):
 		# Spawn projectile
 		var projectile = projectileScene.instantiate()
 		projectile.target = targetEnemy
-		projectile.position = projectile_spawn_point.global_position
 		projectile.damage = damage
-		get_tree().root.call_deferred("add_child", projectile)
+		call_deferred("add_child", projectile)
+		projectile.call_deferred("set_global_position", projectile_spawn_point.global_position)
+		projectile.call_deferred("set_z_index", 200)
 		animation_player.play("RESET")
 		# Clear target enemy
 		targetEnemy = null

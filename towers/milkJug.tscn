@@ -134,7 +134,7 @@ size = Vector2(16, 21)
 [node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
 damage = 4
-cooldown = 0.7
+cooldown = 1.0
 projectileScene = ExtResource("2_cxnsy")
 towerCost = 3
 
@@ -152,7 +152,6 @@ visible = false
 texture = ExtResource("5_oq0hj")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_y83y4")
 
 [node name="Timer" type="Timer" parent="."]

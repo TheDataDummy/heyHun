@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b43bk6rwolk68" path="res://enemies/billGatesHit-Sheet.png" id="4_1vc0m"]
 [ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_cviai"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
-radius = 3.16228
-
 [sub_resource type="Animation" id="Animation_cftla"]
 length = 0.001
 tracks/0/type = "value"
@@ -180,13 +177,12 @@ _data = {
 "walk": SubResource("Animation_t23vx")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk21p"]
+size = Vector2(9, 34)
+
 [node name="bill" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_al510")
 hitpoints = 200
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -24)
-shape = SubResource("CircleShape2D_sa0cw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -217,9 +213,9 @@ one_shot = true
 
 [node name="hpbar" type="TextureProgressBar" parent="."]
 offset_left = -5.0
-offset_top = -274.0
+offset_top = -45.0
 offset_right = 5.0
-offset_bottom = -272.0
+offset_bottom = -43.0
 value = 100.0
 texture_progress = ExtResource("4_cviai")
 
@@ -236,6 +232,10 @@ one_shot = true
 [node name="hitTimerCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_kk21p")
 
 [connection signal="timeout" from="slowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
