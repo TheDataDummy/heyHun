@@ -329,6 +329,7 @@ disabled = true
 
 [node name="infoBox" type="Node2D" parent="."]
 visible = false
+z_index = 199
 position = Vector2(70, -49)
 
 [node name="infoSprite" type="Sprite2D" parent="infoBox"]
@@ -404,5 +405,5 @@ shape = SubResource("RectangleShape2D_8m2xb")
 [connection signal="body_entered" from="cloudArea" to="." method="_on_cloud_area_body_entered"]
 [connection signal="button_up" from="infoBox/upgrade" to="." method="_on_upgrade_button_up"]
 [connection signal="button_up" from="infoBox/sell" to="." method="_on_sell_button_up"]
-[connection signal="button_down" from="infoBox/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="infoBox/TextureButton" to="." method="_on_texture_button_button_up"]
 [connection signal="input_event" from="clickbox" to="." method="_on_clickbox_input_event"]

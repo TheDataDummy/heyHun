@@ -147,7 +147,7 @@ func upgrade_tower(cost):
 	charge_for_upgrade.emit(cost)
 
 func upgrade_denied():
-	info_box_tower.upgrade_denied()
+	pass
 
 func upgrade_approved():
 	info_box_tower.upgrade_approved()

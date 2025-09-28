@@ -74,9 +74,7 @@ func attack():
 	# If there is no such enemy, just return and continue looking
 	if targetEnemy == null:
 		return
-	print("attacking" + str(i))
 	i += 1
-	#print("Tower " + name + " shooting at "  + targetEnemy.name + " with " + str(targetEnemy.hitpoints) + " hp remaining ")
 	# Determine if we will be killing the enemy with this shot
 	if damage >= targetEnemy.queuedHitpoints:
 		targetEnemy.add_to_group("deathBlownEnemies")
@@ -97,7 +95,6 @@ func _on_animation_player_animation_finished(anim_name):
 		projectile.call_deferred("set_global_position", projectile_spawn_point.global_position)
 		projectile.call_deferred("set_z_index", 200)
 		projectile.name = name + str(i)
-		print("Projectile " + name + str(i) + " queued damage to target, queued hp: " + str(targetEnemy.queuedHitpoints))
 
 		animation_player.play("RESET")
 		# Clear target enemy
@@ -108,10 +105,6 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_clickbox_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and placed:
 		if event.pressed:
-			print(enemies)
-			print(timer.is_stopped())
-			print(animation_player.current_animation != "attack")
-			print(attack_mode)
 			# emit the tower info box click signal because we need to see if we can enter before showing
 			towerInfoBoxEntered.emit()
 

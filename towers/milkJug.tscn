@@ -206,6 +206,7 @@ shape = SubResource("RectangleShape2D_forod")
 
 [node name="infoBox" type="Node2D" parent="."]
 visible = false
+z_index = 199
 position = Vector2(70, -49)
 
 [node name="infoSprite" type="Sprite2D" parent="infoBox"]
