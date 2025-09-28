@@ -31,4 +31,5 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "explode":
 		if target != null:
 			target.hit(damage)
+			print("Projectile " + name + " hit target, new hp: " + str(target.hitpoints))
 		queue_free()

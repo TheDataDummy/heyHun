@@ -137,7 +137,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_forod"]
-size = Vector2(16, 14)
+size = Vector2(16, 16)
 
 [node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
@@ -201,7 +201,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
-position = Vector2(0, -4)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_forod")
 
 [node name="infoBox" type="Node2D" parent="."]

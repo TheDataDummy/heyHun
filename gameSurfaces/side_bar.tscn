@@ -177,7 +177,7 @@ position = Vector2(177, 9)
 texture = ExtResource("13_j0rgo")
 
 [node name="moneyDisplay" type="Node2D" parent="."]
-z_index = 1
+z_index = 200
 position = Vector2(64, 280)
 
 [node name="moneyShadow" type="Sprite2D" parent="moneyDisplay"]
@@ -260,6 +260,7 @@ texture_normal = ExtResource("18_l1cr5")
 texture_pressed = ExtResource("19_t0mfl")
 
 [node name="hpDisplay" type="Node2D" parent="."]
+z_index = 200
 
 [node name="hp" type="TextureProgressBar" parent="hpDisplay"]
 offset_left = 8.0
@@ -272,6 +273,7 @@ texture_under = ExtResource("21_6jexr")
 texture_progress = ExtResource("21_4pe27")
 
 [node name="waveDisplay" type="Node2D" parent="."]
+z_index = 200
 position = Vector2(64, 324)
 
 [node name="Sprite2D" type="Sprite2D" parent="waveDisplay"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lik5dot3ht2y"]
+[gd_scene load_steps=24 format=3 uid="uid://lik5dot3ht2y"]
 
 [ext_resource type="Script" path="res://towers/diffuser.gd" id="1_ow6fk"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="3_xx0y2"]
@@ -8,9 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://bri4dow6dhcx1" path="res://artAssets/effects/diffuser-outline-Sheet.png" id="7_3qnqg"]
 [ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="7_83p10"]
 [ext_resource type="Texture2D" uid="uid://btskkrpsyxyvv" path="res://artAssets/effects/diffuser-base-Sheet.png" id="8_mo2da"]
+[ext_resource type="Texture2D" uid="uid://brrljvlsqdsgx" path="res://artAssets/uiElements/towerUi.png" id="9_r3lsw"]
+[ext_resource type="Texture2D" uid="uid://172mc6xnfrbo" path="res://artAssets/uiElements/buttons/speedUpgradepng1.png" id="10_kje0y"]
+[ext_resource type="Texture2D" uid="uid://brqf03pu8h41g" path="res://artAssets/uiElements/buttons/speedUpgradepng2.png" id="11_6wrxy"]
+[ext_resource type="FontFile" uid="uid://bcek0g8438scn" path="res://fonts/m5x7.ttf" id="12_7p7s8"]
+[ext_resource type="Texture2D" uid="uid://cne7cauutlsvd" path="res://artAssets/uiElements/buttons/sellTower1.png" id="13_mo1hn"]
+[ext_resource type="Texture2D" uid="uid://4lbi635fvy6m" path="res://artAssets/uiElements/buttons/sellTower2.png" id="14_cgpdq"]
+[ext_resource type="Texture2D" uid="uid://b1rk3phajo8jl" path="res://artAssets/uiElements/exitMenuButton1.png" id="15_y42fv"]
+[ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="16_0mhm3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y83y4"]
-radius = 24.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vb0vn"]
+size = Vector2(48, 48)
 
 [sub_resource type="Animation" id="Animation_t6ovh"]
 length = 0.001
@@ -101,32 +109,32 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("cloudArea/CollisionShape2D:shape:radius")
+tracks/7/path = NodePath("cloud:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [10.0]
+"values": [Color(0, 0.54902, 0.129412, 0.513726)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("cloud:modulate")
+tracks/8/path = NodePath("cloudArea/CollisionShape2D:disabled")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0.54902, 0.129412, 0.513726)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_y0c1t"]
 resource_name = "attack"
-length = 0.8
-step = 0.05
+length = 1.6
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -146,7 +154,7 @@ tracks/1/path = NodePath("cloud/cloud:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
@@ -158,7 +166,7 @@ tracks/2/path = NodePath("cloud/cloudOutline:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
@@ -170,7 +178,7 @@ tracks/3/path = NodePath("cloud/cloudOutline:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0.8, 1.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -178,26 +186,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("cloudArea/CollisionShape2D:shape:radius")
+tracks/4/path = NodePath("cloud:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.75, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.01, 24.0, 24.0, 0.01]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("cloud:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0.54902, 0.129412, 0.505882)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cloudArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_gbj8c"]
@@ -249,13 +257,18 @@ _data = {
 "placing": SubResource("Animation_gbj8c")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8y230"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxoc"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m2xb"]
+size = Vector2(16, 14)
 
 [node name="diffuser" type="Area2D"]
 script = ExtResource("1_ow6fk")
 cooldown = 5.0
 towerCost = 10
 statusDuration = 5.0
+upgradeValue = 10
 
 [node name="shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_xx0y2")
@@ -270,7 +283,8 @@ visible = false
 texture = ExtResource("4_3gldc")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_y83y4")
+visible = false
+shape = SubResource("RectangleShape2D_vb0vn")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -310,10 +324,85 @@ frame = 15
 [node name="cloudArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cloudArea"]
-shape = SubResource("CircleShape2D_8y230")
+shape = SubResource("RectangleShape2D_1lxoc")
+disabled = true
+
+[node name="infoBox" type="Node2D" parent="."]
+visible = false
+position = Vector2(70, -49)
+
+[node name="infoSprite" type="Sprite2D" parent="infoBox"]
+texture = ExtResource("9_r3lsw")
+
+[node name="upgrade" type="TextureButton" parent="infoBox"]
+offset_left = -45.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = 5.0
+texture_normal = ExtResource("10_kje0y")
+texture_pressed = ExtResource("11_6wrxy")
+
+[node name="upgradeCost" type="RichTextLabel" parent="infoBox"]
+offset_left = -49.0
+offset_top = 2.0
+offset_right = -21.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_7p7s8")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="sell" type="TextureButton" parent="infoBox"]
+offset_left = -1.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 5.0
+texture_normal = ExtResource("13_mo1hn")
+texture_pressed = ExtResource("14_cgpdq")
+
+[node name="sellValue" type="RichTextLabel" parent="infoBox"]
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_7p7s8")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="TextureButton" type="TextureButton" parent="infoBox"]
+offset_left = 25.0
+offset_top = -41.0
+offset_right = 57.0
+offset_bottom = -9.0
+texture_normal = ExtResource("15_y42fv")
+texture_pressed = ExtResource("16_0mhm3")
+
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_8m2xb")
+
+[node name="clickbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_8m2xb")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="cloudArea" to="." method="_on_cloud_area_body_entered"]
+[connection signal="button_up" from="infoBox/upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="infoBox/sell" to="." method="_on_sell_button_up"]
+[connection signal="button_down" from="infoBox/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="input_event" from="clickbox" to="." method="_on_clickbox_input_event"]
