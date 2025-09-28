@@ -10,9 +10,8 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
-money = 150
+money = 22
 health = 8
-wave = 6
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 
@@ -44,8 +43,12 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
 [connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
+[connection signal="charge_for_upgrade" from="PlayArea" to="." method="_on_play_area_charge_for_upgrade"]
 [connection signal="earnCoins" from="PlayArea" to="." method="_on_play_area_earn_coins"]
 [connection signal="enemyMadeIt" from="PlayArea" to="." method="_on_play_area_enemy_made_it"]
+[connection signal="issue_refund" from="PlayArea" to="." method="_on_play_area_issue_refund"]
+[connection signal="towerInfoBoxEntered" from="PlayArea" to="." method="_on_play_area_tower_info_box_entered"]
+[connection signal="towerInfoBoxExited" from="PlayArea" to="." method="_on_play_area_tower_info_box_exited"]
 [connection signal="waveCompleted" from="PlayArea" to="." method="_on_play_area_wave_completed"]
 [connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]
 [connection signal="tower_selected" from="interface" to="." method="_on_side_bar_tower_selected"]

@@ -7,6 +7,7 @@ extends Area2D
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar
 @onready var animation_player = $AnimationPlayer
+@onready var cloud_area = $cloudArea
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
@@ -26,6 +27,8 @@ func _process(_delta):
 		progress_bar.value = progress_percentage
 
 func _ready():
+	cloud_area.monitoring = false
+	cloud_area.monitorable = false
 	timer.wait_time = cooldown
 
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
@@ -46,6 +49,8 @@ func _on_timer_timeout():
 func place():
 	attack_mode = true
 	placed = true
+	cloud_area.monitoring = true
+	cloud_area.monitorable = true
 
 func attack():
 	attackAnimationAndProjectile()
@@ -57,6 +62,6 @@ func attackAnimationAndProjectile():
 func _on_cloud_area_body_entered(body):
 	body.slow(0.5, statusDuration)
 
-
 func kill():
+	
 	queue_free()

@@ -6,6 +6,18 @@ var towerCosts = {
 	"supplementDispenser": 15
 }
 
+var upgradeCosts = {
+	"milkJug" : 10,
+	"diffuser" : 20,
+	"supplementDispenser": 35
+}
+
+var towerRefundValue = {
+	"milkJug" : 3,
+	"diffuser" : 6,
+	"supplementDispenser": 7
+}
+
 var enemy_hitpoints = {
 	"book": 10,
 	"sunscreen": 30,

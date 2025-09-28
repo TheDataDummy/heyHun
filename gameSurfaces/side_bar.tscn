@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=24 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
 [ext_resource type="Texture2D" uid="uid://d7b3pgex6ey5" path="res://artAssets/uiElements/reworkedGameUIShadow.png" id="2_1s2iu"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="19_t0mfl"]
 [ext_resource type="Texture2D" uid="uid://b26de6u7gunhw" path="res://artAssets/uiElements/hpbar.png" id="21_4pe27"]
 [ext_resource type="Texture2D" uid="uid://ct62ded1ltmb1" path="res://artAssets/uiElements/hpbarunder.png" id="21_6jexr"]
+[ext_resource type="Texture2D" uid="uid://bwaid4yxlt3jq" path="res://artAssets/uiElements/waveUI.png" id="23_tdaae"]
 
 [node name="SideBar" type="Node2D"]
 script = ExtResource("1_vikbh")
@@ -177,7 +178,7 @@ texture = ExtResource("13_j0rgo")
 
 [node name="moneyDisplay" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(64, 300)
+position = Vector2(64, 280)
 
 [node name="moneyShadow" type="Sprite2D" parent="moneyDisplay"]
 modulate = Color(1, 1, 1, 0.227451)
@@ -269,6 +270,24 @@ max_value = 8.0
 value = 4.0
 texture_under = ExtResource("21_6jexr")
 texture_progress = ExtResource("21_4pe27")
+
+[node name="waveDisplay" type="Node2D" parent="."]
+position = Vector2(64, 324)
+
+[node name="Sprite2D" type="Sprite2D" parent="waveDisplay"]
+position = Vector2(2, 0)
+texture = ExtResource("23_tdaae")
+
+[node name="label" type="RichTextLabel" parent="waveDisplay/Sprite2D"]
+offset_left = -24.0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = 9.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_vnioj")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]100"
 
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock1" to="." method="_on_lock_unlock_animation_finished"]
 [connection signal="unlockAnimationFinished" from="towerUI/UI/towers/lock2" to="." method="_on_lock_unlock_animation_finished"]

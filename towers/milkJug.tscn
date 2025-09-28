@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cctro4hnntkfx"]
+[gd_scene load_steps=22 format=3 uid="uid://cctro4hnntkfx"]
 
 [ext_resource type="Script" path="res://towers/generic_tower.gd" id="1_bi5io"]
 [ext_resource type="PackedScene" uid="uid://c2ql6nfeiwq05" path="res://projectiles/genericProjectile.tscn" id="2_cxnsy"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cco3v0y1jgtdg" path="res://artAssets/uiElements/towerBarUnderlay.png" id="5_nnx8m"]
 [ext_resource type="Texture2D" uid="uid://b5rk7mwynworu" path="res://artAssets/uiElements/96pxAreaIndicator.png" id="5_oq0hj"]
 [ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="6_fsxpj"]
+[ext_resource type="Texture2D" uid="uid://brrljvlsqdsgx" path="res://artAssets/uiElements/towerUi.png" id="8_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://172mc6xnfrbo" path="res://artAssets/uiElements/buttons/speedUpgradepng1.png" id="9_5uxgq"]
+[ext_resource type="Texture2D" uid="uid://brqf03pu8h41g" path="res://artAssets/uiElements/buttons/speedUpgradepng2.png" id="10_emkmo"]
+[ext_resource type="FontFile" uid="uid://bcek0g8438scn" path="res://fonts/m5x7.ttf" id="11_xxrqq"]
+[ext_resource type="Texture2D" uid="uid://cne7cauutlsvd" path="res://artAssets/uiElements/buttons/sellTower1.png" id="12_35x2s"]
+[ext_resource type="Texture2D" uid="uid://4lbi635fvy6m" path="res://artAssets/uiElements/buttons/sellTower2.png" id="13_jh8e5"]
+[ext_resource type="Texture2D" uid="uid://b1rk3phajo8jl" path="res://artAssets/uiElements/exitMenuButton1.png" id="14_c3yvg"]
+[ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="15_cph2q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y83y4"]
 radius = 48.0
@@ -129,7 +137,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_forod"]
-size = Vector2(16, 21)
+size = Vector2(16, 14)
 
 [node name="milkJug" type="Area2D"]
 script = ExtResource("1_bi5io")
@@ -137,6 +145,7 @@ damage = 4
 cooldown = 1.0
 projectileScene = ExtResource("2_cxnsy")
 towerCost = 3
+upgradeValue = 0.65
 
 [node name="shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_vtmuu")
@@ -152,6 +161,7 @@ visible = false
 texture = ExtResource("5_oq0hj")
 
 [node name="targetRange" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_y83y4")
 
 [node name="Timer" type="Timer" parent="."]
@@ -169,6 +179,7 @@ max_value = 1.0
 step = 0.1
 texture_under = ExtResource("5_nnx8m")
 texture_progress = ExtResource("6_fsxpj")
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -176,16 +187,81 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_forod")
+
 [node name="clickbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
-position = Vector2(0, -7.5)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_forod")
+
+[node name="infoBox" type="Node2D" parent="."]
+visible = false
+position = Vector2(70, -49)
+
+[node name="infoSprite" type="Sprite2D" parent="infoBox"]
+texture = ExtResource("8_m7ahb")
+
+[node name="upgrade" type="TextureButton" parent="infoBox"]
+offset_left = -45.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = 5.0
+texture_normal = ExtResource("9_5uxgq")
+texture_pressed = ExtResource("10_emkmo")
+
+[node name="upgradeCost" type="RichTextLabel" parent="infoBox"]
+offset_left = -49.0
+offset_top = 2.0
+offset_right = -21.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_xxrqq")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="sell" type="TextureButton" parent="infoBox"]
+offset_left = -1.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 5.0
+texture_normal = ExtResource("12_35x2s")
+texture_pressed = ExtResource("13_jh8e5")
+
+[node name="sellValue" type="RichTextLabel" parent="infoBox"]
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_xxrqq")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="TextureButton" type="TextureButton" parent="infoBox"]
+offset_left = 25.0
+offset_top = -41.0
+offset_right = 57.0
+offset_bottom = -9.0
+texture_normal = ExtResource("14_c3yvg")
+texture_pressed = ExtResource("15_cph2q")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="input_event" from="clickbox" to="." method="_on_clickbox_input_event"]
+[connection signal="button_up" from="infoBox/upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="infoBox/sell" to="." method="_on_sell_button_up"]
+[connection signal="button_up" from="infoBox/TextureButton" to="." method="_on_texture_button_button_up"]

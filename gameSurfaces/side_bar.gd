@@ -5,6 +5,7 @@ extends Node2D
 @onready var info_box = $infoBox
 @onready var enemies = $towerUI/UI/enemies
 @onready var hp = $hpDisplay/hp
+@onready var wavelabel = $waveDisplay/Sprite2D/label
 
 var unlocked_towers = []
 var selection_mode = true
@@ -73,3 +74,6 @@ func _on_info_toggled(button):
 func untoggle_all_info_buttons():
 	for button in get_tree().get_nodes_in_group("infoButtons"):
 		button.button_pressed = false
+
+func update_wave_display(wave):
+	wavelabel.text = '[center]' + str(wave)
