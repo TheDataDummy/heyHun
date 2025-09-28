@@ -145,7 +145,7 @@ damage = 4
 cooldown = 1.0
 projectileScene = ExtResource("2_cxnsy")
 towerCost = 3
-upgradeValue = 0.65
+upgradeValue = 0.5
 
 [node name="shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_vtmuu")

@@ -143,4 +143,4 @@ func upgrade_approved():
 	towerInfoBoxExited.emit()
 	upgraded = true
 	tower.modulate = Color("90EE90")
-	info_box.get_node("upgradeCost").visible = false
+	info_box.get_node("upgrade").visible = false
