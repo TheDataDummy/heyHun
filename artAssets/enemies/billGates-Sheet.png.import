@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b43bk6rwolk68"
-path="res://.godot/imported/billGatesHit-Sheet.png-3e40941e3f54ff6da2f0cb29e69d7080.ctex"
+uid="uid://nnsroercxxnt"
+path="res://.godot/imported/billGates-Sheet.png-dff77b7c1c713c8cb0dee91f015cc50c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/billGatesHit-Sheet.png"
-dest_files=["res://.godot/imported/billGatesHit-Sheet.png-3e40941e3f54ff6da2f0cb29e69d7080.ctex"]
+source_file="res://artAssets/enemies/billGates-Sheet.png"
+dest_files=["res://.godot/imported/billGates-Sheet.png-dff77b7c1c713c8cb0dee91f015cc50c.ctex"]
 
 [params]
 

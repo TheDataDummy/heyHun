@@ -17,9 +17,10 @@ signal tower_selected(tower_name: String)
 func _ready():
 	for button in get_tree().get_nodes_in_group("towerButtons"):
 		button.connect("pressed", Callable(self, "initiate_build_mode").bind(button))
+		button.get_node("price").text = str(Globals.towerCosts[button.name])
 	for button in get_tree().get_nodes_in_group("infoButtons"):
 		button.connect("pressed", Callable(self, "_on_info_toggled").bind(button))
-		
+	
 	#var towerLock = towers.get_node("lock1")
 	#towerLock.visible = false
 

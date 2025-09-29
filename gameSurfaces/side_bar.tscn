@@ -54,7 +54,7 @@ stretch_mode = 0
 
 [node name="price" type="Label" parent="towerUI/UI/towers/milkJug"]
 layout_mode = 0
-offset_left = 23.0
+offset_left = 13.0
 offset_top = 26.0
 offset_right = 35.0
 offset_bottom = 52.0

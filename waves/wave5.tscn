@@ -12,15 +12,15 @@ script = ExtResource("1_8ia02")
 position = Vector2(-68, 92)
 enemyScene = ExtResource("3_c7jpc")
 numberOfEnemies = 10
-timeBetweenEnemies = 0.25
+timeBetweenEnemies = 0.5
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_mdk2f")]
 position = Vector2(-48, 84)
 enemyScene = ExtResource("3_c7jpc")
-numberOfEnemies = 15
-timeBetweenEnemies = 0.5
-timeBeforeEnemiesSpawn = 4.0
+numberOfEnemies = 12
+timeBetweenEnemies = 0.4
+timeBeforeEnemiesSpawn = 6.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

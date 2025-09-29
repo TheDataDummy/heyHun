@@ -1,21 +1,21 @@
 extends Node
 
 var towerCosts = {
-	"milkJug" : 6,
-	"diffuser" : 10,
-	"supplementDispenser": 15
+	"milkJug" : 8,
+	"diffuser" : 12,
+	"supplementDispenser": 20
 }
 
 var upgradeCosts = {
 	"milkJug" : 10,
-	"diffuser" : 20,
+	"diffuser" : 25,
 	"supplementDispenser": 35
 }
 
 var towerRefundValue = {
-	"milkJug" : 3,
+	"milkJug" : 5,
 	"diffuser" : 6,
-	"supplementDispenser": 7
+	"supplementDispenser": 9
 }
 
 var enemy_hitpoints = {
@@ -27,7 +27,7 @@ var enemy_hitpoints = {
 var enemy_drops = {
 	"book": 1,
 	"sunscreen": 2,
-	"vaccine": 2,
+	"vaccine": 3,
 }
 
 var enemy_descriptions = {
