@@ -17,14 +17,14 @@ timeBetweenEnemies = 0.75
 timeBeforeEnemiesSpawn = 5.0
 
 [node name="bookSpawner3" parent="." instance=ExtResource("2_03edn")]
-position = Vector2(-32, 92)
+position = Vector2(-32, 96)
 enemyScene = ExtResource("3_ullkl")
 numberOfEnemies = 8
 timeBetweenEnemies = 0.25
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_03edn")]
-position = Vector2(-32, 92)
+position = Vector2(-32, 101)
 enemyScene = ExtResource("3_ullkl")
 numberOfEnemies = 10
 timeBetweenEnemies = 0.5
@@ -38,7 +38,7 @@ timeBetweenEnemies = 1.15
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="sunscreenSpawner2" parent="." instance=ExtResource("2_03edn")]
-position = Vector2(-24, 96)
+position = Vector2(-24, 101)
 enemyScene = ExtResource("4_uo5fc")
 numberOfEnemies = 25
 timeBetweenEnemies = 0.85

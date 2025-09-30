@@ -1,0 +1,243 @@
+[gd_scene load_steps=25 format=3 uid="uid://4vddpb1j2ern"]
+
+[ext_resource type="Script" path="res://towers/pill_dispenser.gd" id="1_37sj6"]
+[ext_resource type="PackedScene" uid="uid://pl4k47hrrmrv" path="res://projectiles/supplement.tscn" id="2_fnbpy"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="3_yhxx2"]
+[ext_resource type="Texture2D" uid="uid://5bvt0hy20h5r" path="res://artAssets/tower/pillDispenser-Sheet.png" id="4_a83e8"]
+[ext_resource type="Texture2D" uid="uid://dj42s32vw5870" path="res://artAssets/uiElements/128pxAreaIndicator.png" id="5_pi504"]
+[ext_resource type="Texture2D" uid="uid://cco3v0y1jgtdg" path="res://artAssets/uiElements/towerBarUnderlay.png" id="6_hkff7"]
+[ext_resource type="Texture2D" uid="uid://k81vrojl8vo0" path="res://artAssets/uiElements/towerBarProgress.png" id="7_wm4ak"]
+[ext_resource type="Texture2D" uid="uid://brrljvlsqdsgx" path="res://artAssets/uiElements/towerUi.png" id="8_0cbm7"]
+[ext_resource type="Texture2D" uid="uid://172mc6xnfrbo" path="res://artAssets/uiElements/buttons/speedUpgradepng1.png" id="9_4ehwi"]
+[ext_resource type="Texture2D" uid="uid://brqf03pu8h41g" path="res://artAssets/uiElements/buttons/speedUpgradepng2.png" id="10_t2r2g"]
+[ext_resource type="FontFile" uid="uid://bcek0g8438scn" path="res://fonts/m5x7.ttf" id="11_utkw4"]
+[ext_resource type="Texture2D" uid="uid://cne7cauutlsvd" path="res://artAssets/uiElements/buttons/sellTower1.png" id="12_ye1ee"]
+[ext_resource type="Texture2D" uid="uid://4lbi635fvy6m" path="res://artAssets/uiElements/buttons/sellTower2.png" id="13_c7g15"]
+[ext_resource type="Texture2D" uid="uid://b1rk3phajo8jl" path="res://artAssets/uiElements/exitMenuButton1.png" id="14_47mch"]
+[ext_resource type="Texture2D" uid="uid://xrxu4bu4q6e8" path="res://artAssets/uiElements/exitMenuButton2.png" id="15_yt8kf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y83y4"]
+radius = 64.0
+
+[sub_resource type="Animation" id="Animation_t6ovh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tower:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y0c1t"]
+resource_name = "attack"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tower:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xgvev"]
+resource_name = "cooldown"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tower:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enryn"]
+_data = {
+"RESET": SubResource("Animation_t6ovh"),
+"attack": SubResource("Animation_y0c1t"),
+"cooldown": SubResource("Animation_xgvev")
+}
+
+[sub_resource type="Animation" id="Animation_r3l54"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2k3hy"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.26667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dt6e"]
+_data = {
+"RESET": SubResource("Animation_r3l54"),
+"default": SubResource("Animation_2k3hy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfdb1"]
+size = Vector2(16, 14)
+
+[node name="pillDispenser" type="Area2D"]
+script = ExtResource("1_37sj6")
+damage = 2
+cooldown = 5.0
+projectileScene = ExtResource("2_fnbpy")
+towerCost = 10
+splash_range = 32
+upgradeValue = 3
+
+[node name="shadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_yhxx2")
+offset = Vector2(0, 2)
+
+[node name="tower" type="Sprite2D" parent="."]
+texture = ExtResource("4_a83e8")
+offset = Vector2(0, -8)
+hframes = 8
+
+[node name="rangeIndicator" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_pi504")
+
+[node name="targetRange" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y83y4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="cooldownbar" type="TextureProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 8.0
+offset_bottom = -24.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_under = ExtResource("6_hkff7")
+texture_progress = ExtResource("7_wm4ak")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_enryn")
+}
+autoplay = "RESET"
+
+[node name="rangeIndicatorPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4dt6e")
+}
+autoplay = "default"
+
+[node name="infoBox" type="Node2D" parent="."]
+visible = false
+z_index = 199
+position = Vector2(70, -49)
+
+[node name="infoSprite" type="Sprite2D" parent="infoBox"]
+texture = ExtResource("8_0cbm7")
+
+[node name="upgrade" type="TextureButton" parent="infoBox"]
+offset_left = -45.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = 5.0
+texture_normal = ExtResource("9_4ehwi")
+texture_pressed = ExtResource("10_t2r2g")
+
+[node name="upgradeCost" type="RichTextLabel" parent="infoBox"]
+offset_left = -49.0
+offset_top = 2.0
+offset_right = -21.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_utkw4")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="sell" type="TextureButton" parent="infoBox"]
+offset_left = -1.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 5.0
+texture_normal = ExtResource("12_ye1ee")
+texture_pressed = ExtResource("13_c7g15")
+
+[node name="sellValue" type="RichTextLabel" parent="infoBox"]
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 29.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_utkw4")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]99"
+
+[node name="TextureButton" type="TextureButton" parent="infoBox"]
+offset_left = 25.0
+offset_top = -41.0
+offset_right = 57.0
+offset_bottom = -9.0
+texture_normal = ExtResource("14_47mch")
+texture_pressed = ExtResource("15_yt8kf")
+
+[node name="clickbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_vfdb1")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="button_up" from="infoBox/upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="infoBox/sell" to="." method="_on_sell_button_up"]
+[connection signal="button_up" from="infoBox/TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="input_event" from="clickbox" to="." method="_on_clickbox_input_event"]

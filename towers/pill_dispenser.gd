@@ -5,18 +5,36 @@ extends Area2D
 @export var projectileScene: PackedScene
 @export var towerCost: int
 @export var splash_range: int
+@export var upgradeValue: int
 
 @onready var timer = $Timer
 @onready var progress_bar = $cooldownbar
 @onready var projectile_spawn_point = $ProjectileSpawnPoint
 @onready var animation_player = $AnimationPlayer
+@onready var range_indicator = $rangeIndicator
+@onready var info_box = $infoBox
+@onready var tower = $tower
 
 var projectile
+
+const LOW_POS = Vector2(72, -49)
+const HIGH_POS = Vector2(72, 32)
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
 var attack_mode = false
 var placed = false
+var upgraded = false
+var towerNameLookup
+var saved_source_id 
+var saved_atlas_coords 
+var map_coords
+
+signal towerInfoBoxEntered
+signal towerInfoBoxExited
+signal issueRefund(value: int)
+signal towerUpgraded(cost: int)
+signal towerDestroyed
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -51,6 +69,13 @@ func _on_timer_timeout():
 func place():
 	attack_mode = true
 	placed = true
+	attack_mode = true
+	placed = true
+	range_indicator.visible = false
+	if global_position.y < 88:
+		info_box.global_position = global_position + HIGH_POS
+	else:
+		info_box.global_position = global_position + LOW_POS
 
 func attack():
 	targetEnemy = null
@@ -118,6 +143,50 @@ func _on_animation_player_animation_finished(anim_name):
 		# Clear target enemy
 		targetEnemy = null
 
-
 func kill():
 	queue_free()
+
+func show_info_box():
+	info_box.get_node("sellValue").text = '[center]' + str(Globals.towerRefundValue[towerNameLookup])
+	if not upgraded:
+		info_box.get_node("upgradeCost").text = '[center]' + str(Globals.upgradeCosts[towerNameLookup])
+	else:
+		info_box.get_node("upgradeCost").text = '[center]XX'
+	info_box.visible = true
+
+func hide_info_box():
+	info_box.visible = false
+
+func _on_sell_button_up():
+	refund()
+
+func _on_upgrade_button_up():
+	upgrade()
+
+func upgrade():
+	if not upgraded:
+		towerUpgraded.emit(Globals.upgradeCosts[towerNameLookup])
+
+func refund():
+	issueRefund.emit(Globals.towerRefundValue[towerNameLookup])
+	kill()
+
+func upgrade_approved():
+	cooldown = upgradeValue
+	towerInfoBoxExited.emit()
+	upgraded = true
+	tower.modulate = Color("90EE90")
+	info_box.get_node("upgrade").visible = false
+
+func show_range_indicator():
+	range_indicator.visible = true
+
+func _on_clickbox_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and placed:
+		if event.pressed:
+			# emit the tower info box click signal because we need to see if we can enter before showing
+			towerInfoBoxEntered.emit()
+
+
+func _on_texture_button_button_up():
+	pass # Replace with function body.

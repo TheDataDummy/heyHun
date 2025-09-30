@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cctro4hnntkfx"]
+[gd_scene load_steps=24 format=3 uid="uid://cctro4hnntkfx"]
 
 [ext_resource type="Script" path="res://towers/generic_tower.gd" id="1_bi5io"]
 [ext_resource type="PackedScene" uid="uid://c2ql6nfeiwq05" path="res://projectiles/genericProjectile.tscn" id="2_cxnsy"]
@@ -87,53 +87,48 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
 
-[sub_resource type="Animation" id="Animation_gbj8c"]
-resource_name = "placing"
-length = 12.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rangeIndicator:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 6, 12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rangeIndicator:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("rangeIndicator:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_enryn"]
 _data = {
 "RESET": SubResource("Animation_t6ovh"),
-"attack": SubResource("Animation_y0c1t"),
-"placing": SubResource("Animation_gbj8c")
+"attack": SubResource("Animation_y0c1t")
+}
+
+[sub_resource type="Animation" id="Animation_r3l54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2k3hy"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.26667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dt6e"]
+_data = {
+"RESET": SubResource("Animation_r3l54"),
+"default": SubResource("Animation_2k3hy")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_forod"]
@@ -187,6 +182,12 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="rangeIndicatorPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4dt6e")
+}
+autoplay = "default"
+
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
@@ -207,7 +208,7 @@ shape = SubResource("RectangleShape2D_forod")
 [node name="infoBox" type="Node2D" parent="."]
 visible = false
 z_index = 199
-position = Vector2(70, -49)
+position = Vector2(70, -40.97)
 
 [node name="infoSprite" type="Sprite2D" parent="infoBox"]
 texture = ExtResource("8_m7ahb")

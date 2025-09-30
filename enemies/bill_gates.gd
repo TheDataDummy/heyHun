@@ -22,6 +22,15 @@ var towers_in_range = []
 signal died(position: Vector2)
 signal dropCoins(coins: int)
 
+var level = 1
+
+var hitpoints_dict = {
+	1: 175,
+	2: 4000,
+	3: 16000,
+	4: 50000
+}
+
 func _ready():
 	add_to_group("deathBlownEnemies")
 	speed = standardSpeed
@@ -30,6 +39,10 @@ func _ready():
 	queuedHitpoints = hitpoints
 	hpbar.max_value = hitpoints
 	hpbar.value = hitpoints
+
+func set_level(new_level):
+	level = new_level
+	hitpoints = hitpoints_dict[new_level]
 
 func _setup_navigation():
 	if target:
@@ -112,4 +125,5 @@ func _on_attack_radius_area_exited(area):
 	towers_in_range.erase(area.get_parent())
 
 func _on_attack_timer_timeout():
-	animation_player.play("stomp")
+	if level > 1:
+		animation_player.play("stomp")

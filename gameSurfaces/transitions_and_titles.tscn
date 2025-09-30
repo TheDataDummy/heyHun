@@ -83,8 +83,9 @@ position = Vector2(32, 0)
 texture = ExtResource("1_heehc")
 
 [node name="number" type="Sprite2D" parent="waveTitle"]
-position = Vector2(220, 0)
+position = Vector2(185, -34)
 texture = ExtResource("2_0mncb")
+centered = false
 
 [node name="wavePassed" type="CanvasLayer" parent="."]
 offset = Vector2(280, -64)

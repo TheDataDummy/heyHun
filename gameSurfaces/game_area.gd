@@ -125,6 +125,11 @@ func reclaim_land(tower):
 	placeable_area.set_cell(tower.map_coords, tower.saved_source_id, tower.saved_atlas_coords)
 
 func tower_info_box_entered(tower):
+	if info_box_tower:
+		if tower == info_box_tower:
+			tower_info_box_exited()
+			return
+		tower_info_box_exited()
 	info_box_tower = tower
 	if not night_wave and not build_mode:
 		tower.show_info_box()

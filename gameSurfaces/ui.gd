@@ -11,7 +11,7 @@ func set_tower_preview(tower_name, mouse_position):
 	control.position = mouse_position
 	control.set_name("TowerPreview")
 	add_child(control, true)
-	drag_tower.get_node("AnimationPlayer").play("placing")
+	drag_tower.show_range_indicator()
 
 func update_tower_preview(new_position, colorString):
 	get_node("TowerPreview").position = new_position

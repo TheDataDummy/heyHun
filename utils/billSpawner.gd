@@ -6,6 +6,7 @@ extends Node2D
 @export var timeBetweenEnemies: float
 @export var timeBeforeEnemiesSpawn: float
 
+@export var bill_level: int = 1
 @onready var wave_start_delay_timer = $waveStartDelayTimer
 @onready var game_world = get_parent()
 
@@ -26,6 +27,8 @@ func _on_timer_timeout():
 		enemy.connect("dropCoins", Callable(game_world, "dropCoins"))
 		timer.start()
 		numberOfEnemies -= 1
+		if 'bill' in enemy.name:
+			enemy.set_level(bill_level)
 
 func start_wave():
 	wave_start_delay_timer.start()

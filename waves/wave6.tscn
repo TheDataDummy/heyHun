@@ -15,6 +15,7 @@ script = ExtResource("3_5bx1e")
 enemyScene = ExtResource("4_t0nhp")
 numberOfEnemies = 1
 timeBeforeEnemiesSpawn = 0.1
+bill_level = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

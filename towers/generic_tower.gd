@@ -12,6 +12,10 @@ extends Area2D
 @onready var animation_player = $AnimationPlayer
 @onready var info_box = $infoBox
 @onready var tower = $tower
+@onready var range_indicator = $rangeIndicator
+
+const LOW_POS = Vector2(72, -49)
+const HIGH_POS = Vector2(72, 32)
 
 var towerNameLookup
 var targetEnemy: CharacterBody2D = null
@@ -63,6 +67,11 @@ func _on_timer_timeout():
 func place():
 	attack_mode = true
 	placed = true
+	range_indicator.visible = false
+	if global_position.y < 88:
+		info_box.global_position = global_position + HIGH_POS
+	else:
+		info_box.global_position = global_position + LOW_POS
 
 func attack():
 	# Iterate over enemies in range
@@ -82,6 +91,8 @@ func attack():
 	animation_player.play("attack")
 	targetEnemy.queue_damage(damage)
 
+func show_range_indicator():
+	range_indicator.visible = true
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
@@ -110,6 +121,7 @@ func _on_clickbox_input_event(_viewport, event, _shape_idx):
 
 func show_info_box():
 	info_box.get_node("sellValue").text = '[center]' + str(Globals.towerRefundValue[towerNameLookup])
+	range_indicator.visible = true
 	if not upgraded:
 		info_box.get_node("upgradeCost").text = '[center]' + str(Globals.upgradeCosts[towerNameLookup])
 	else:
@@ -117,6 +129,7 @@ func show_info_box():
 	info_box.visible = true
 
 func hide_info_box():
+	range_indicator.visible = false
 	info_box.visible = false
 
 func _on_texture_button_button_up():

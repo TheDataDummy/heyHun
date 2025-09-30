@@ -13,6 +13,7 @@ extends Area2D
 @onready var tower = $tower
 @onready var clickbox = $clickbox
 @onready var target_range = $targetRange
+@onready var range_indicator = $rangeIndicator
 
 var targetEnemy: CharacterBody2D = null
 var enemies = []
@@ -29,6 +30,9 @@ signal towerInfoBoxExited
 signal issueRefund(value: int)
 signal towerUpgraded(cost: int)
 signal towerDestroyed
+
+const LOW_POS = Vector2(72, -49)
+const HIGH_POS = Vector2(72, 32)
 
 func _process(_delta):
 	# Calculate the remaining time percentage
@@ -65,6 +69,11 @@ func _on_timer_timeout():
 func place():
 	attack_mode = true
 	placed = true
+	range_indicator.visible = false
+	if global_position.y < 88:
+		info_box.global_position = global_position + HIGH_POS
+	else:
+		info_box.global_position = global_position + LOW_POS
 	cloud_area.monitoring = true
 	cloud_area.monitorable = true
 
@@ -122,3 +131,6 @@ func upgrade_approved():
 	upgraded = true
 	tower.modulate = Color("90EE90")
 	info_box.get_node("upgrade").visible = false
+
+func show_range_indicator():
+	range_indicator.visible = true

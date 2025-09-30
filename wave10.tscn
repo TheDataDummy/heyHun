@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dot33b33o4es7"]
+[gd_scene load_steps=5 format=3 uid="uid://b4prlnx8e81ap"]
 
 [ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_tvnd4"]
 [ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_apjs4"]
@@ -12,30 +12,37 @@ script = ExtResource("1_tvnd4")
 [node name="bookSpawner" parent="." instance=ExtResource("2_apjs4")]
 position = Vector2(-32, 92)
 enemyScene = ExtResource("3_8lqfe")
-numberOfEnemies = 20
+numberOfEnemies = 25
 timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 5.0
+
+[node name="bookSpawner3" parent="." instance=ExtResource("2_apjs4")]
+position = Vector2(-28, 92)
+enemyScene = ExtResource("3_8lqfe")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.25
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="bookSpawner2" parent="." instance=ExtResource("2_apjs4")]
-position = Vector2(-28, 88)
+position = Vector2(-32, 100)
 enemyScene = ExtResource("3_8lqfe")
-numberOfEnemies = 15
+numberOfEnemies = 40
 timeBetweenEnemies = 0.5
-timeBeforeEnemiesSpawn = 8.0
+timeBeforeEnemiesSpawn = 10.0
 
 [node name="sunscreenSpawner" parent="." instance=ExtResource("2_apjs4")]
 position = Vector2(-24, 96)
 enemyScene = ExtResource("4_catae")
-numberOfEnemies = 23
+numberOfEnemies = 25
 timeBetweenEnemies = 1.15
 timeBeforeEnemiesSpawn = 1.0
 
 [node name="sunscreenSpawner2" parent="." instance=ExtResource("2_apjs4")]
 position = Vector2(-28, 100)
 enemyScene = ExtResource("4_catae")
-numberOfEnemies = 10
-timeBetweenEnemies = 1.0
-timeBeforeEnemiesSpawn = 3.0
+numberOfEnemies = 15
+timeBetweenEnemies = 0.85
+timeBeforeEnemiesSpawn = 4.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

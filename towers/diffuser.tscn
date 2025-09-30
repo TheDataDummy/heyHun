@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://lik5dot3ht2y"]
+[gd_scene load_steps=26 format=3 uid="uid://lik5dot3ht2y"]
 
 [ext_resource type="Script" path="res://towers/diffuser.gd" id="1_ow6fk"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="3_xx0y2"]
@@ -208,53 +208,10 @@ tracks/5/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_gbj8c"]
-resource_name = "placing"
-length = 12.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rangeIndicator:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 6, 12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rangeIndicator:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("rangeIndicator:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_enryn"]
 _data = {
 "RESET": SubResource("Animation_t6ovh"),
-"attack": SubResource("Animation_y0c1t"),
-"placing": SubResource("Animation_gbj8c")
+"attack": SubResource("Animation_y0c1t")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxoc"]
@@ -262,6 +219,44 @@ size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8m2xb"]
 size = Vector2(16, 14)
+
+[sub_resource type="Animation" id="Animation_r3l54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2k3hy"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rangeIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.26667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dt6e"]
+_data = {
+"RESET": SubResource("Animation_r3l54"),
+"default": SubResource("Animation_2k3hy")
+}
 
 [node name="diffuser" type="Area2D"]
 script = ExtResource("1_ow6fk")
@@ -397,6 +392,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clickbox"]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_8m2xb")
+
+[node name="rangeIndicatorPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4dt6e")
+}
+autoplay = "default"
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

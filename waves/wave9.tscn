@@ -12,7 +12,7 @@ script = ExtResource("1_gccbd")
 [node name="bookSpawner" parent="." instance=ExtResource("2_l5bye")]
 position = Vector2(-32, 92)
 enemyScene = ExtResource("3_swtcg")
-numberOfEnemies = 15
+numberOfEnemies = 12
 timeBetweenEnemies = 0.75
 timeBeforeEnemiesSpawn = 1.0
 
@@ -26,7 +26,7 @@ timeBeforeEnemiesSpawn = 5.0
 [node name="sunscreenSpawner" parent="." instance=ExtResource("2_l5bye")]
 position = Vector2(-24, 96)
 enemyScene = ExtResource("4_v82ia")
-numberOfEnemies = 25
+numberOfEnemies = 23
 timeBetweenEnemies = 1.15
 timeBeforeEnemiesSpawn = 1.0
 

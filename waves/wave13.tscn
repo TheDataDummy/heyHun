@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgxhhfandrlr1"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_6e0ww"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_6e0ww")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

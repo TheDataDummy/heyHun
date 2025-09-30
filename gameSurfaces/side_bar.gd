@@ -8,6 +8,13 @@ extends Node2D
 @onready var wavelabel = $waveDisplay/Sprite2D/label
 
 var unlocked_towers = []
+var wave_enemy_unlocks = {
+	1: 'book',
+	7: 'sunscreen',
+	13: 'oil',
+	19: 'vaccine'
+}
+
 var selection_mode = true
 var info_mode
 var info_target
@@ -78,3 +85,11 @@ func untoggle_all_info_buttons():
 
 func update_wave_display(wave):
 	wavelabel.text = '[center]' + str(wave)
+	for w in range(wave + 1):
+		if w in wave_enemy_unlocks:
+			reveal_enemy(wave_enemy_unlocks[w])
+		
+func reveal_enemy(enemy):
+	var enemy_node = enemies.get_node(enemy)
+	enemies.get_node(enemy + '_info').visible = true
+	enemy_node.texture = load(Globals.enemy_sprite_configs[enemy][0])
