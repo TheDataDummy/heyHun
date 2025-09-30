@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://freoj0e28nnu"]
+
+[ext_resource type="Script" path="res://utils/main_menu.gd" id="1_k23wg"]
+
+[node name="mainMenu" type="Node2D"]
+script = ExtResource("1_k23wg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 72.0
+offset_right = 392.0
+offset_bottom = 120.0
+text = "Start"
+
+[node name="Quit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 232.0
+offset_right = 392.0
+offset_bottom = 280.0
+text = "Quit"
+
+[node name="Options" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 152.0
+offset_right = 392.0
+offset_bottom = 200.0
+text = "Options"
+
+[connection signal="button_up" from="Control/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Control/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Control/Options" to="." method="_on_options_button_up"]

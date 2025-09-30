@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgg0k3yhl16j"]
+[gd_scene load_steps=9 format=3 uid="uid://cgg0k3yhl16j"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_dkcx4"]
 [ext_resource type="PackedScene" uid="uid://isx577j7rxo8" path="res://gameSurfaces/play_area.tscn" id="1_yj447"]
@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://ctr6uycpaxsv4" path="res://artAssets/uiElements/nextWaveUp1.png" id="3_mippw"]
 [ext_resource type="Texture2D" uid="uid://w61jqcdx2275" path="res://artAssets/uiElements/nextWaveUp2.png" id="4_38fsx"]
 [ext_resource type="PackedScene" uid="uid://coyvx8cgcynau" path="res://gameSurfaces/transitions_and_titles.tscn" id="6_hx1dt"]
+[ext_resource type="PackedScene" uid="uid://lbxx182g06op" path="res://utils/pause_menu.tscn" id="7_d7dik"]
+[ext_resource type="PackedScene" uid="uid://4tjhfpakflhy" path="res://utils/death_menu.tscn" id="8_3b2gb"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
 money = 16
-health = 8
+health = 1
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 
@@ -22,7 +24,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="TextureButton" parent="Control"]
+[node name="nextWave" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.2
@@ -37,9 +39,23 @@ texture_normal = ExtResource("3_mippw")
 texture_pressed = ExtResource("4_38fsx")
 metadata/_edit_use_anchors_ = true
 
+[node name="pause" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 579.0
+offset_top = 280.0
+offset_right = 634.0
+offset_bottom = 312.0
+text = "Pause"
+
 [node name="interface" parent="." instance=ExtResource("2_1o8eq")]
 
 [node name="transitionsAndTitles" parent="." instance=ExtResource("6_hx1dt")]
+
+[node name="pause_menu" parent="." instance=ExtResource("7_d7dik")]
+visible = false
+
+[node name="death_menu" parent="." instance=ExtResource("8_3b2gb")]
+visible = false
 
 [connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
 [connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
@@ -50,7 +66,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="towerInfoBoxEntered" from="PlayArea" to="." method="_on_play_area_tower_info_box_entered"]
 [connection signal="towerInfoBoxExited" from="PlayArea" to="." method="_on_play_area_tower_info_box_exited"]
 [connection signal="waveCompleted" from="PlayArea" to="." method="_on_play_area_wave_completed"]
-[connection signal="button_up" from="Control/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Control/nextWave" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Control/pause" to="." method="_on_pause_button_up"]
 [connection signal="tower_selected" from="interface" to="." method="_on_side_bar_tower_selected"]
 [connection signal="wave_intro_over" from="transitionsAndTitles" to="." method="_on_transitions_and_titles_wave_intro_over"]
 [connection signal="wave_passed_over" from="transitionsAndTitles" to="." method="_on_transitions_and_titles_wave_passed_over"]

@@ -2,6 +2,8 @@ extends Node2D
 @onready var play_area = $PlayArea
 @onready var interface = $interface
 @onready var transitions_and_titles = $transitionsAndTitles
+@onready var pause_menu = $pause_menu
+@onready var death_menu = $death_menu
 
 @export var money: int
 @export var health: int
@@ -17,7 +19,7 @@ var night_waves = [6, 12, 18, 24, 999]
 var unlocks = {
 	1: "milkJug",
 	7: "diffuser",
-	12: "pillDispenser"
+	13: "pillDispenser"
 }
 
 # State
@@ -97,6 +99,9 @@ func _on_play_area_wave_completed():
 func _on_play_area_enemy_made_it():
 	health -= 1
 	interface.update_health(health)
+	if health <= 0:
+		get_tree().paused = true
+		death_menu.visible = true
 
 func _on_transitions_and_titles_wave_intro_over():
 	wave_intro_playing = false
@@ -125,3 +130,7 @@ func _on_play_area_charge_for_upgrade(cost):
 	else:
 		play_area.upgrade_approved()
 		update_money(money - cost)
+
+func _on_pause_button_up():
+	pause_menu.visible = true
+	get_tree().paused=true
