@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqk7cu7bm37dx"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_7ln7h"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_e73b8"]
+[ext_resource type="PackedScene" uid="uid://bm3s8lwyco6c0" path="res://enemies/book.tscn" id="3_c4vdb"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="4_56kt2"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_7ln7h")
+
+[node name="bookspawner1" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-12, 80)
+enemyScene = ExtResource("3_c4vdb")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+
+[node name="bookspawner2" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-12, 140)
+enemyScene = ExtResource("3_c4vdb")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 0.25
+
+[node name="bookspawner3" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-12, 68)
+enemyScene = ExtResource("3_c4vdb")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 0.5
+
+[node name="bookspawner4" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-12, 128)
+enemyScene = ExtResource("3_c4vdb")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 0.75
+
+[node name="oilSpawner" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-32, 100)
+enemyScene = ExtResource("4_56kt2")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 0.75
+
+[node name="oilSpawner2" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-32, 104)
+enemyScene = ExtResource("4_56kt2")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.7
+timeBeforeEnemiesSpawn = 2.0
+
+[node name="oilSpawner3" parent="." instance=ExtResource("2_e73b8")]
+position = Vector2(-32, 108)
+enemyScene = ExtResource("4_56kt2")
+numberOfEnemies = 25
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 4.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

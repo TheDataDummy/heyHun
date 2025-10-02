@@ -125,15 +125,17 @@ func reclaim_land(tower):
 	placeable_area.set_cell(tower.map_coords, tower.saved_source_id, tower.saved_atlas_coords)
 
 func tower_info_box_entered(tower):
+	print(info_box_tower)
 	if info_box_tower:
 		if tower == info_box_tower:
 			tower_info_box_exited()
-			return
-		tower_info_box_exited()
-	info_box_tower = tower
+		return
+	
 	if not night_wave and not build_mode:
 		tower.show_info_box()
 		towerInfoBoxEntered.emit()
+		info_box_tower = tower
+	
 
 func tower_info_box_exited():
 	if not is_instance_valid(info_box_tower):
@@ -160,12 +162,9 @@ func upgrade_approved():
 func save_tilemap_as_png(file_path: String) -> Error:
 	# Ensure the viewport has rendered at least one frame
 	await RenderingServer.frame_post_draw
-
 	# Get the viewport's texture
 	var viewport_texture = sub_viewport.get_texture()
-
 	# Get the Image data from the texture
 	var image: Image = viewport_texture.get_image()
-
 	# Save the Image as a PNG file
 	return image.save_png(file_path)

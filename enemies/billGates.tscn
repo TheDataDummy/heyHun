@@ -248,8 +248,8 @@ _data = {
 size = Vector2(9, 19.75)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8p745"]
-radius = 16.0
-height = 48.0
+radius = 20.0
+height = 72.0
 
 [node name="bill" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_al510")
@@ -324,6 +324,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRadius"]
+position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8p745")
 

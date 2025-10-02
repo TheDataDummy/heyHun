@@ -9,9 +9,9 @@ extends Node2D
 
 var unlocked_towers = []
 var wave_enemy_unlocks = {
-	1: 'book',
+	1: 'oil',
 	7: 'sunscreen',
-	13: 'oil',
+	13: 'book',
 	19: 'vaccine'
 }
 

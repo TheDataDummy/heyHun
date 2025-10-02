@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="heyHun"
-run/main_scene="res://utils/main_menu.tscn"
+run/main_scene="res://world/world.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://artAssets/icon.svg"
 
 [autoload]
 
 Globals="*res://data/globals.gd"
+AudioScene="*res://sounds/audioScene.tscn"
+GameState="*res://data/game_state.gd"
 
 [display]
 

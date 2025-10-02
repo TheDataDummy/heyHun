@@ -1,19 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://lbxx182g06op"]
+[gd_scene load_steps=3 format=3 uid="uid://lbxx182g06op"]
 
 [ext_resource type="Script" path="res://utils/pause_menu.gd" id="1_xw6m0"]
+[ext_resource type="PackedScene" uid="uid://bjyjjo540rljm" path="res://utils/options_menu.tscn" id="2_sh0fa"]
 
-[node name="pause_menu" type="Control"]
+[node name="pause_menu" type="CanvasLayer"]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_xw6m0")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
 offset_left = 256.0
 offset_top = 116.0
 offset_right = 384.0
@@ -39,15 +33,19 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Resume"
 
-[node name="restart" type="Button" parent="Panel/VBoxContainer"]
+[node name="options" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-text = "Restart"
+text = "Options"
 
 [node name="quit" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Quit
 "
 
+[node name="options_menu" parent="." instance=ExtResource("2_sh0fa")]
+visible = false
+
 [connection signal="button_up" from="Panel/VBoxContainer/resume" to="." method="_on_button_button_up"]
-[connection signal="button_up" from="Panel/VBoxContainer/restart" to="." method="_on_restart_button_up"]
+[connection signal="button_up" from="Panel/VBoxContainer/options" to="." method="_on_options_button_up"]
 [connection signal="button_up" from="Panel/VBoxContainer/quit" to="." method="_on_quit_button_up"]
+[connection signal="closed_options" from="options_menu" to="." method="_on_options_menu_closed_options"]

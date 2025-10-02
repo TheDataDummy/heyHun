@@ -1,15 +1,15 @@
 extends Node
 
 var towerCosts = {
-	"milkJug" : 8,
-	"diffuser" : 12,
-	"pillDispenser": 20
+	"milkJug" : 16,
+	"diffuser" : 24,
+	"pillDispenser": 40
 }
 
 var upgradeCosts = {
-	"milkJug" : 10,
-	"diffuser" : 25,
-	"pillDispenser": 35
+	"milkJug" : 22,
+	"diffuser" : 30,
+	"pillDispenser": 80
 }
 
 var towerRefundValue = {
@@ -21,15 +21,15 @@ var towerRefundValue = {
 var enemy_hitpoints = {
 	"book": 10,
 	"sunscreen": 30,
-	"oil": 10,
+	"oil": 12,
 	"vaccine": 15,
 }
 
 var enemy_drops = {
 	"book": 1,
-	"oil": 1,
-	"sunscreen": 2,
-	"vaccine": 3,
+	"oil": 2,
+	"sunscreen": 4,
+	"vaccine": 2,
 }
 
 var enemy_descriptions = {
@@ -51,5 +51,5 @@ var enemy_sprite_configs = {
 	"book": ["res://artAssets/enemies/bookIcon.png", 1],
 	"sunscreen": ["res://artAssets/enemies/sunScreen.png", 1],
 	"vaccine": ["res://artAssets/enemies/vaccine.png", 1],
-	"oil": ["res://artAssets/enemies/oil.png", 1]
+	"oil": ["res://artAssets/enemies/oilIcon.png", 1]
 }

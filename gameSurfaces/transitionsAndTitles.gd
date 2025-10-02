@@ -7,7 +7,7 @@ signal wave_intro_over
 signal wave_passed_over
 
 func _ready():
-	for i in range(1,14):
+	for i in range(1,20):
 		textures[i] = load("res://artAssets/uiElements/acidText/number" + str(i) + ".png")
 
 func play_wave_intro(wave_number):

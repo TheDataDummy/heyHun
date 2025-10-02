@@ -39,7 +39,6 @@ func _process(_delta):
 	# Calculate the remaining time percentage
 	var time_left = timer.time_left
 	var total_time = timer.wait_time
-	
 	# Ensure no division by zero if total_time is somehow 0
 	if total_time > 0:
 		# Progress bar value is a percentage from 0 to 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://isx577j7rxo8"]
+[gd_scene load_steps=31 format=4 uid="uid://isx577j7rxo8"]
 
 [ext_resource type="Script" path="res://gameSurfaces/game_area.gd" id="1_0ovfa"]
 [ext_resource type="PackedScene" uid="uid://dyb6u4nq80otx" path="res://objects/coin.tscn" id="2_1d324"]
@@ -420,6 +420,12 @@ _data = {
 "nightToDay": SubResource("Animation_3j7bn")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hl2ww"]
+vertices = PackedVector2Array(514, 195.344, 514, 205.273, 31.8516, 276, -88.9922, 276, -88.0078, 5, 48.6094, 5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-90, 3, 49, 3, 516, 194, 516, 207, 32, 278, -91, 278)])
+agent_radius = 2.0
+
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0ovfa")
@@ -501,5 +507,9 @@ offset = Vector2(56, 180)
 [node name="buttongrass" type="Sprite2D" parent="."]
 position = Vector2(564, 35)
 texture = ExtResource("18_8tqyd")
+
+[node name="flyingNavRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_hl2ww")
+navigation_layers = 2
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]

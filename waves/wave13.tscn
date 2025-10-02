@@ -1,10 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgxhhfandrlr1"]
+[gd_scene load_steps=4 format=3 uid="uid://bgxhhfandrlr1"]
 
 [ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_6e0ww"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_27hs0"]
+[ext_resource type="PackedScene" uid="uid://bm3s8lwyco6c0" path="res://enemies/book.tscn" id="3_mltng"]
 
 [node name="wave1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6e0ww")
+
+[node name="bookspawner1" parent="." instance=ExtResource("2_27hs0")]
+position = Vector2(-12, 80)
+enemyScene = ExtResource("3_mltng")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+
+[node name="bookspawner2" parent="." instance=ExtResource("2_27hs0")]
+position = Vector2(-12, 140)
+enemyScene = ExtResource("3_mltng")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 0.25
+
+[node name="bookspawner3" parent="." instance=ExtResource("2_27hs0")]
+position = Vector2(-12, 68)
+enemyScene = ExtResource("3_mltng")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 0.5
+
+[node name="bookspawner4" parent="." instance=ExtResource("2_27hs0")]
+position = Vector2(-12, 128)
+enemyScene = ExtResource("3_mltng")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 0.75
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

@@ -19,7 +19,7 @@ func _ready():
 func _on_timer_timeout():
 	if numberOfEnemies > 0:
 		var enemy = enemyScene.instantiate()
-		enemy.starting_position = global_position
+		enemy.position = global_position
 		enemy.name = name + str(numberOfEnemies)
 		add_child(enemy)
 		enemy.connect("died", Callable(game_world, "enemy_died"))

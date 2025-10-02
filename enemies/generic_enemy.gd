@@ -28,7 +28,6 @@ func _ready():
 	queuedHitpoints = hitpoints
 	hpbar.max_value = hitpoints
 	hpbar.value = hitpoints
-	global_position = starting_position
 
 func _setup_navigation():
 	if target:

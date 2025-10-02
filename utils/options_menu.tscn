@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyjjo540rljm"]
+
+[ext_resource type="Script" path="res://utils/options_menu.gd" id="1_yccd3"]
+[ext_resource type="FontFile" uid="uid://bcek0g8438scn" path="res://fonts/m5x7.ttf" id="2_wkrwi"]
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_yccd3")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 256.0
+offset_top = 116.0
+offset_right = 384.0
+offset_bottom = 244.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -60.0
+offset_right = 56.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_wkrwi")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Volume"
+
+[node name="VSlider" type="HSlider" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="drag_ended" from="Panel/VBoxContainer/VSlider" to="." method="_on_v_slider_drag_ended"]
+[connection signal="button_up" from="Panel/VBoxContainer/Button" to="." method="_on_button_button_up"]

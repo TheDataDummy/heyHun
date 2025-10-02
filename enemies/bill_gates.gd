@@ -26,9 +26,9 @@ var level = 1
 
 var hitpoints_dict = {
 	1: 175,
-	2: 4000,
-	3: 16000,
-	4: 50000
+	2: 750,
+	3: 8500,
+	4: 25000
 }
 
 func _ready():
@@ -43,6 +43,7 @@ func _ready():
 func set_level(new_level):
 	level = new_level
 	hitpoints = hitpoints_dict[new_level]
+	queuedHitpoints = hitpoints
 
 func _setup_navigation():
 	if target:

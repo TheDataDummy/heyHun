@@ -141,11 +141,11 @@ position = Vector2(-32, 10)
 
 [node name="enemies" type="Node2D" parent="towerUI/UI"]
 
-[node name="book" type="Sprite2D" parent="towerUI/UI/enemies"]
+[node name="oil" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(33, 8)
 texture = ExtResource("12_wdbd2")
 
-[node name="book_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
+[node name="oil_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
 offset_left = 13.0
 offset_top = 25.0
 offset_right = 21.0
@@ -166,11 +166,11 @@ offset_bottom = 33.0
 toggle_mode = true
 texture_normal = ExtResource("12_k137w")
 
-[node name="oil" type="Sprite2D" parent="towerUI/UI/enemies"]
+[node name="book" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(129, 9)
 texture = ExtResource("13_j0rgo")
 
-[node name="oil_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
+[node name="book_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
 visible = false
 offset_left = 109.0
 offset_top = 25.0

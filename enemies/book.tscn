@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm3s8lwyco6c0"]
+
+[ext_resource type="Script" path="res://enemies/book.gd" id="1_rtyyj"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_4elkg"]
+[ext_resource type="Texture2D" uid="uid://w1rseetwfvta" path="res://artAssets/enemies/bookNew-Sheet.png" id="3_33q8p"]
+[ext_resource type="Texture2D" uid="uid://bgrdre2pvu1r7" path="res://artAssets/enemies/bookNew-Sheethit.png" id="4_06hsx"]
+[ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_ak3rx"]
+
+[sub_resource type="Animation" id="Animation_cftla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_a3upp"]
+resource_name = "walk"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ob42"]
+_data = {
+"RESET": SubResource("Animation_cftla"),
+"walk": SubResource("Animation_a3upp")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sa0cw"]
+radius = 1.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
+script = ExtResource("1_rtyyj")
+standardSpeed = 15
+enemyName = "book"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+navigation_layers = 2
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_4elkg")
+
+[node name="enemySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("3_33q8p")
+offset = Vector2(0, -9)
+hframes = 9
+region_rect = Rect2(16, 208, 16, 16)
+
+[node name="hitSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("4_06hsx")
+offset = Vector2(0, -9)
+hframes = 9
+region_rect = Rect2(16, 208, 16, 16)
+
+[node name="hitpoint" type="Marker2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="slowTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="hpbar" type="TextureProgressBar" parent="."]
+offset_left = -5.0
+offset_top = -36.0
+offset_right = 5.0
+offset_bottom = -34.0
+value = 100.0
+texture_progress = ExtResource("4_ak3rx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ob42")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_sa0cw")
+
+[node name="hitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="animationDelay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="slowTimer" to="." method="_on_slow_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="hitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="animationDelay" to="." method="_on_animation_delay_timeout"]

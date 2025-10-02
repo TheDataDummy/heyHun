@@ -77,6 +77,8 @@ func _on_button_button_up():
 	if wave in night_waves and not wave_in_progress:
 		night_wave = true
 		play_area.enter_night_mode()
+		print("Playing bill's music")
+		AudioScene.play_music_bill()
 	if not wave_in_progress and not wave_passed_playing:
 		transitions_and_titles.play_wave_intro(wave)
 		wave_intro_playing = true
@@ -86,6 +88,8 @@ func _on_button_button_up():
 		print(str(len(get_tree().get_nodes_in_group("enemies"))) + " enemies remaining.")
 		for e in get_tree().get_nodes_in_group("enemies"):
 			print("Enemy: " + e.name + " at: " + str(e.global_position))
+	else:
+		print("IDK why but you can't play")
 
 func _on_play_area_wave_completed():
 	if night_wave == true:
@@ -95,6 +99,11 @@ func _on_play_area_wave_completed():
 	print("Wave " + str(wave - 1) + " completed!")
 	transitions_and_titles.play_wave_completed()
 	wave_passed_playing = true
+	if wave + 1 in night_waves:
+		AudioScene.fade_out()
+	elif wave - 1 in night_waves:
+		AudioScene.fade_out()
+		AudioScene.queue_theme()
 
 func _on_play_area_enemy_made_it():
 	health -= 1
