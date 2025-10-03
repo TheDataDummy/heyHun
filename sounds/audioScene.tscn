@@ -5,3 +5,9 @@
 [node name="AudioScene" type="AudioStreamPlayer"]
 process_mode = 3
 script = ExtResource("1_db7le")
+
+[node name="billMusicDelay" type="Timer" parent="."]
+wait_time = 2.1
+one_shot = true
+
+[connection signal="timeout" from="billMusicDelay" to="." method="_on_bill_music_delay_timeout"]

@@ -78,7 +78,7 @@ func _on_button_button_up():
 		night_wave = true
 		play_area.enter_night_mode()
 		print("Playing bill's music")
-		AudioScene.play_music_bill()
+		AudioScene.start_bill_delay_timer()
 	if not wave_in_progress and not wave_passed_playing:
 		transitions_and_titles.play_wave_intro(wave)
 		wave_intro_playing = true

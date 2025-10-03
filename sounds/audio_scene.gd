@@ -1,5 +1,7 @@
 extends AudioStreamPlayer
 
+@onready var bill_music_delay = $billMusicDelay
+
 const title_music = preload("res://sounds/music/titleSequence.wav")
 const bill_music = preload("res://sounds/music/billTheme.wav")
 
@@ -12,6 +14,7 @@ var saved_vol = 0.0
 
 func _ready():
 	vol_diff = abs(min_vol - max_vol)
+	volume_db = max_vol
 
 func _play_music(music, vol = 0.0):
 	if stream == music:
@@ -41,6 +44,12 @@ func _on_tween_finished(key):
 
 func queue_theme():
 	theme_queued = true
+
+func start_bill_delay_timer():
+	bill_music_delay.start()
+
+func _on_bill_music_delay_timeout():
+	play_music_bill()
 
 func play_music_bill():
 	volume_db = saved_vol
