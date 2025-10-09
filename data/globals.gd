@@ -3,19 +3,22 @@ extends Node
 var towerCosts = {
 	"milkJug" : 16,
 	"diffuser" : 24,
-	"pillDispenser": 40
+	"pillDispenser": 40,
+	"sprinkler": 35
 }
 
 var upgradeCosts = {
 	"milkJug" : 22,
 	"diffuser" : 30,
-	"pillDispenser": 80
+	"pillDispenser": 80,
+	"sprinkler": 50
 }
 
 var towerRefundValue = {
-	"milkJug" : 5,
-	"diffuser" : 6,
-	"pillDispenser": 9
+	"milkJug" : 8,
+	"diffuser" : 12,
+	"pillDispenser": 20,
+	"sprinkler": 15
 }
 
 var enemy_hitpoints = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://2nf8l3hb50cb"]
+[gd_scene load_steps=26 format=3 uid="uid://2nf8l3hb50cb"]
 
 [ext_resource type="Script" path="res://gameSurfaces/side_bar.gd" id="1_vikbh"]
 [ext_resource type="Texture2D" uid="uid://d7b3pgex6ey5" path="res://artAssets/uiElements/reworkedGameUIShadow.png" id="2_1s2iu"]
@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://ce0nedd4fqjo3" path="res://artAssets/uiElements/towerSelectionSprites/diffuserSelected.png" id="6_xqxj0"]
 [ext_resource type="Texture2D" uid="uid://36fxj4xe4rkb" path="res://artAssets/uiElements/towerSelectionSprites/pillDispenser.png" id="9_7wsdq"]
 [ext_resource type="Texture2D" uid="uid://c4u7nt0872v85" path="res://artAssets/uiElements/towerSelectionSprites/pillDispenserSelected.png" id="10_od4rh"]
+[ext_resource type="Texture2D" uid="uid://dlmfngotoicn8" path="res://artAssets/uiElements/towerSelectionSprites/sprinkler1.png" id="11_865xg"]
 [ext_resource type="PackedScene" uid="uid://84h51vqa0put" path="res://lock_1.tscn" id="11_fhtht"]
 [ext_resource type="Texture2D" uid="uid://vayw8hvn18tx" path="res://artAssets/uiElements/moneyUShadowI.png" id="11_nsybk"]
+[ext_resource type="Texture2D" uid="uid://cbp2cp1bemgtf" path="res://artAssets/uiElements/towerSelectionSprites/sprinkler2.png" id="12_27kto"]
 [ext_resource type="Texture2D" uid="uid://da7flenyb8kn1" path="res://artAssets/uiElements/infoIcon.png" id="12_k137w"]
 [ext_resource type="Texture2D" uid="uid://bwmo3ljdndlb2" path="res://artAssets/uiElements/moneyUI.png" id="12_nfrs5"]
 [ext_resource type="Texture2D" uid="uid://c10kp0wkhqxxw" path="res://artAssets/enemies/bookIcon.png" id="12_wdbd2"]
@@ -107,6 +109,28 @@ theme_override_fonts/font = ExtResource("5_vnioj")
 theme_override_font_sizes/font_size = 32
 text = "15"
 
+[node name="sprinkler" type="TextureButton" parent="towerUI/UI/towers" groups=["towerButtons"]]
+offset_left = -47.0
+offset_top = -13.0
+offset_right = -15.0
+offset_bottom = 19.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("11_865xg")
+texture_pressed = ExtResource("12_27kto")
+stretch_mode = 0
+
+[node name="price" type="Label" parent="towerUI/UI/towers/sprinkler"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 36.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vnioj")
+theme_override_font_sizes/font_size = 32
+text = "15"
+
 [node name="Tower" type="Label" parent="towerUI/UI/towers"]
 offset_left = -201.0
 offset_top = -42.0
@@ -179,9 +203,18 @@ offset_bottom = 33.0
 toggle_mode = true
 texture_normal = ExtResource("12_k137w")
 
-[node name="vax" type="Sprite2D" parent="towerUI/UI/enemies"]
+[node name="vaccine" type="Sprite2D" parent="towerUI/UI/enemies"]
 position = Vector2(177, 9)
 texture = ExtResource("13_j0rgo")
+
+[node name="vaccine_info" type="TextureButton" parent="towerUI/UI/enemies" groups=["infoButtons"]]
+visible = false
+offset_left = 157.0
+offset_top = 25.0
+offset_right = 165.0
+offset_bottom = 33.0
+toggle_mode = true
+texture_normal = ExtResource("12_k137w")
 
 [node name="moneyDisplay" type="Node2D" parent="."]
 z_index = 200

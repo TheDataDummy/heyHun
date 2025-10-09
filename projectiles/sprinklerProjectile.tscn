@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch3u45rf421lc"]
+
+[ext_resource type="Script" path="res://projectiles/generic_projectile.gd" id="1_8nta5"]
+[ext_resource type="Texture2D" uid="uid://dluj53g4nx6xe" path="res://artAssets/projectiles/pinkDrinkProjectileSheet.png" id="2_kf0g5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2bk4"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_6mqny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sep2p"]
+resource_name = "explode"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uit5f"]
+_data = {
+"RESET": SubResource("Animation_6mqny"),
+"explode": SubResource("Animation_sep2p")
+}
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_8nta5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kf0g5")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x2bk4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uit5f")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

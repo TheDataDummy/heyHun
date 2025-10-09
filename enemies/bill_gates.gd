@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var hit_splat = $hitSplat
 @onready var hit_timer_cooldown = $hitTimerCooldown
 @onready var attack_timer = $attackTimer
+@onready var label = $Label
 
 var target: Node = null
 var queuedHitpoints: int
@@ -75,6 +76,7 @@ func queue_damage(damage):
 func hit(damage):
 	hitpoints -= damage
 	hpbar.value = max(0, hitpoints)
+	label.text = str(hitpoints)
 	if not hit_timer.time_left > 0 and not hit_timer_cooldown.time_left > 0:
 		hit_splat.visible = true
 		hit_timer.start()

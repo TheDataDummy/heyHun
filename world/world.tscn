@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgg0k3yhl16j"]
+[gd_scene load_steps=11 format=3 uid="uid://cgg0k3yhl16j"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_dkcx4"]
 [ext_resource type="PackedScene" uid="uid://isx577j7rxo8" path="res://gameSurfaces/play_area.tscn" id="1_yj447"]
 [ext_resource type="PackedScene" uid="uid://2nf8l3hb50cb" path="res://gameSurfaces/side_bar.tscn" id="2_1o8eq"]
 [ext_resource type="Texture2D" uid="uid://ctr6uycpaxsv4" path="res://artAssets/uiElements/nextWaveUp1.png" id="3_mippw"]
 [ext_resource type="Texture2D" uid="uid://w61jqcdx2275" path="res://artAssets/uiElements/nextWaveUp2.png" id="4_38fsx"]
+[ext_resource type="Texture2D" uid="uid://o6o0alh87eln" path="res://artAssets/uiElements/pause1.png" id="5_c8csq"]
 [ext_resource type="PackedScene" uid="uid://coyvx8cgcynau" path="res://gameSurfaces/transitions_and_titles.tscn" id="6_hx1dt"]
+[ext_resource type="Texture2D" uid="uid://5bugq1vrcra4" path="res://artAssets/uiElements/pause2.png" id="6_tcsxj"]
 [ext_resource type="PackedScene" uid="uid://lbxx182g06op" path="res://utils/pause_menu.tscn" id="7_d7dik"]
 [ext_resource type="PackedScene" uid="uid://4tjhfpakflhy" path="res://utils/death_menu.tscn" id="8_3b2gb"]
 
@@ -14,7 +16,7 @@ y_sort_enabled = true
 script = ExtResource("1_dkcx4")
 money = 500
 health = 8
-wave = 6
+wave = 11
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 
@@ -40,13 +42,14 @@ texture_normal = ExtResource("3_mippw")
 texture_pressed = ExtResource("4_38fsx")
 metadata/_edit_use_anchors_ = true
 
-[node name="pause" type="Button" parent="Control"]
+[node name="pause" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 579.0
-offset_top = 280.0
-offset_right = 634.0
-offset_bottom = 312.0
-text = "Pause"
+offset_left = 496.0
+offset_top = 56.0
+offset_right = 632.0
+offset_bottom = 96.0
+texture_normal = ExtResource("5_c8csq")
+texture_pressed = ExtResource("6_tcsxj")
 
 [node name="interface" parent="." instance=ExtResource("2_1o8eq")]
 

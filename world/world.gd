@@ -19,7 +19,8 @@ var night_waves = [6, 12, 18, 24, 999]
 var unlocks = {
 	1: "milkJug",
 	7: "diffuser",
-	13: "pillDispenser"
+	13: "pillDispenser",
+	19: "sprinkler"
 }
 
 # State

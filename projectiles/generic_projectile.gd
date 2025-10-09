@@ -12,7 +12,7 @@ func _physics_process(delta):
 	if target != null:
 		direction = global_position.direction_to(target.get_node("hitpoint").global_position)
 		if animation_player.current_animation != "explode":
-			# Calculate the angle towards the target
+			# Calculate s angle towards the target
 			var angle_to_target = global_position.angle_to_point(target.get_node("hitpoint").global_position)
 			# Set the rotation, adding PI/2 radians (90 degrees)
 			# This is often needed to make the 'top' (Y-axis) of the sprite point forward
