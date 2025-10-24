@@ -149,6 +149,7 @@ func tower_info_box_exited():
 
 func refund_tower(value):
 	issue_refund.emit(value)
+	tower_info_box_exited()
 
 func upgrade_tower(cost):
 	charge_for_upgrade.emit(cost)

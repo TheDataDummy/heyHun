@@ -11,27 +11,27 @@ script = ExtResource("1_6e0ww")
 [node name="bookspawner1" parent="." instance=ExtResource("2_27hs0")]
 position = Vector2(-12, 80)
 enemyScene = ExtResource("3_mltng")
-numberOfEnemies = 10
+numberOfEnemies = 8
 timeBetweenEnemies = 0.75
 
 [node name="bookspawner2" parent="." instance=ExtResource("2_27hs0")]
 position = Vector2(-12, 140)
 enemyScene = ExtResource("3_mltng")
-numberOfEnemies = 10
+numberOfEnemies = 8
 timeBetweenEnemies = 0.75
 timeBeforeEnemiesSpawn = 0.25
 
 [node name="bookspawner3" parent="." instance=ExtResource("2_27hs0")]
 position = Vector2(-12, 68)
 enemyScene = ExtResource("3_mltng")
-numberOfEnemies = 10
+numberOfEnemies = 8
 timeBetweenEnemies = 0.75
 timeBeforeEnemiesSpawn = 0.5
 
 [node name="bookspawner4" parent="." instance=ExtResource("2_27hs0")]
 position = Vector2(-12, 128)
 enemyScene = ExtResource("3_mltng")
-numberOfEnemies = 10
+numberOfEnemies = 8
 timeBetweenEnemies = 1.0
 timeBeforeEnemiesSpawn = 0.75
 
