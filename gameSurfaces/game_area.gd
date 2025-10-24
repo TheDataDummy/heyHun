@@ -56,7 +56,12 @@ func start_wave(spawners: PackedScene):
 	call_deferred("add_child", spawnScene)
 	spawnScene.call_deferred("start_wave")
 	spawnScene.connect("waveOver", Callable(self, "wave_completed"))
-	
+
+func kill_all_enemies():
+	for e in get_tree().get_nodes_in_group("enemies"):
+		e.kill()
+		wave_completed()
+
 func _on_enemy_goal_body_entered(body):
 	print("enemy made it")
 	if body.is_in_group("enemies"):

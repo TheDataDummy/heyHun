@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://lcaemrer8lsd"]
+[gd_scene load_steps=18 format=3 uid="uid://lcaemrer8lsd"]
 
 [ext_resource type="Script" path="res://enemies/bill_gates.gd" id="1_al510"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_8uf3c"]
@@ -104,6 +104,64 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hjixu"]
+resource_name = "crouch"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 14, 13, 12, 11, 10]
+}
+
+[sub_resource type="Animation" id="Animation_3frsq"]
+resource_name = "jump"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.85, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 13, 14, 10, 10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemySprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hpbar:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 3, 1),
+"update": 0,
+"values": [Vector2(-5, -45), Vector2(-5, -125), Vector2(-5, -45)]
 }
 
 [sub_resource type="Animation" id="Animation_k2s84"]
@@ -247,64 +305,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 
-[sub_resource type="Animation" id="Animation_hjixu"]
-resource_name = "crouch"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("enemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [15, 14, 13, 12, 11, 10]
-}
-
-[sub_resource type="Animation" id="Animation_3frsq"]
-resource_name = "jump"
-length = 2.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("enemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.85, 1.4, 1.5, 1.6, 1.7, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [10, 13, 14, 10, 10, 11, 12, 13, 14]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("enemySprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.5, 3, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("hpbar:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.5, 3, 1),
-"update": 0,
-"values": [Vector2(-5, -45), Vector2(-5, -125), Vector2(-5, -45)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ob42"]
 _data = {
 "RESET": SubResource("Animation_cftla"),
@@ -322,6 +322,8 @@ size = Vector2(9, 19.75)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8p745"]
 radius = 20.0
 height = 72.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk77i"]
 
 [node name="bill" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_al510")
@@ -407,9 +409,17 @@ visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="jumpDetector" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumpDetector"]
+shape = SubResource("CircleShape2D_vk77i")
+
 [connection signal="timeout" from="slowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="attackRadius" to="." method="_on_attack_radius_area_entered"]
 [connection signal="area_exited" from="attackRadius" to="." method="_on_attack_radius_area_exited"]
+[connection signal="area_entered" from="jumpDetector" to="." method="_on_jump_detector_area_entered"]

@@ -33,6 +33,15 @@ var unlockedTowers = []
 
 signal tower_slection_mode_entered(tower_name: String)
 
+func _process(delta):
+	# Example: Speed up the game by 4x when the space bar is pressed
+	if Input.is_action_just_pressed("ui_down"): # "ui_accept" is often mapped to spacebar
+		Engine.time_scale = 10.0
+	if Input.is_action_just_released("ui_down"):
+		Engine.time_scale = 1.0
+	if Input.is_action_just_pressed("ui_up"):
+		play_area.kill_all_enemies()
+
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_right"):
 		play_area.enter_night_mode()
@@ -78,7 +87,6 @@ func _on_button_button_up():
 	if wave in night_waves and not wave_in_progress:
 		night_wave = true
 		play_area.enter_night_mode()
-		print("Playing bill's music")
 		AudioScene.start_bill_delay_timer()
 	if not wave_in_progress and not wave_passed_playing:
 		transitions_and_titles.play_wave_intro(wave)
@@ -90,7 +98,10 @@ func _on_button_button_up():
 		for e in get_tree().get_nodes_in_group("enemies"):
 			print("Enemy: " + e.name + " at: " + str(e.global_position))
 	else:
-		print("IDK why but you can't play")
+		if wave_in_progress:
+			print("wave still in progress for some reason")
+		else:
+			print("IDK why but you can't play")
 
 func _on_play_area_wave_completed():
 	if night_wave == true:
@@ -100,7 +111,7 @@ func _on_play_area_wave_completed():
 	print("Wave " + str(wave - 1) + " completed!")
 	transitions_and_titles.play_wave_completed()
 	wave_passed_playing = true
-	if wave + 1 in night_waves:
+	if wave in night_waves:
 		AudioScene.fade_out()
 	elif wave - 1 in night_waves:
 		AudioScene.fade_out()
@@ -124,6 +135,8 @@ func _on_transitions_and_titles_wave_passed_over():
 	wave_passed_playing = false
 	if wave in unlocks:
 		update_unlocked_towers(unlocks[wave])
+		health += 1
+		interface.update_health(health)
 
 func _on_play_area_tower_info_box_entered():
 	pass # Replace with function body.

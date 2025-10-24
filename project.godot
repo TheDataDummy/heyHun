@@ -38,6 +38,8 @@ enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
 enemies=""
 target=""
 deathBlownEnemies=""
+jumpend=""
+jumpstart=""
 
 [input]
 

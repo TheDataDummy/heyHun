@@ -22,14 +22,15 @@ var towers_in_range = []
 
 signal died(position: Vector2)
 signal dropCoins(coins: int)
-
+var jump_target
 var level = 1
+var jump_tween: Tween = null 
 
 var hitpoints_dict = {
 	1: 175,
 	2: 750,
-	3: 8500,
-	4: 25000
+	3: 1000,
+	4: 2500
 }
 
 func _ready():
@@ -51,7 +52,7 @@ func _setup_navigation():
 		navigation_agent_2d.target_position = target.global_position
 
 func _physics_process(_delta):
-	if animation_player.current_animation == "stomp":
+	if animation_player.current_animation in ["stomp", "crouch", "jump"]:
 		return
 	if !navigation_agent_2d.is_target_reached() and hitpoints > 0 and not animation_player.current_animation == "spawn":
 		var nav_point_direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
@@ -120,6 +121,19 @@ func _on_animation_player_animation_finished(anim_name):
 			towers_in_range.erase(tower)
 			tower.kill()
 		attack_timer.start()
+	elif anim_name == "crouch":
+		animation_player.play("jump")
+		jump_tween = create_tween()
+		jump_tween.tween_property(
+			self, 
+			"global_position", 
+			jump_target, 
+			1.3
+			).set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_SINE) # Use TRANS_SINE for a smooth, natural start/stop
+	elif anim_name == "jump":
+		attack_timer.paused = false
+
 
 func _on_attack_radius_area_entered(area):
 	towers_in_range.append(area.get_parent())
@@ -130,3 +144,13 @@ func _on_attack_radius_area_exited(area):
 func _on_attack_timer_timeout():
 	if level > 1:
 		animation_player.play("stomp")
+
+func jump():
+	jump_target = get_tree().get_nodes_in_group("jumpend")[0].global_position
+	animation_player.play("crouch")
+	attack_timer.paused = true
+
+func _on_jump_detector_area_entered(area):
+	if level >= 3:
+		print("Gotta blast!")
+		jump()

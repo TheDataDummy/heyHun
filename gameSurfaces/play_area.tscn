@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://isx577j7rxo8"]
+[gd_scene load_steps=32 format=4 uid="uid://isx577j7rxo8"]
 
 [ext_resource type="Script" path="res://gameSurfaces/game_area.gd" id="1_0ovfa"]
 [ext_resource type="PackedScene" uid="uid://dyb6u4nq80otx" path="res://objects/coin.tscn" id="2_1d324"]
@@ -426,6 +426,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-90, 3, 49, 3, 516, 194, 516, 207, 32, 278, -91, 278)])
 agent_radius = 2.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik3jw"]
+
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0ovfa")
@@ -511,5 +513,16 @@ texture = ExtResource("18_8tqyd")
 [node name="flyingNavRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hl2ww")
 navigation_layers = 2
+
+[node name="jumpstart" type="Area2D" parent="." groups=["jumpstart"]]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumpstart"]
+position = Vector2(168, 148)
+shape = SubResource("RectangleShape2D_ik3jw")
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["jumpend"]]
+position = Vector2(248, 233)
 
 [connection signal="body_entered" from="enemyGoal" to="." method="_on_enemy_goal_body_entered"]
