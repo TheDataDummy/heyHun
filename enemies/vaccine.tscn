@@ -47,6 +47,7 @@ _data = {
 }
 
 [node name="vaccine" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 0
 script = ExtResource("1_o4tml")
 standardSpeed = 65
 enemyName = "vaccine"

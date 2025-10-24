@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxbe1735vl7ct"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_fxjno"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_gp6yf"]
+[ext_resource type="PackedScene" uid="uid://bm3s8lwyco6c0" path="res://enemies/book.tscn" id="3_h6ty1"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="4_ytexb"]
+[ext_resource type="PackedScene" uid="uid://cah1208lnbl3o" path="res://enemies/vaccine.tscn" id="5_4ivbf"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_fxjno")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="bookspawner1" parent="." instance=ExtResource("2_gp6yf")]
+position = Vector2(-12, 80)
+enemyScene = ExtResource("3_h6ty1")
+numberOfEnemies = 10
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 5.0
+
+[node name="oilSpawner" parent="." instance=ExtResource("2_gp6yf")]
+position = Vector2(-32, 100)
+enemyScene = ExtResource("4_ytexb")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 5.0
+
+[node name="vaxSpawner" parent="." instance=ExtResource("2_gp6yf")]
+position = Vector2(-32, 100)
+enemyScene = ExtResource("5_4ivbf")
+numberOfEnemies = 20
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

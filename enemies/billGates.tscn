@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://lcaemrer8lsd"]
+[gd_scene load_steps=20 format=3 uid="uid://lcaemrer8lsd"]
 
 [ext_resource type="Script" path="res://enemies/bill_gates.gd" id="1_al510"]
 [ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="2_8uf3c"]
+[ext_resource type="PackedScene" uid="uid://dje4qcioqnd1w" path="res://enemies/enemy_portal.tscn" id="2_tr4e3"]
 [ext_resource type="Texture2D" uid="uid://nnsroercxxnt" path="res://artAssets/enemies/billGates-Sheet.png" id="3_3vkpu"]
 [ext_resource type="Texture2D" uid="uid://b43bk6rwolk68" path="res://artAssets/enemies/billGatesHit-Sheet.png" id="4_1vc0m"]
 [ext_resource type="Texture2D" uid="uid://d0548ftyehnkr" path="res://artAssets/uiElements/enemyHp.png" id="4_cviai"]
@@ -305,10 +306,28 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 
+[sub_resource type="Animation" id="Animation_ehqm3"]
+resource_name = "evilEyes"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 25]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ob42"]
 _data = {
 "RESET": SubResource("Animation_cftla"),
 "crouch": SubResource("Animation_hjixu"),
+"evilEyes": SubResource("Animation_ehqm3"),
 "jump": SubResource("Animation_3frsq"),
 "spawn": SubResource("Animation_k2s84"),
 "stomp": SubResource("Animation_8od6d"),
@@ -325,9 +344,11 @@ height = 72.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vk77i"]
 
-[node name="bill" type="CharacterBody2D" groups=["enemies"]]
+[node name="bill" type="CharacterBody2D" groups=["enemies", "portal_spawn"]]
+collision_mask = 0
 script = ExtResource("1_al510")
 hitpoints = 200
+portalScene = ExtResource("2_tr4e3")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -340,7 +361,7 @@ texture = ExtResource("2_8uf3c")
 [node name="enemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_3vkpu")
 offset = Vector2(0, -24)
-hframes = 22
+hframes = 33
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="hitSplat" type="Sprite2D" parent="."]

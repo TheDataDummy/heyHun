@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=3 uid="uid://dje4qcioqnd1w"]
+
+[ext_resource type="Texture2D" uid="uid://c1akr5ikgppuo" path="res://artAssets/effects/enemyPortal-Sheet.png" id="1_g2ay3"]
+[ext_resource type="Script" path="res://enemies/enemy_portal.gd" id="1_vnajn"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_p26c1"]
+[ext_resource type="PackedScene" uid="uid://bm3s8lwyco6c0" path="res://enemies/book.tscn" id="3_mdabx"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="4_6uq1e"]
+[ext_resource type="Script" path="res://utils/portalSpawner.gd" id="4_11ty3"]
+[ext_resource type="PackedScene" uid="uid://cqb6akecg20xm" path="res://enemies/sunScreen.tscn" id="5_qtyis"]
+[ext_resource type="PackedScene" uid="uid://cah1208lnbl3o" path="res://enemies/vaccine.tscn" id="6_aiv1u"]
+[ext_resource type="Texture2D" uid="uid://bs3a21ckhywul" path="res://artAssets/shadow16px.png" id="6_y4fyn"]
+
+[sub_resource type="Animation" id="Animation_0kyxw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_ktb48"]
+resource_name = "default"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7),
+"transitions": PackedFloat32Array(0.5, 3, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -12), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ktge"]
+_data = {
+"RESET": SubResource("Animation_0kyxw"),
+"default": SubResource("Animation_ktb48")
+}
+
+[node name="EnemyPortal" type="Node2D"]
+script = ExtResource("1_vnajn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_g2ay3")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ktge")
+}
+autoplay = "default"
+
+[node name="bookspawner1" parent="." instance=ExtResource("2_p26c1")]
+position = Vector2(-4, 4)
+script = ExtResource("4_11ty3")
+enemyScene = ExtResource("3_mdabx")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 1.0
+
+[node name="oilSpawner" parent="." instance=ExtResource("2_p26c1")]
+position = Vector2(4, -4)
+script = ExtResource("4_11ty3")
+enemyScene = ExtResource("4_6uq1e")
+numberOfEnemies = 15
+timeBetweenEnemies = 1.0
+
+[node name="sunscreenSpawner3" parent="." instance=ExtResource("2_p26c1")]
+position = Vector2(-4, -4)
+script = ExtResource("4_11ty3")
+enemyScene = ExtResource("5_qtyis")
+numberOfEnemies = 10
+timeBetweenEnemies = 2.0
+timeBeforeEnemiesSpawn = 3.0
+
+[node name="vaxSpawner" parent="." instance=ExtResource("2_p26c1")]
+position = Vector2(4, 4)
+script = ExtResource("4_11ty3")
+enemyScene = ExtResource("6_aiv1u")
+numberOfEnemies = 5
+timeBetweenEnemies = 0.5
+timeBeforeEnemiesSpawn = 1.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+texture = ExtResource("6_y4fyn")

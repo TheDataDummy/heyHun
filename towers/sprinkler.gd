@@ -163,7 +163,7 @@ func refund():
 
 func upgrade_approved():
 	cooldown = upgradeValue
-	timer.wait_time = cooldown
+	timer.wait_time = max(cooldown, 0.1)
 	towerInfoBoxExited.emit()
 	upgraded = true
 	tower.modulate = Color("90EE90")

@@ -49,6 +49,7 @@ func start_bill_delay_timer():
 	bill_music_delay.start()
 
 func _on_bill_music_delay_timeout():
+	volume_db = saved_vol
 	play_music_bill()
 
 func play_music_bill():

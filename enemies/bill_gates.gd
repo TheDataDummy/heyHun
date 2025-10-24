@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var standardSpeed: int = 25
 @export var hitpoints: int = 1
 @export var dropValue: int
+@export var portalScene: PackedScene
+
 @onready var slow_timer = $slowTimer
 @onready var enemy_sprite = $enemySprite
 @onready var hpbar = $hpbar
@@ -25,6 +27,7 @@ signal dropCoins(coins: int)
 var jump_target
 var level = 1
 var jump_tween: Tween = null 
+var portals_spawned = 0
 
 var hitpoints_dict = {
 	1: 175,
@@ -52,7 +55,7 @@ func _setup_navigation():
 		navigation_agent_2d.target_position = target.global_position
 
 func _physics_process(_delta):
-	if animation_player.current_animation in ["stomp", "crouch", "jump"]:
+	if animation_player.current_animation in ["stomp", "crouch", "jump", "evilEyes"]:
 		return
 	if !navigation_agent_2d.is_target_reached() and hitpoints > 0 and not animation_player.current_animation == "spawn":
 		var nav_point_direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
@@ -132,8 +135,12 @@ func _on_animation_player_animation_finished(anim_name):
 			).set_ease(Tween.EASE_OUT) \
 			.set_trans(Tween.TRANS_SINE) # Use TRANS_SINE for a smooth, natural start/stop
 	elif anim_name == "jump":
+		animation_player.play("walk")
 		attack_timer.paused = false
-
+	elif anim_name == "evilEyes":
+		animation_player.play("walk")
+		make_portal()
+		attack_timer.paused = false
 
 func _on_attack_radius_area_entered(area):
 	towers_in_range.append(area.get_parent())
@@ -151,6 +158,17 @@ func jump():
 	attack_timer.paused = true
 
 func _on_jump_detector_area_entered(area):
-	if level >= 3:
-		print("Gotta blast!")
-		jump()
+	if area.name == 'jumpstart':
+		if level >= 3:
+			print("Gotta blast!")
+			jump()
+	else:
+		if level == 4:
+			animation_player.play("evilEyes")
+			attack_timer.paused = true
+
+func make_portal():
+	var portal = portalScene.instantiate()
+	portal.portals_spawned = portals_spawned
+	get_parent().call_deferred("add_child", portal)
+	portals_spawned += 1

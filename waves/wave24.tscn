@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2h5gqh7goyt"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_atotv"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_co8ey"]
+[ext_resource type="Script" path="res://utils/billSpawner.gd" id="3_lmec6"]
+[ext_resource type="PackedScene" uid="uid://lcaemrer8lsd" path="res://enemies/billGates.tscn" id="4_lxf7s"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_atotv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="billSpawner" parent="." instance=ExtResource("2_co8ey")]
+position = Vector2(16, 100)
+script = ExtResource("3_lmec6")
+enemyScene = ExtResource("4_lxf7s")
+numberOfEnemies = 1
+timeBeforeEnemiesSpawn = 0.1
+bill_level = 4
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -14,8 +14,9 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dkcx4")
-money = 34
+money = 1500
 health = 8
+wave = 24
 
 [node name="PlayArea" parent="." instance=ExtResource("1_yj447")]
 

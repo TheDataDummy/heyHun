@@ -72,6 +72,7 @@ _data = {
 radius = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_rtyyj")
 standardSpeed = 15
