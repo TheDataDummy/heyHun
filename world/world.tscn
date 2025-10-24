@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgg0k3yhl16j"]
+[gd_scene load_steps=12 format=3 uid="uid://cgg0k3yhl16j"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_dkcx4"]
 [ext_resource type="PackedScene" uid="uid://isx577j7rxo8" path="res://gameSurfaces/play_area.tscn" id="1_yj447"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://5bugq1vrcra4" path="res://artAssets/uiElements/pause2.png" id="6_tcsxj"]
 [ext_resource type="PackedScene" uid="uid://lbxx182g06op" path="res://utils/pause_menu.tscn" id="7_d7dik"]
 [ext_resource type="PackedScene" uid="uid://4tjhfpakflhy" path="res://utils/death_menu.tscn" id="8_3b2gb"]
+[ext_resource type="PackedScene" uid="uid://dc2cmbr3p44rp" path="res://utils/win_menu.tscn" id="11_sbpyh"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -61,11 +62,15 @@ visible = false
 [node name="death_menu" parent="." instance=ExtResource("8_3b2gb")]
 visible = false
 
+[node name="win_menu" parent="." instance=ExtResource("11_sbpyh")]
+visible = false
+
 [connection signal="tower_slection_mode_entered" from="." to="PlayArea" method="_on_world_tower_slection_mode_entered"]
 [connection signal="build_mode_exited" from="PlayArea" to="." method="_on_play_area_build_mode_exited"]
 [connection signal="charge_for_upgrade" from="PlayArea" to="." method="_on_play_area_charge_for_upgrade"]
 [connection signal="earnCoins" from="PlayArea" to="." method="_on_play_area_earn_coins"]
 [connection signal="enemyMadeIt" from="PlayArea" to="." method="_on_play_area_enemy_made_it"]
+[connection signal="gameOver" from="PlayArea" to="." method="_on_play_area_game_over"]
 [connection signal="issue_refund" from="PlayArea" to="." method="_on_play_area_issue_refund"]
 [connection signal="towerInfoBoxEntered" from="PlayArea" to="." method="_on_play_area_tower_info_box_entered"]
 [connection signal="towerInfoBoxExited" from="PlayArea" to="." method="_on_play_area_tower_info_box_exited"]

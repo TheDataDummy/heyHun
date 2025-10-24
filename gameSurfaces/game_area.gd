@@ -19,6 +19,7 @@ signal build_mode_exited(cost: int)
 signal earnCoins(value: int)
 signal waveCompleted
 signal enemyMadeIt
+signal gameOver
 signal towerInfoBoxEntered
 signal towerInfoBoxExited
 signal issue_refund(value: int)
@@ -63,10 +64,11 @@ func kill_all_enemies():
 		wave_completed()
 
 func _on_enemy_goal_body_entered(body):
-	print("enemy made it")
 	if body.is_in_group("enemies"):
 		body.made_it_home()
 		enemyMadeIt.emit()
+	if 'bill' in body.name:
+		gameOver.emit()
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()

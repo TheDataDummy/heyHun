@@ -9,6 +9,8 @@ extends Node2D
 @onready var wave_start_delay_timer = $waveStartDelayTimer
 @onready var game_world = get_parent()
 
+signal portal_drained
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = timeBetweenEnemies + 0.01
@@ -25,7 +27,8 @@ func _on_timer_timeout():
 		enemy.connect("dropCoins", Callable(game_world, "dropCoins"))
 		timer.start()
 		numberOfEnemies -= 1
-
+	else:
+		portal_drained.emit()
 
 func start_wave():
 	wave_start_delay_timer.start()

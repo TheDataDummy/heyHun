@@ -29,7 +29,7 @@ timeBetweenEnemies = 1.0
 timeBeforeEnemiesSpawn = 5.0
 
 [node name="vaxSpawner" parent="." instance=ExtResource("2_gp6yf")]
-position = Vector2(-32, 100)
+position = Vector2(-24, 112)
 enemyScene = ExtResource("5_4ivbf")
 numberOfEnemies = 20
 timeBetweenEnemies = 0.5

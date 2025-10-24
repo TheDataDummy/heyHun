@@ -73,7 +73,7 @@ _data = {
 "default": SubResource("Animation_ktb48")
 }
 
-[node name="EnemyPortal" type="Node2D"]
+[node name="EnemyPortal" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_vnajn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -121,3 +121,8 @@ timeBeforeEnemiesSpawn = 1.0
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(0, 4)
 texture = ExtResource("6_y4fyn")
+
+[connection signal="portal_drained" from="bookspawner1" to="." method="_on_portal_drained"]
+[connection signal="portal_drained" from="oilSpawner" to="." method="_on_portal_drained"]
+[connection signal="portal_drained" from="sunscreenSpawner3" to="." method="_on_portal_drained"]
+[connection signal="portal_drained" from="vaxSpawner" to="." method="_on_portal_drained"]

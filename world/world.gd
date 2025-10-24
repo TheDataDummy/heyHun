@@ -4,6 +4,7 @@ extends Node2D
 @onready var transitions_and_titles = $transitionsAndTitles
 @onready var pause_menu = $pause_menu
 @onready var death_menu = $death_menu
+@onready var win_menu = $win_menu
 
 @export var money: int
 @export var health: int
@@ -30,6 +31,7 @@ var night_wave = false
 var wave_passed_playing = false
 
 var unlockedTowers = []
+var invincibility = false
 
 signal tower_slection_mode_entered(tower_name: String)
 
@@ -41,10 +43,8 @@ func _process(delta):
 		Engine.time_scale = 1.0
 	if Input.is_action_just_pressed("ui_up"):
 		play_area.kill_all_enemies()
-
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_right"):
-		play_area.enter_night_mode()
+	if Input.is_action_just_pressed("ui_right"):
+		invincibility = true
 
 func _ready():
 	for i in unlocks:
@@ -100,6 +100,7 @@ func _on_button_button_up():
 	else:
 		if wave_in_progress:
 			print("wave still in progress for some reason")
+			wave_in_progress = false
 		else:
 			print("IDK why but you can't play")
 
@@ -111,13 +112,17 @@ func _on_play_area_wave_completed():
 	print("Wave " + str(wave - 1) + " completed!")
 	transitions_and_titles.play_wave_completed()
 	wave_passed_playing = true
-	if wave in night_waves:
-		AudioScene.fade_out()
-	elif wave - 1 in night_waves:
-		AudioScene.fade_out()
-		AudioScene.queue_theme()
+	if wave in night_waves or wave - 1 in night_waves:
+		if wave - 1 == 24:
+			AudioScene.fade_out(1)
+			get_tree().paused = true
+			win_menu.visible = true
+		else:
+			AudioScene.fade_out()
 
 func _on_play_area_enemy_made_it():
+	if invincibility:
+		return
 	health -= 1
 	interface.update_health(health)
 	if health <= 0:
@@ -157,3 +162,12 @@ func _on_play_area_charge_for_upgrade(cost):
 func _on_pause_button_up():
 	pause_menu.visible = true
 	get_tree().paused=true
+
+func _on_play_area_game_over():
+	if invincibility:
+		return
+	health = 0
+	interface.update_health(health)
+	if health <= 0:
+		get_tree().paused = true
+		death_menu.visible = true

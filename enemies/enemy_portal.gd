@@ -6,6 +6,8 @@ signal waveOver(name: String)
 
 var portals_spawned
 
+var spawners_depleted = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var portal_spawn_pos = get_tree().get_nodes_in_group("portal_spawn")
@@ -13,9 +15,16 @@ func _ready():
 		if str(portals_spawned) in portal.name:
 			global_position = portal.global_position
 			start_wave()
-		
 
 func start_wave():
 	for node in get_children():
 		if not node is Sprite2D and not node is AnimationPlayer:
 			node.start_wave()
+
+func kill():
+	queue_free()
+
+func _on_portal_drained():
+	spawners_depleted += 1
+	if spawners_depleted == 4:
+		kill()

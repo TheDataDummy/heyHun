@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc2cmbr3p44rp"]
+
+[ext_resource type="Script" path="res://utils/death_menu.gd" id="1_aldsw"]
+[ext_resource type="Texture2D" uid="uid://cklue6l8eglqt" path="res://artAssets/titles/newGameButton1.png" id="2_mjmb4"]
+[ext_resource type="Texture2D" uid="uid://chuxqegx3mlwk" path="res://artAssets/titles/newGameButton3.png" id="3_62kbu"]
+[ext_resource type="Texture2D" uid="uid://obsjhbn8v5hb" path="res://artAssets/titles/newGameButton2.png" id="4_0o4kh"]
+[ext_resource type="Texture2D" uid="uid://sne4guycje8m" path="res://artAssets/titles/familySaved.png" id="8_o22bc"]
+
+[node name="win_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_aldsw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 364.0
+color = Color(0, 0, 0, 0.352941)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 244.0
+offset_right = 284.0
+offset_bottom = 40.0
+
+[node name="newGame" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 160.0
+offset_right = 140.0
+offset_bottom = 224.0
+texture_normal = ExtResource("2_mjmb4")
+texture_pressed = ExtResource("3_62kbu")
+texture_hover = ExtResource("4_0o4kh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("8_o22bc")
+offset = Vector2(320, 96)
+
+[connection signal="button_up" from="Control/newGame" to="." method="_on_new_game_button_up"]

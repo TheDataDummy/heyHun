@@ -1,7 +1,9 @@
 extends Node2D
 @onready var animation_player = $AnimationPlayer
 
+
 func _ready():
+	get_tree().paused = false
 	AudioScene.play_music_title()
 	if not GameState.previous_scene:
 		animation_player.play("introduction")

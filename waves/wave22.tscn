@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb4rhdw6erwey"]
+
+[ext_resource type="Script" path="res://gameSurfaces/spawners.gd" id="1_rmk7w"]
+[ext_resource type="PackedScene" uid="uid://dk4i7d7mbmr25" path="res://utils/spawner.tscn" id="2_idyf0"]
+[ext_resource type="PackedScene" uid="uid://bm3s8lwyco6c0" path="res://enemies/book.tscn" id="3_24171"]
+[ext_resource type="PackedScene" uid="uid://cxc35amwyf4rr" path="res://enemies/genericEnemy.tscn" id="4_n58vm"]
+[ext_resource type="PackedScene" uid="uid://cah1208lnbl3o" path="res://enemies/vaccine.tscn" id="5_b0rem"]
+[ext_resource type="PackedScene" uid="uid://cqb6akecg20xm" path="res://enemies/sunScreen.tscn" id="6_nh4g3"]
+
+[node name="wave1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rmk7w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="bookspawner1" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-12, 80)
+enemyScene = ExtResource("3_24171")
+numberOfEnemies = 15
+timeBetweenEnemies = 0.75
+
+[node name="bookspawner2" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-12, 184)
+enemyScene = ExtResource("3_24171")
+numberOfEnemies = 15
+timeBetweenEnemies = 0.75
+timeBeforeEnemiesSpawn = 2.0
+
+[node name="oilSpawner" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-32, 100)
+enemyScene = ExtResource("4_n58vm")
+numberOfEnemies = 25
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 5.0
+
+[node name="oilSpawner2" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-32, 100)
+enemyScene = ExtResource("4_n58vm")
+numberOfEnemies = 10
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 10.0
+
+[node name="vaxSpawner" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-24, 104)
+enemyScene = ExtResource("5_b0rem")
+numberOfEnemies = 35
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 0.1
+
+[node name="sunscreenSpawner3" parent="." instance=ExtResource("2_idyf0")]
+position = Vector2(-24, 96)
+enemyScene = ExtResource("6_nh4g3")
+numberOfEnemies = 30
+timeBetweenEnemies = 1.0
+timeBeforeEnemiesSpawn = 4.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

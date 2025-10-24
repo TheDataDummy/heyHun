@@ -25,9 +25,9 @@ func _play_music(music, vol = 0.0):
 	
 	play()
 
-func fade_out():
+func fade_out(duration = 4):
 	var tween_key = "node_A_scale" # A unique key for this tween
-	var tween_duration = 4 # seconds
+	var tween_duration = duration # seconds
 	var tween_out = create_tween()
 	tween_out.finished.connect(func(): _on_tween_finished(tween_key))
 
@@ -35,13 +35,13 @@ func fade_out():
 
 # Optional: Connect to a signal to know when the fade is complete
 func _on_tween_finished(key):
-	self.stop()
+	print("Vol at 0")
 	if active_tweens.has(key):
 		active_tweens.erase(key)
 	
 	if theme_queued:
 		play_music_title()
-
+	
 func queue_theme():
 	theme_queued = true
 

@@ -32,7 +32,7 @@ var portals_spawned = 0
 var hitpoints_dict = {
 	1: 175,
 	2: 750,
-	3: 1000,
+	3: 750,
 	4: 2500
 }
 

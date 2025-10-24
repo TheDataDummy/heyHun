@@ -37,15 +37,9 @@ text = "Resume"
 layout_mode = 2
 text = "Options"
 
-[node name="quit" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Quit
-"
-
 [node name="options_menu" parent="." instance=ExtResource("2_sh0fa")]
 visible = false
 
 [connection signal="button_up" from="Panel/VBoxContainer/resume" to="." method="_on_button_button_up"]
 [connection signal="button_up" from="Panel/VBoxContainer/options" to="." method="_on_options_button_up"]
-[connection signal="button_up" from="Panel/VBoxContainer/quit" to="." method="_on_quit_button_up"]
 [connection signal="closed_options" from="options_menu" to="." method="_on_options_menu_closed_options"]
